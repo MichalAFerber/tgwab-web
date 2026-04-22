@@ -1,0 +1,13 @@
+{
+  "name": "IP Cow",
+  "tagline": "IP lookup and network tools — running since 2005",
+  "url": "https://ipcow.com",
+  "status": "live",
+  "tier": 2,
+  "category": "website",
+  "categoryLabel": "Websites",
+  "description": "Live since March 18, 2005. Cloudflare Pages/Workers/DNS. Seven active repos across app/assets/check-ipv4/check-ipv6/geo-proxy/domain-parking/prototype. Uses ipgeolocation.io, UA parser, Ookla speedtest. Zero tracking, no ads, no mandatory signup. park.ipcow.com handles domain parking.",
+  "featured": false,
+  "wikiPath": "websites/ipcow.com",
+  "repoPath": "/Volumes/Yoda/GitHub/the-ipcow-project"
+}

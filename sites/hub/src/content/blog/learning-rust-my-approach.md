@@ -1,7 +1,8 @@
 ---
 title: "Learning Rust: My Approach as a 30-Year IT Veteran"
 description: "Ubuntu is quietly rewriting the core of the OS in Rust. I don't need to become a Rust developer — I need to read it, tweak it, and build a couple of CLI tools. Here's the plan."
-pubDate: 2026-02-07
+pubDate: 2026-03-17
+heroImage: "/assets/img/website-code.avif"
 tags:
   - "rust"
   - "learning"

@@ -2,7 +2,7 @@
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
 
-const products = await getCollection("products", ({ data }) => data.featured);
+const products = await getCollection("portfolio", ({ data }) => data.featured);
 products.sort((a, b) => a.data.tier - b.data.tier);
 ---
 
@@ -14,13 +14,13 @@ products.sort((a, b) => a.data.tier - b.data.tier);
       who'd rather own their stack than rent it.
     </p>
     <div class="cta">
-      <a href="/products/" class="btn btn--primary">See the products</a>
+      <a href="/portfolio/" class="btn btn--primary">See the portfolio</a>
       <a href="/blog/" class="btn">Read the blog</a>
     </div>
   </section>
 
   <section class="featured container">
-    <h2>Featured products</h2>
+    <h2>Featured work</h2>
     <ul class="product-grid">
       {products.map(({ data }) => (
         <li class="product-card">
