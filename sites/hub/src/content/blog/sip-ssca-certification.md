@@ -8,7 +8,7 @@ tags:
   - "voip"
   - "ip-phone-telecommunications"
   - "sip-trunking"
-  - "stir-shaken"
+  - "stir/shaken"
 ---
 ![SSCA® 'Elite' SIP training and SIP Certification](/assets/certs/2022-01-02_SIP_SSCA_Certification.jpg)  
 

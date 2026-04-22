@@ -4,7 +4,7 @@ description: "A deep dive into Psalm 82:6, exploring the names of God, Christ Co
 pubDate: 2025-08-08
 heroImage: "/assets/img/bible-with-cross.webp"
 tags:
-  - "psalm-82-6"
+  - "\"psalm-82:6\""
   - "theology"
   - "bible-study"
   - "christ-consciousness"
