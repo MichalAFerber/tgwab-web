@@ -9,8 +9,6 @@ tags:
   - "pet-peeves"
   - "opinion"
 ---
-# Pet Peeves, Part 2: The Concrete Labyrinth
-
 You know what's more stressful than it has any right to be? A grocery store parking lot at 5:30 PM on a Tuesday.
 
 I want to meet the person who designs these lots. I really do. Because I don't think they're an architect — I think they're a social scientist conducting an experiment to see how fast a civilized human will turn into a road-rage villain over a spot near the entrance.

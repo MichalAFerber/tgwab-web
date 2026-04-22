@@ -105,3 +105,15 @@ Added after initial migration based on feedback:
       Default UI; "Search" link added to nav; blog post articles marked
       with `data-pagefind-body` so only post content is indexed (64 pages)
 - [x] `preview:hub` convenience script at repo root
+
+## 9. Phase 2 fixes — round 2
+
+- [x] Strip leading `# Title` from post bodies when it matches the front-matter
+      title (11 posts had Jekyll-style duplicated H1s)
+- [x] External links open in a new tab — added `rehype-external-links`
+      (markdown/MDX), plus `target="_blank" rel="noopener noreferrer"` on the
+      nav Wiki link, the footer Wiki link, and product cards on landing/
+      portfolio pages
+- [x] Widened blog body to full container width — removed `.prose` from
+      `<article>`, blog index, and search page so content matches the 1200px
+      nav/header width instead of the 72ch reading column

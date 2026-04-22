@@ -10,8 +10,6 @@ tags:
   - "shell-scripting"
   - "devops"
 ---
-# Automating Docker Compose Updates: A Simple Shell Script for Homelab Management
-
 If you're running a homelab with multiple Docker Compose services, you know the drill: checking for updates, pulling new images, restarting containers, and repeating this process for each service. It's tedious, time-consuming, and frankly, boring work that begs to be automated.
 
 I run about a dozen Docker Compose services on my Ubuntu server—everything from Uptime Kuma for monitoring to Nginx Proxy Manager for reverse proxy duties. Each service sits in its own directory with its own `docker-compose.yml` file. Keeping them all updated manually? No thanks.

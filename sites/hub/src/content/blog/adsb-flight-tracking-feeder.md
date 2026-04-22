@@ -11,8 +11,6 @@ tags:
   - "sdr"
   - "flight-tracking"
 ---
-# Flight Tracking from My Backyard: Running an ADS-B Feeder on a Raspberry Pi
-
 There's something deeply satisfying about watching aircraft cross your local sky and knowing exactly what they are, where they're going, and how fast they're moving — all from a $35 Raspberry Pi sitting on a shelf.
 
 I started my ADS-B feeding journey with ADSBexchange, mostly out of curiosity. I'd been reading about software-defined radio (SDR) and realized that for about $25, I could pick up an RTL-SDR dongle and start receiving the ADS-B transponder signals that commercial aircraft broadcast on 1090 MHz. Within an hour of plugging everything in, I had a live map of aircraft within 200 nautical miles of my house in Florence, SC. I was hooked.

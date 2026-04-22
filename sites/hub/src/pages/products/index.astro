@@ -15,7 +15,7 @@ all.sort((a, b) => a.data.tier - b.data.tier || a.data.name.localeCompare(b.data
       {all.map(({ data }) => (
         <li class="product-card">
           <div class="product-card__header">
-            <h3><a href={data.url}>{data.name}</a></h3>
+            <h3><a href={data.url} target="_blank" rel="noopener noreferrer">{data.name}</a></h3>
             <span class={`status status--${data.status}`}>{data.status}</span>
           </div>
           <p>{data.description}</p>

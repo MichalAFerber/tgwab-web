@@ -25,7 +25,7 @@ const links = [
             href={link.href}
             class:list={[{ active: currentPath === link.href }]}
             target={link.external ? "_blank" : undefined}
-            rel={link.external ? "noopener" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
           >
             {link.label}
           </a>

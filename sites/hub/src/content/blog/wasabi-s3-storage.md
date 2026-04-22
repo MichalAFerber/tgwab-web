@@ -11,8 +11,6 @@ tags:
   - "homelab"
   - "backups"
 ---
-# Wasabi: The Unknown S3 Storage Hero at an Incredible Price
-
 When most people think about cloud object storage, AWS S3 immediately comes to mind. But there's a hidden gem in the storage world that delivers the same S3-compatible experience at a fraction of the cost: **Wasabi Hot Cloud Storage**. If you're tired of unpredictable AWS bills with egress fees that can eclipse your storage costs, it's time to discover Wasabi.
 
 ## How I've Used Wasabi
