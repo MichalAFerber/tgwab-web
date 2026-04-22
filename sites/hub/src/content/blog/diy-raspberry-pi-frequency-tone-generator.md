@@ -11,8 +11,6 @@ tags:
   - "diy"
   - "tone-generator"
 ---
-![Raspberry Pi Frequency Tone Generator](/assets/img/raspberry-pi-frequency-tone-generator.webp)
-
 This guide will walk you through building a **low-cost, standalone frequency generator** using a Raspberry Pi and a small speaker or vibration module. Perfect for exploring bioresonant healing, vibrational medicine, or simple experiments in sound therapy.
 
 ## 🧰 What You’ll Need

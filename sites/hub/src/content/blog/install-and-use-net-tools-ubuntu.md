@@ -12,8 +12,6 @@ tags:
   - "cli"
   - "tools"
 ---
-![Ubuntu Sudo](/assets/img/ubuntu-sudo.webp)
-
 The `net-tools` package contains classic networking commands like `ifconfig`, `netstat`, `route`, `arp`, and `hostname`.  
 While newer tools like `ip` (from the `iproute2` package) are now the default, some scripts and tutorials still rely on these older commands.
 

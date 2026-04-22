@@ -11,8 +11,6 @@ tags:
   - "air-quality"
   - "diy"
 ---
-![Pico Environmental Monitor](/assets/img/raspberry-pi-pico-environmental-monitor.webp)
-
 Creating an **environmental monitor** with your Raspberry Pi Pico is a rewarding project that combines sensor integration, data logging, and visualization. This project can measure temperature, humidity, pressure, and air quality — and display or log the data for later analysis.
 
 ## 🧰 Components Needed

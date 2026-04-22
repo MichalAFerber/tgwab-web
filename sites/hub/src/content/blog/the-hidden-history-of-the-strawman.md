@@ -10,8 +10,6 @@ tags:
   - "law"
   - "blockchain"
 ---
-![Symbolic illustration of the Strawman legal fiction concept](/assets/img/illuminati.webp)
-
 ##### An Alternate History of Sovereignty Lost and Found
 
 ## Introduction

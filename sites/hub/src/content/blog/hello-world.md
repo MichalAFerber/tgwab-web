@@ -7,8 +7,6 @@ tags:
   - "programming"
   - "code"
 ---
-![Hello World programming text on a screen](/assets/img/hello-world.webp)
-
 As a tech enthusiast, I couldn’t resist diving into the collaboration between Proton and Standard Notes. Having tried almost every other note-taking app, including Joplin, I appreciate the simplicity and elegance of a clean text editor, especially when it supports Markdown.
 
 After downloading and installing Standard Notes on my Mac, I stumbled upon Listed—a free tool integrated with Standard Notes. Naturally, I had to give it a shot. And so, here I am.

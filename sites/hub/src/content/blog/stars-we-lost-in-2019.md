@@ -13,8 +13,6 @@ tags:
   - "celebrities"
   - "2019"
 ---
-![Year in review](/assets/img/year-in-review-2019.webp)
-
 I read an article today on Fox News entitled “Stars We Lost in 2019”. It listed 157 celebrities that died in 2019. Some were household names like Robert Forster who played Bud Baxter on Last Man Standing. Another was legendary wrestling announcer “Mean” Gene Okerlund who died at the age of 76. Okerlund was one of the most recognizable names in sports entertainment, with his career spanning the American Wrestling Association, World Championship Wrestling, and World Wrestling Entertainment.
 
 Many were young, outside of the range of what we as humans think is a “normal” age range to die. When someone dies over the age of 60 or 70, it doesn’t shock us nearly as much as when someone dies as a child or in their 30s or 40s. When someone dies that we see as “too young to go that early”, there’s a different kind of sad. We think about their parents and siblings or even their children that must move on with life while pushing past this tragedy.

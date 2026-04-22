@@ -11,8 +11,6 @@ tags:
   - "ios"
   - "macos"
 ---
-![Mosyle Certified Administrator badge](/assets/badges/mosyle.avif)
-
 ![Mosyle Certified Administrator official certificate](/assets/certs/2021-09-26_Mosyle_certificate_628-A4F.jpg){: loading="lazy"}  
 
 [Mosyle Business - MDM](https://business.mosyle.com/)

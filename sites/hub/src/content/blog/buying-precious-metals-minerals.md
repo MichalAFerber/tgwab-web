@@ -10,8 +10,6 @@ tags:
   - "silver"
   - "finance"
 ---
-![Gold Bars](/assets/img/gold.webp)
-
 # A Pragmatic Guide to Buying Gold, Silver, and Strategic Minerals
 
 After exploring the world of precious metals and strategic mineral investments, I wanted to share a comprehensive guide for anyone considering these tangible assets. Whether you're looking to diversify your portfolio, hedge against inflation, or simply own physical assets with intrinsic value, this guide breaks down what you need to know.

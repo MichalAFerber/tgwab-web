@@ -11,8 +11,6 @@ tags:
   - "ip-cameras"
   - "cctv"
 ---
-![MCIT Badge](/assets/badges/milestone-certified-integration-technician-mcit.avif)
-
 ![Milestone Certified Integration Technician](/assets/certs/2019-01-10_Milestone-Certified-Integration-Technician-MCIT.jpg)  
 
 [Milestone Learn - Milestone Certified Integration Technician (MCIT)](https://learn.milestonesys.com/certifications_mcit.htm)

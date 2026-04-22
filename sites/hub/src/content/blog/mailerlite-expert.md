@@ -9,8 +9,6 @@ tags:
   - "transactional-emails"
   - "email-apis"
 ---
-![MailerLite certified expert logo badge](/assets/img/MailerLite-logo.webp)
-
 ## My Certificates
 
 - [BFCM emails that get delivered (avoiding spam!)](https://academy.mailerlite.com/certificates/va5g9iq8xx)

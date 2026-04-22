@@ -10,8 +10,6 @@ tags:
   - "trust-planning"
   - "financial-stewardship"
 ---
-![Guide to managing the first 90 days of sudden wealth](/assets/img/sudden-wealth.webp)
-
 ## 💰 The First 90 Days of Sudden Wealth: A Humanitarian’s Guide
 
 The moment sudden wealth arrives—whether through redemption, inheritance, asset conversion, or divine orchestration—a new chapter begins. This is not simply a financial shift; it is an energetic shift. For Humanitarians, this moment is sacred. The first 90 days can determine whether wealth becomes a burden or a blessing. Here’s how to anchor your wisdom and step into stewardship.

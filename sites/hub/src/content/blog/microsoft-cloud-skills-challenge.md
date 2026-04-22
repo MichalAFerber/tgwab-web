@@ -8,8 +8,6 @@ tags:
   - "azure"
   - "az-104"
 ---
-![CSC Hero](/assets/img/csc-hero.webp)
-
 I completed my first Cloud Skills Challenge. The learning path was AZ-104: Azure Administrator.
 
 ![CSC Champion Badge](/assets/badges/csc-champion-badge.avif)  

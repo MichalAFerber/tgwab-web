@@ -9,8 +9,6 @@ tags:
   - "pet-peeves"
   - "opinion"
 ---
-![Paking Lot Pet Peeve](/assets/img/paking-lot-pet-peeve.webp)
-
 # Pet Peeves, Part 2: The Concrete Labyrinth
 
 You know what's more stressful than it has any right to be? A grocery store parking lot at 5:30 PM on a Tuesday.

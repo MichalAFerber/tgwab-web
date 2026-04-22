@@ -7,7 +7,8 @@
     "./Layout.astro": "./src/Layout.astro",
     "./Footer.astro": "./src/Footer.astro",
     "./Nav.astro": "./src/Nav.astro",
-    "./Head.astro": "./src/Head.astro"
+    "./Head.astro": "./src/Head.astro",
+    "./PdfViewer.astro": "./src/PdfViewer.astro"
   },
   "dependencies": {
     "@tgwab/design-tokens": "workspace:*"

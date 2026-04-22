@@ -10,8 +10,6 @@ tags:
   - "homelab"
   - "linux"
 ---
-![Proxmox Logo](/assets/img/proxmox.webp)
-
 If you're running a Proxmox VE homelab, you've probably spun up countless VMs. But have you ever noticed that some VMs show their IP addresses and status in the Proxmox web UI while others remain frustratingly blank? The secret ingredient is the **QEMU Guest Agent** – a small but powerful tool that bridges the gap between your hypervisor and guest operating system.
 
 In this guide, I'll walk you through creating a net-new Ubuntu Server VM in Proxmox VE with full QEMU Guest Agent integration from the start. This setup gives you proper IP address reporting, clean shutdowns, and better backup integration – all the things that make VM management actually pleasant.

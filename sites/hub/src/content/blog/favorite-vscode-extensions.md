@@ -9,8 +9,6 @@ tags:
   - "productivity"
   - "development"
 ---
-![Visual Studio Code](/assets/img/visual_studio_code.webp)
-
 After 30+ years in IT and spending countless hours inside VS Code, I’ve curated a set of extensions that truly make a difference in productivity, coding quality, and workflow.  
 This post groups them by category, links directly to the Visual Studio Marketplace, and includes a one-liner description and a simple example of how to use each.
 

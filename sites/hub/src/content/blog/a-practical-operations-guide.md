@@ -10,8 +10,6 @@ tags:
   - "linux"
   - "self-hosting"
 ---
-![Raspberry Pi Logo](/assets/img/raspberry-pi.webp)
-
 Running a Raspberry Pi 4 as a home server has been one of my most rewarding homelab projects. It's powerful enough to handle multiple containerized services, cloud storage mounts, and various automation tasks—all while sipping minimal power compared to traditional server hardware.
 
 Over time, I've developed a set of workflows and commands that I use daily to maintain and troubleshoot my Pi4Server. This guide documents those operations for both my future self and anyone else running a similar setup.

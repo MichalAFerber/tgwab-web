@@ -11,8 +11,6 @@ tags:
   - "holistic-health"
   - "alternative-medicine"
 ---
-![Sound wave visualization representing vibrational healing frequencies](/assets/img/sound-wave.webp)
-
 For centuries, cultures around the world have used sound and vibration for healing — from Tibetan singing bowls and Gregorian chants to tuning forks and drumming circles. Today, vibrational medicine explores how specific sound frequencies may help balance the body, mind, and spirit.
 
 This post introduces the concept of vibrational healing, provides a detailed frequency chart for various conditions, and guides you in building your own Raspberry Pi tone generator. We’ve also included both an **online frequency tone generator** and a **free downloadable tone library** so you can start experimenting right away.

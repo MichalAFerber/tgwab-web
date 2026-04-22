@@ -10,8 +10,6 @@ tags:
   - "how-to"
   - "programming"
 ---
-![.gitignore](/assets/img/gitignore.webp)
-
 If you're a macOS user working with Git, you've likely encountered `.DS_Store` files. These hidden files, created by Finder to store folder-specific metadata, can sneak into your Git repository and clutter your commits. In this post, I'll guide you through the steps to remove existing `.DS_Store` files from your repository and prevent them from being tracked in the future.
 
 ## Why `.DS_Store` Files Are a Problem

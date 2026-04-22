@@ -8,8 +8,6 @@ tags:
   - "how-to"
   - "dns"
 ---
-![avahi-daemon](/assets/img/systemctl_status_avahi-daemon.webp)
-
 Enable your Ubuntu servers to be accessed via `hostname.local` (e.g., `ping yourservername.local` or `ssh username@yourservername.local`) using Avahi for Zero Configuration Networking (Zeroconf). This is perfect for local networks, like my setup with pi5server, pi4server, and pi3server.
 
 ## Install Avahi

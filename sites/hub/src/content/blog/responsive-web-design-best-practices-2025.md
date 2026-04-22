@@ -13,8 +13,6 @@ tags:
   - "bootstrap"
   - "tailwind"
 ---
-![Website Code](/assets/img/website-code.avif)
-
 ## Why “responsive” still matters (and what’s new)
 
 In 2025, we still design **mobile-first**—but with better tools:

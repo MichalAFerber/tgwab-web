@@ -11,8 +11,6 @@ tags:
   - "english-language"
   - "lost-books"
 ---
-![Greek Manuscript](/assets/img/greek_manuscript.webp)
-
 Every now and then, I like to dive into the history behind things we often take for granted. Recently, I found myself reading about the origins of the **King James Bible**—a book that has shaped English-speaking culture more than almost any other. It reminded me just how much of our language, literature, and even everyday phrases come from those early translations.
 
 ## The First King James Bible

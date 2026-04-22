@@ -9,8 +9,6 @@ tags:
   - "god"
   - "prayer"
 ---
-![The Lord's Prayer](/assets/img/the-lords-prayer.webp)
-
 > O Birther! Father-Mother of the Cosmos, you create all that moves in light.
 > Focus your light within us — make it useful: as the rays of a beacon show the way.
 > Unite our "I can" to yours, so that we walk as kings and queens with every creature.

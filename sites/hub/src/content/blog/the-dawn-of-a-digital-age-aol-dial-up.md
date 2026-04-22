@@ -17,8 +17,6 @@ tags:
   - "retro-tech"
   - "tech-nostalgia"
 ---
-![AOL Startup Screen](/assets/img/aol.webp)
-
 Back in the early 1990s, America Online—originally called Quantum Computer Services until 1991—rose to prominence as the gateway to the internet for countless households ([Engadget](https://www.engadget.com/computing/aols-dial-up-internet-still-exists-but-not-for-much-longer-193004233.html?utm_source=chatgpt.com "AOL's dial-up internet still exists, but not for much longer")). With its easy‑to‑use interface, chat rooms, and whimsical “You’ve Got Mail” alerts, AOL introduced the internet to legions of non‑techies.
 
 Competitors like CompuServe, Prodigy, and emerging services like MSN and EarthLink also played pivotal roles. Prodigy and CompuServe offered proprietary online platforms that provided forums, early email, and content, while Microsoft’s MSN launched its dial‑up service in 1995 alongside Windows 95 ([Wikipedia](https://en.wikipedia.org/wiki/MSN_Dial-Up_Internet_Access?utm_source=chatgpt.com "MSN Dial-Up Internet Access")).

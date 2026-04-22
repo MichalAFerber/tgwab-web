@@ -32,8 +32,6 @@ tags:
   - "ssh"
   - "nas"
 ---
-![rsync](/assets/img/rsync.webp)
-
 Hey everyone, Michal here! Today I want to share one of the most essential tools in my homelab arsenal: **rsync**. If you're serious about protecting your data and implementing a proper backup strategy, rsync is the battle-tested workhorse that should be in your toolkit. After years of managing backups for both personal and professional systems, I've settled on rsync as my primary sync and backup tool—and for good reason.
 
 ### What is rsync?

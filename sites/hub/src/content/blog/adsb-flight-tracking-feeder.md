@@ -11,8 +11,6 @@ tags:
   - "sdr"
   - "flight-tracking"
 ---
-![ADSB Exchange Feed Client](/assets/img/adsbexchange.webp)
-
 # Flight Tracking from My Backyard: Running an ADS-B Feeder on a Raspberry Pi
 
 There's something deeply satisfying about watching aircraft cross your local sky and knowing exactly what they are, where they're going, and how fast they're moving — all from a $35 Raspberry Pi sitting on a shelf.

@@ -18,8 +18,6 @@ tags:
   - "guide"
   - "tutorial"
 ---
-![Unbound Logo](/assets/img/unbound_logo.avif)
-
 When you've got a growing home lab, stable DNS becomes the foundation everything else relies on. Over the last few weeks, I took the time to standardize my DNS with **Unbound** running on two Raspberry Pi 4 servers, making it redundant, secure, and easy to maintain.
 
 This post is a recap of that journey — from tearing out containerized Unbound, to building configs by hand, syncing between Pis, and writing scripts to keep things healthy.

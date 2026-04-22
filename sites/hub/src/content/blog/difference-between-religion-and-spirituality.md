@@ -8,8 +8,6 @@ tags:
   - "theology"
   - "god"
 ---
-![Exploring the difference between religion and spirituality](/assets/img/religious-faith.webp)
-
 Once a wise man was asked to explain the difference between religion and spirituality
 
 His response was profound:

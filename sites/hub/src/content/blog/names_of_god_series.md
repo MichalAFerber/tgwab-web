@@ -11,8 +11,6 @@ tags:
   - "bible-study"
   - "spirituality"
 ---
-![Names of God](/assets/img/names-of-god.webp)
-
 Throughout Scripture, God reveals Himself through many names, each carrying deep meaning and insight into His nature. These names are not arbitrary; they are declarations of who He is, what He does, and how He relates to His people.
 
 In this study, we’ll explore the biblical significance of **Jehovah** and **Yeshua**, along with several other key names of God. We’ll also see how these names connect to the believer’s identity and walk with God.

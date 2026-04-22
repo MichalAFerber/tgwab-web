@@ -1,0 +1,121 @@
+---
+interface Props {
+  id: string;
+  height?: string;
+}
+
+const { id, height = "780px" } = Astro.props;
+
+const pdfUrl = `/assets/docs/${id}`;
+// Scope the interactive IDs per instance so multiple viewers on one page do not collide.
+const viewerId = `pdf-viewer-${id.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase()}`;
+---
+
+<div class="pdf-viewer">
+  <div class="pdf-viewer__toolbar">
+    <div class="pdf-viewer__controls">
+      <button data-pdf-prev type="button">Previous</button>
+      <span data-pdf-page>Page: 1 / 1</span>
+      <button data-pdf-next type="button">Next</button>
+    </div>
+    <a href={pdfUrl} download={id}>Download PDF</a>
+  </div>
+  <canvas id={viewerId} style={`height:${height}`}></canvas>
+</div>
+
+<script is:inline define:vars={{ viewerId, pdfUrl }}>
+  (function () {
+    const root = document.getElementById(viewerId)?.closest(".pdf-viewer");
+    if (!root) return;
+    const canvas = document.getElementById(viewerId);
+    const ctx = canvas.getContext("2d");
+    const pageEl = root.querySelector("[data-pdf-page]");
+    const prevBtn = root.querySelector("[data-pdf-prev]");
+    const nextBtn = root.querySelector("[data-pdf-next]");
+
+    let pdfDoc = null, pageNum = 1, rendering = false, pending = null;
+    const scale = 1.5;
+
+    function loadPdfJs() {
+      return new Promise((res, rej) => {
+        if (window.pdfjsLib) return res(window.pdfjsLib);
+        const s = document.createElement("script");
+        s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+        s.onload = () => {
+          window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+          res(window.pdfjsLib);
+        };
+        s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+
+    function renderPage(num) {
+      rendering = true;
+      pdfDoc.getPage(num).then((page) => {
+        const viewport = page.getViewport({ scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+          rendering = false;
+          if (pending !== null) { renderPage(pending); pending = null; }
+        });
+      });
+      pageEl.textContent = `Page: ${num} / ${pdfDoc.numPages}`;
+    }
+
+    function queue(num) { if (rendering) pending = num; else renderPage(num); }
+    prevBtn.addEventListener("click", () => { if (pageNum > 1) { pageNum--; queue(pageNum); } });
+    nextBtn.addEventListener("click", () => { if (pageNum < pdfDoc.numPages) { pageNum++; queue(pageNum); } });
+
+    loadPdfJs()
+      .then((lib) => lib.getDocument(pdfUrl).promise)
+      .then((pdf) => { pdfDoc = pdf; renderPage(1); })
+      .catch(() => {
+        root.innerHTML =
+          `<p>Couldn't load the embedded PDF viewer. ` +
+          `<a href="${pdfUrl}">Download the PDF instead</a>.</p>`;
+      });
+  })();
+</script>
+
+<style>
+  .pdf-viewer { margin: var(--space-6) 0; }
+  .pdf-viewer__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .pdf-viewer__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .pdf-viewer__toolbar button,
+  .pdf-viewer__toolbar a {
+    padding: var(--space-1) var(--space-3);
+    background: var(--tgwab-red);
+    color: white;
+    border: 0;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .pdf-viewer__toolbar button:hover,
+  .pdf-viewer__toolbar a:hover { background: var(--tgwab-red-dark); }
+  .pdf-viewer canvas {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-top: 0;
+    border-radius: 0 0 var(--radius) var(--radius);
+    background: var(--color-surface);
+  }
+</style>

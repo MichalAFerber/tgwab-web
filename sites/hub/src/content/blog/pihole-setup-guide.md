@@ -12,8 +12,6 @@ tags:
   - "raspberry-pi"
   - "privacy"
 ---
-![Pi-hole Logo](/assets/img/pi-hole.webp)
-
 If you're tired of ads cluttering your browsing experience across all your devices—from smartphones to smart TVs—it's time to implement network-wide ad blocking. Pi-hole offers an elegant DNS-level solution that blocks ads and trackers for every device on your network without requiring individual software installation. In this guide, I'll walk you through setting up Pi-hole, compare it with AdGuard Home, and explain why Pi-hole has become my go-to choice for homelab DNS management.
 
 ## What is Pi-hole?
