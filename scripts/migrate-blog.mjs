@@ -12,13 +12,11 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..");
-const jekyllDir = process.argv[2];
-if (!jekyllDir) {
-  console.error("Usage: node scripts/migrate-blog.mjs <jekyll-repo-path>");
-  process.exit(1);
-}
-
-const postsDir = join(jekyllDir, "_posts");
+// Canonical source: the Obsidian vault's blog/posts directory. The argument
+// can override to either a directory that already contains posts directly, or
+// a Jekyll-style repo (we'll find _posts under it).
+const srcArg = process.argv[2] || `${process.env.HOME}/Obsidian/Obsidian-Master/blog/posts`;
+const postsDir = existsSync(join(srcArg, "_posts")) ? join(srcArg, "_posts") : srcArg;
 const outDir = join(repoRoot, "sites/hub/src/content/blog");
 const publicDir = join(repoRoot, "sites/hub/public");
 const redirectsPath = join(publicDir, "_redirects");
