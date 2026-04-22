@@ -1,13 +1,20 @@
 :root {
   /* Brand */
-  --tgwab-red: #c5282f;
-  --tgwab-red-dark: #9e1f25;
+  --tgwab-red: #e04c2f;
+  --tgwab-red-dark: #c23920;
   --tgwab-gray: #4a4a4a;
   --tgwab-gray-light: #8a8a8a;
+
+  /* Supporting accents */
+  --color-gold: #f0a500;
+  --color-blue: #3b82f6;
+  --color-green: #22c55e;
+  --color-purple: #a855f7;
 
   /* Surfaces */
   --color-bg: #fafafa;
   --color-surface: #ffffff;
+  --color-surface-2: #f2f3f7;
   --color-ink: #1a1a1a;
   --color-muted: #6a6a6a;
   --color-border: #e5e5e5;
@@ -51,10 +58,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0f0f0f;
-    --color-surface: #1a1a1a;
-    --color-ink: #f0f0f0;
-    --color-muted: #a0a0a0;
-    --color-border: #2a2a2a;
+    --color-bg: #0d0f14;
+    --color-surface: #141720;
+    --color-surface-2: #1c2030;
+    --color-ink: #e8eaf0;
+    --color-muted: #6b7280;
+    --color-border: #252a3a;
   }
 }
