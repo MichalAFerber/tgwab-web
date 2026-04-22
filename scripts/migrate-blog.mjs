@@ -211,6 +211,23 @@ function stripLeadingDuplicateImage(body, heroImage) {
   return body;
 }
 
+/**
+ * The Astro template renders `title` as an <h1> in the post header. Jekyll
+ * posts often repeat that title as an H1 at the top of the body, which then
+ * renders twice. Strip the leading H1 when it matches (case-insensitive,
+ * whitespace-collapsed) the front-matter title.
+ */
+const norm = (s) => String(s || "").toLowerCase().replace(/\s+/g, " ").trim();
+function stripLeadingDuplicateH1(body, title) {
+  if (!title) return body;
+  const m = body.match(/^\s*#\s+([^\n]+)\n+/);
+  if (!m) return body;
+  if (norm(m[1]) === norm(title)) {
+    return body.slice(m[0].length);
+  }
+  return body;
+}
+
 // --- run ---
 const redirects = [];
 const notes = [];
@@ -245,6 +262,7 @@ for (const file of files) {
   }
 
   rewritten = stripLeadingDuplicateImage(rewritten, heroImage);
+  rewritten = stripLeadingDuplicateH1(rewritten, fm.title);
 
   if (/\{\{|\{%/.test(rewritten)) {
     notes.push(`[liquid-left] ${slug}: unhandled Liquid tag remains`);

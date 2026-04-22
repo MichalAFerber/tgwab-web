@@ -24,7 +24,7 @@ products.sort((a, b) => a.data.tier - b.data.tier);
     <ul class="product-grid">
       {products.map(({ data }) => (
         <li class="product-card">
-          <h3><a href={data.url}>{data.name}</a></h3>
+          <h3><a href={data.url} target="_blank" rel="noopener noreferrer">{data.name}</a></h3>
           <p class="product-card__tagline">{data.tagline}</p>
           <p class="product-card__meta">{data.category} · {data.status}</p>
         </li>

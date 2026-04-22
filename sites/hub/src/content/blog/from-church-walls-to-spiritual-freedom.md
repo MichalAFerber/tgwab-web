@@ -10,8 +10,6 @@ tags:
   - "mental-health"
   - "testimony"
 ---
-# From Church Walls to Spiritual Freedom
-
 This is the hardest post I've ever written. Not because the words are difficult to find, but because the story is messy — and I've spent most of my life in communities that don't do well with messy.
 
 Years ago, I wrote about [hitting bottom and finding God through it](/blog/september-23-part-1). That post was real, and I meant every word of it. This is what happened after. Same honesty, different place.

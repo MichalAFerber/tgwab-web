@@ -7,7 +7,7 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
 ---
 
 <Layout title="Blog — TechGuyWithABeard">
-  <div class="container prose">
+  <div class="container">
     <h1>Blog</h1>
     <ul class="post-list">
       {posts.map((post) => (

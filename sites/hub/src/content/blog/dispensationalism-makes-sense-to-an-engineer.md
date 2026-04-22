@@ -10,8 +10,6 @@ tags:
   - "bible"
   - "dispensationalism"
 ---
-# Dispensationalism Makes Sense to an Engineer
-
 I've spent thirty years in IT. I think in systems, frameworks, and architecture. When I look at a problem, I instinctively ask: what's the structure? What are the layers? How do the pieces fit together?
 
 So when I read the Bible — really read it, not just the verses highlighted in a sermon — I kept running into the same question: why does God seem to deal with people so differently across different periods of history? Why does He give Adam one set of instructions, Noah another, Moses a completely different system, and then Paul comes along and says half of that system no longer applies?
