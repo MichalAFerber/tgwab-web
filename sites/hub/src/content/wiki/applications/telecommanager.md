@@ -1,0 +1,5 @@
+---
+title: "TelecomManager"
+draft: true
+---
+
