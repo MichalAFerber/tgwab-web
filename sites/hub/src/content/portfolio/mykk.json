@@ -1,0 +1,14 @@
+{
+  "name": "MyKK.us",
+  "tagline": "Browser dashboard + Chrome extension — start page done right",
+  "url": "https://mykk.us",
+  "status": "live",
+  "tier": 1,
+  "category": "chrome-extension",
+  "categoryLabel": "Chrome Extensions",
+  "description": "Browser dashboard ecosystem: mykk.us (landing), start.mykk.us (GridStack.js drag-and-drop widgets — radar, Pomodoro, clock, weather, moon phase, ICS calendar), and the Chrome launcher extension pointing at start.mykk.us. Vanilla JS, static hosting, local storage only.",
+  "featured": true,
+  "wikiPath": "websites/mykk.us",
+  "revenue": "Pro $12/yr",
+  "repoPath": "/Volumes/Yoda/GitHub/the-mykk-project"
+}

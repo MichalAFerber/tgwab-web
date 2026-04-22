@@ -1,0 +1,12 @@
+{
+  "name": "GitHub Tree Browser",
+  "tagline": "Browsable tree view for public GitHub repos — scope TBD",
+  "url": "https://github.com/MichalAFerber/resources",
+  "status": "planning",
+  "tier": 1,
+  "category": "script",
+  "categoryLabel": "Scripts",
+  "description": "Planned UI refresh and rename of the MichalAFerber/resources repo into a browsable tree tool. Scope and pitch still being defined.",
+  "featured": false,
+  "wikiPath": "scripts/github-tree-browser"
+}

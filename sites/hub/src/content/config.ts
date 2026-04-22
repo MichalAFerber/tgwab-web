@@ -13,7 +13,7 @@ const blog = defineCollection({
   }),
 });
 
-const products = defineCollection({
+const portfolio = defineCollection({
   type: "data",
   schema: z.object({
     name: z.string(),
@@ -21,10 +21,27 @@ const products = defineCollection({
     url: z.string().url(),
     status: z.enum(["live", "beta", "planning", "paused"]),
     tier: z.number().int().min(1).max(3),
-    category: z.string(),
+    category: z.enum(["chrome-extension", "script", "website", "service", "other"]),
+    categoryLabel: z.string(),
     description: z.string(),
     featured: z.boolean().default(false),
+    wikiPath: z.string().optional(),
+    revenue: z.string().optional(),
+    repoPath: z.string().optional(),
   }),
 });
 
-export const collections = { blog, products };
+const wiki = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    draft: z.boolean().default(false),
+    category: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    updatedDate: z.coerce.date().optional(),
+    portfolioRef: z.string().optional(),
+  }),
+});
+
+export const collections = { blog, portfolio, wiki };
