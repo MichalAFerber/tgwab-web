@@ -9,8 +9,6 @@ tags:
   - "pet-peeves"
   - "opinion"
 ---
-![Speakerphone Plague](/assets/img/speakerphone-plague.webp)
-
 # Pet Peeves, Part 1: The Speakerphone Plague
 
 I need to talk about something. Something that has been slowly eroding my faith in humanity, one airport terminal at a time.

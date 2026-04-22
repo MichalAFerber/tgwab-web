@@ -9,8 +9,6 @@ tags:
   - "holy-spirit"
   - "christianity"
 ---
-![An open letter to Christians everywhere](/assets/img/letter.webp)
-
 I just watched America’s Got Talent and saw what I hope is a career rebirth of another sinner saved by grace: Nikki Leonti Edgar ([Wikipedia](https://en.wikipedia.org/wiki/Nikki_Leonti)). My heart was broken listening to her story and realizing that I listened to her singing Christian music as a kid than hearing that she was shunned by the Christian community.
 
 I began doing my own research; I wanted to know for myself. Since Nikki was shunned from the church, did she turn her back on God? Or did she do as Jesus and turn the other cheek and move on down the road? I read stories and comments from many different people. Some couldn’t believe that Christians would turn their back on a pregnant teen mom who chooses life versus death for her baby. Others believed there must be more to the story. It saddens me, but there isn’t more to this story. It’s a simple story that all of us share. See, Christians sin, some more frequently than others, but we are all sinners. It’s not the sin that defines us though, it’s how we deal (or don’t deal) with the sin. Sin is bad, really bad; it separates us from God. And when we don’t deal with that sin, the separation grows and extends the time. Before long we grow numb to the separation and we no longer miss God (our Father).

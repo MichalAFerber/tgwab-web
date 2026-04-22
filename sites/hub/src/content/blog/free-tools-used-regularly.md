@@ -10,8 +10,6 @@ tags:
   - "productivity"
   - "web-tools"
 ---
-![MacBook Pro workspace with free productivity tools](/assets/img/macbook-pro-with-airpods.webp)
-
 Over my 30+ years as an IT network admin, server admin, developer, and consultant, I’ve seen tools come and go.  
 One thing has remained constant: my love for **FOSS (Free and Open-Source Software)**.  
 

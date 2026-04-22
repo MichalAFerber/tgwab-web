@@ -9,8 +9,6 @@ tags:
   - "politics"
   - "trivia"
 ---
-![US Secret Service](/assets/img/secret-service.webp)
-
 # Mogul, Renegade, and Rawhide: The History of Secret Service Code Names
 
 Ever wonder why the Secret Service calls the President "Mogul" or why every member of the Trump family has a code name starting with "M"? The tradition of Secret Service code names is one of those fascinating pieces of American history that's equal parts practical security measure and presidential personality test.

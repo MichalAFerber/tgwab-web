@@ -11,8 +11,6 @@ tags:
   - "diy"
   - "data-visualization"
 ---
-![Raspberry Pi Pico weather station with sensors](/assets/img/raspberry-pi-pico-weather-station.webp)
-
 With the Raspberry Pi Pico, you can measure **temperature**, **humidity**, and **atmospheric pressure**, while learning to interface with sensors. This is an excellent beginner-to-intermediate project for exploring sensor integration and data visualization.
 
 Your weather station can:

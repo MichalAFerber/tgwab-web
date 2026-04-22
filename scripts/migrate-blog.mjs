@@ -6,7 +6,7 @@
  * Usage: node scripts/migrate-blog.mjs <jekyll-repo-path>
  */
 
-import { readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -20,8 +20,15 @@ if (!jekyllDir) {
 
 const postsDir = join(jekyllDir, "_posts");
 const outDir = join(repoRoot, "sites/hub/src/content/blog");
-const redirectsPath = join(repoRoot, "sites/hub/public/_redirects");
+const publicDir = join(repoRoot, "sites/hub/public");
+const redirectsPath = join(publicDir, "_redirects");
 mkdirSync(outDir, { recursive: true });
+
+const stem = (u) => {
+  if (!u) return "";
+  const base = u.split("/").pop() || "";
+  return base.replace(/\.[^.]+$/, "");
+};
 
 const fileNameRe = /^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/;
 const fmRe = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
@@ -122,35 +129,86 @@ function rewriteBody(body) {
     (_, id) => `\n<script src="https://gist.github.com/${id}.js"></script>\n`
   );
 
-  // PDF include → link fallback (keeps the content accessible, drops the JS viewer).
+  // PDF include → <PdfViewer /> component (MDX only; .md posts will have the
+  // include replaced here with a download-link fallback by rewriteBodyMd).
   out = out.replace(
     /\{%\s*include\s+elements\/pdf\.html\s+id=["']([^"']+)["'][^%]*%\}/g,
-    (_, id) => {
-      const url = `/assets/docs/${id}`;
-      return `\n<p><a href="${url}" target="_blank" rel="noopener">Download PDF: ${id}</a></p>\n`;
-    }
+    (_, id) => `\n<PdfViewer id="${id}" />\n`
   );
 
-  // Video include → iframe. Only handles what this repo uses (YouTube with id).
+  // Video include → the official YouTube/Vimeo embed markup, wrapped in a
+  // responsive 16:9 container. Honors provider/id/title/privacy attrs that
+  // this repo actually uses.
   out = out.replace(
     /\{%\s*include\s+elements\/video\.html([^%]+)%\}/g,
     (_, attrs) => {
       const idMatch = attrs.match(/\bid=["']([^"']+)["']/);
       const providerMatch = attrs.match(/\bprovider=["']([^"']+)["']/);
       const titleMatch = attrs.match(/\btitle=["']([^"']+)["']/);
+      const privacyMatch = attrs.match(/\bprivacy=(true|['"]true['"])/);
       const provider = providerMatch ? providerMatch[1] : "youtube";
       const id = idMatch ? idMatch[1] : "";
-      const title = titleMatch ? titleMatch[1] : "Embedded video";
-      let src = "";
-      if (provider === "youtube") src = `https://www.youtube.com/embed/${id}`;
-      else if (provider === "vimeo") src = `https://player.vimeo.com/video/${id}`;
-      return `\n<iframe src="${src}" title="${title}" style="width:100%;aspect-ratio:16/9;border:0;border-radius:0.5rem" allowfullscreen loading="lazy"></iframe>\n`;
+      const privacy = !!privacyMatch;
+
+      if (provider === "youtube") {
+        const host = privacy ? "https://www.youtube-nocookie.com" : "https://www.youtube.com";
+        const title = titleMatch ? titleMatch[1] : "YouTube video player";
+        return (
+          `\n<div class="video-embed">` +
+          `<iframe width="560" height="315" ` +
+          `src="${host}/embed/${id}" ` +
+          `title="${title}" frameborder="0" ` +
+          `allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ` +
+          `referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` +
+          `</div>\n`
+        );
+      }
+      if (provider === "vimeo") {
+        const title = titleMatch ? titleMatch[1] : "Vimeo video player";
+        return (
+          `\n<div class="video-embed">` +
+          `<iframe src="https://player.vimeo.com/video/${id}?dnt=1" ` +
+          `width="640" height="360" frameborder="0" ` +
+          `allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title}"></iframe>` +
+          `</div>\n`
+        );
+      }
+      return `\n<!-- unsupported video provider: ${provider} -->\n`;
     }
   );
 
-  // Catch-all flag: any remaining {% ... %} or {{ ... }} we didn't handle.
-  // Leave them in-place but note in report.
   return out;
+}
+
+/**
+ * Normalize an image URL that might be missing its extension. Returns the
+ * resolved URL if a file exists on disk for any common image extension;
+ * otherwise returns the original URL. Used to rescue posts with a broken
+ * `thumbnail-img` like `/assets/img/nginx-proxy-manager` (no `.webp`).
+ */
+function resolveImageUrl(url) {
+  if (!url || existsSync(join(publicDir, url))) return url;
+  const exts = [".webp", ".avif", ".png", ".jpg", ".jpeg", ".gif", ".svg"];
+  for (const ext of exts) {
+    if (existsSync(join(publicDir, url + ext))) return url + ext;
+  }
+  return url;
+}
+
+/**
+ * If the first markdown image in `body` matches `heroImage` (by basename,
+ * ignoring extension), drop that image from the body so the hero doesn't
+ * render twice.
+ */
+function stripLeadingDuplicateImage(body, heroImage) {
+  if (!heroImage) return body;
+  const m = body.match(/^\s*!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)\s*\n?/);
+  if (!m) return body;
+  const bodyUrl = m[1];
+  if (bodyUrl === heroImage || stem(bodyUrl) === stem(heroImage)) {
+    return body.slice(m[0].length);
+  }
+  return body;
 }
 
 // --- run ---
@@ -174,20 +232,48 @@ for (const file of files) {
   const [, yyyy, mm, dd, slug] = file.match(fileNameRe);
   const pubDate = `${yyyy}-${mm}-${dd}`;
 
-  const newBody = rewriteBody(body);
-  if (/\{\{|\{%/.test(newBody)) {
+  let heroImage = resolveImageUrl(fm["thumbnail-img"] || "");
+  let rewritten = rewriteBody(body);
+
+  // If the thumbnail was missing an extension but the body's first image
+  // resolves to the same basename, prefer the body image's URL as the hero.
+  if (heroImage && !existsSync(join(publicDir, heroImage))) {
+    const firstImg = rewritten.match(/^\s*!\[[^\]]*\]\(([^)\s]+)/);
+    if (firstImg && stem(firstImg[1]) === stem(heroImage)) {
+      heroImage = firstImg[1];
+    }
+  }
+
+  rewritten = stripLeadingDuplicateImage(rewritten, heroImage);
+
+  if (/\{\{|\{%/.test(rewritten)) {
     notes.push(`[liquid-left] ${slug}: unhandled Liquid tag remains`);
   }
 
-  const out = renderFrontMatter({
-    title: fm.title || slug,
-    description: fm.description || "",
-    pubDate,
-    tags: Array.isArray(fm.tags) ? fm.tags : [],
-    heroImage: fm["thumbnail-img"] || undefined,
-  }) + newBody.replace(/^\n+/, "") + (newBody.endsWith("\n") ? "" : "\n");
+  const usesPdfViewer = /<PdfViewer\b/.test(rewritten);
+  const ext = usesPdfViewer ? "mdx" : "md";
+  const importLine = usesPdfViewer
+    ? `import PdfViewer from "@tgwab/ui/PdfViewer.astro";\n\n`
+    : "";
 
-  writeFileSync(join(outDir, `${slug}.md`), out);
+  const out =
+    renderFrontMatter({
+      title: fm.title || slug,
+      description: fm.description || "",
+      pubDate,
+      tags: Array.isArray(fm.tags) ? fm.tags : [],
+      heroImage: heroImage || undefined,
+    }) +
+    importLine +
+    rewritten.replace(/^\n+/, "") +
+    (rewritten.endsWith("\n") ? "" : "\n");
+
+  // Remove the alternate-extension file if a prior run produced it.
+  const otherExt = ext === "mdx" ? "md" : "mdx";
+  const otherPath = join(outDir, `${slug}.${otherExt}`);
+  if (existsSync(otherPath)) unlinkSync(otherPath);
+
+  writeFileSync(join(outDir, `${slug}.${ext}`), out);
 
   // Jekyll canonical URL → new hub URL
   redirects.push(`/${yyyy}-${mm}-${dd}-${slug}/ /blog/${slug}/ 301`);

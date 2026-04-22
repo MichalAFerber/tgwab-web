@@ -2,7 +2,7 @@
 title: "Why Nginx Proxy Manager is My Go-To Reverse Proxy Solution"
 description: "How Nginx Proxy Manager replaced manual NGINX config management in my homelab — with built-in Let's Encrypt, a clean web UI, and a battle-tested ops guide."
 pubDate: 2026-03-24
-heroImage: "/assets/img/nginx-proxy-manager"
+heroImage: "/assets/img/nginx-proxy-manager.webp"
 tags:
   - "homelab"
   - "nginx"
@@ -11,8 +11,6 @@ tags:
   - "self-hosted"
   - "ssl"
 ---
-![NPM Logo](/assets/img/nginx-proxy-manager.webp)
-
 # Why Nginx Proxy Manager is My Go-To Reverse Proxy Solution
 
 If you've spent any time managing web infrastructure in a homelab or production environment, you've probably wrestled with NGINX configuration files. While NGINX is powerful and battle-tested, its configuration syntax can be unforgiving and time-consuming. That's where Nginx Proxy Manager (NPM) comes in—a tool that has completely transformed how I handle reverse proxying across all my services.

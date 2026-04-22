@@ -10,8 +10,6 @@ tags:
   - "task-management"
   - "productivity"
 ---
-![Donetick Logo](/assets/img/donetick.webp)
-
 # Donetick: A Lightweight Self-Hosted Task Manager for Your Homelab
 
 If you've been looking for a simple, self-hosted task and chore manager that doesn't require a cloud subscription or a sprawling tech stack, Donetick is worth a look. It's a clean, lightweight application that runs in a single Docker container with SQLite — no external database server, no complex dependencies, no ongoing costs.

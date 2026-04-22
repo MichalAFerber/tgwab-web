@@ -82,5 +82,26 @@ These require Cloudflare dashboard access and are not scripted here:
 
 - RSS feed generation (noted in scope.md as Phase 2+ but does not block migration)
 - Tag index pages (not in hub scope yet)
-- MDX (no post needs it)
 - Image optimization pass on the copied `/assets/img/`
+
+## 8. Phase 2 fixes (follow-up round)
+
+Added after initial migration based on feedback:
+
+- [x] Hero image de-duplication — drop the leading body image when its
+      URL (or basename without extension) matches `heroImage`
+- [x] Broken hero fallback — when `thumbnail-img` is missing its extension,
+      try common image extensions on disk, then fall back to the first body
+      image's URL if basenames match (fixes `nginx-proxy-manager`)
+- [x] PDF viewer restored — added `@astrojs/mdx@^4`, new
+      `@tgwab/ui/PdfViewer.astro` (ports PDF.js toolbar + canvas from
+      Jekyll's `_includes/elements/pdf.html`); 5 PDF posts now emit as
+      `.mdx` with `<PdfViewer id="..." />`
+- [x] Official YouTube embed — migration emits the exact share-dialog
+      iframe (`frameborder="0"`, `allow="…"`, `referrerpolicy`,
+      `allowfullscreen`); `privacy=true` routes to `youtube-nocookie.com`
+- [x] Search — added Pagefind (`pagefind` devDep). Build runs
+      `astro build && pagefind --site dist`. `/search/` page hosts the
+      Default UI; "Search" link added to nav; blog post articles marked
+      with `data-pagefind-body` so only post content is indexed (64 pages)
+- [x] `preview:hub` convenience script at repo root

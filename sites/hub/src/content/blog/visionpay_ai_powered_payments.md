@@ -11,8 +11,6 @@ tags:
   - "ai-payments"
   - "computer-vision"
 ---
-![Raspberry Pi AI Hat](/assets/img/raspberry-pi-ai-hat.webp)
-
 **VisionPay** is a concept project that merges AI, blockchain, and computer vision into a secure and intelligent payment platform. It leverages the **Raspberry Pi 5**, a **Hailo AI acceleration module**, and a **camera module** to process transactions in real-time while recording them on a blockchain.
 
 ## 🛠 Hardware Setup

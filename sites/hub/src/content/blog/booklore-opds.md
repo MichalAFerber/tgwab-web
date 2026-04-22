@@ -12,8 +12,6 @@ tags:
   - "rclone"
   - "wasabi"
 ---
-![Booklore Screenshot](/assets/img/booklore-screenshot.webp)
-
 After years of accumulating ebooks scattered across devices, cloud services, and local folders, I finally decided to consolidate everything into a proper self-hosted digital library. The goal was simple: one central catalog that I could access from any device, with automatic syncing and no manual file shuffling.
 
 Here's how I built a personal ebook server using Booklore, cloud storage, and the OPDS protocol to keep everything synchronized across my macOS and Android devices.

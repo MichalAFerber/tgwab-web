@@ -11,8 +11,6 @@ tags:
   - "maker"
   - "pi-zero"
 ---
-![Raspberry Pi HQ Camera](/assets/img/raspberry-pi-zero-pro-plate-for-hq-camera.webp)
-
 This project walks you through building a **portable, high-quality camera** using the Raspberry Pi HQ Camera module, Pi Zero WH, and a compact display. The result is a battery-powered camera system with a live view, perfect for experimentation, photography, and maker projects.
 
 ## 🧰 Components

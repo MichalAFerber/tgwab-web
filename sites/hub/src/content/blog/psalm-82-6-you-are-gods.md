@@ -11,8 +11,6 @@ tags:
   - "names-of-god"
   - "spirituality"
 ---
-![Open Bible with cross representing Psalm 82:6](/assets/img/bible-with-cross.webp)
-
 In Psalm 82:6, we encounter one of the most intriguing and challenging verses in the Bible:
 
 > **"I said, 'You are gods; you are all sons of the Most High.'"** — *Psalm 82:6 (NIV)*

@@ -11,8 +11,6 @@ tags:
   - "iot"
   - "wifi"
 ---
-![Pico Web Server](/assets/img/raspberry-pi-pico-web-server.webp)
-
 By connecting the **Raspberry Pi Pico W** to your local Wi-Fi network, you can host a small web interface accessible from any device on the same network. While it won’t be as full-featured as a LAMP server on a full Raspberry Pi, it’s perfect for controlling LEDs, reading sensor data, or serving static pages.
 
 ## 🧰 What You’ll Need

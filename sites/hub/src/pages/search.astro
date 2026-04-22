@@ -1,0 +1,26 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+---
+
+<Layout title="Search — TechGuyWithABeard" description="Search the blog and product portfolio.">
+  <div class="container prose">
+    <h1>Search</h1>
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <div id="search"></div>
+    <script src="/pagefind/pagefind-ui.js" is:inline></script>
+    <script is:inline>
+      window.addEventListener("DOMContentLoaded", () => {
+        new PagefindUI({
+          element: "#search",
+          showSubResults: true,
+          showImages: false,
+        });
+      });
+    </script>
+  </div>
+</Layout>
+
+<style>
+  .container { padding-top: var(--space-8); padding-bottom: var(--space-16); }
+  #search { margin-top: var(--space-6); }
+</style>

@@ -11,8 +11,6 @@ tags:
   - "research"
   - "climate-change"
 ---
-![Geoengineering Projects Chart](/assets/img/us-geoengineering-projects.webp)
-
 ## 🇺🇸 U.S.-Based Geoengineering Projects (2025)
 
 Here’s a breakdown of major **geoengineering projects based in the United States**, from public academic research to speculative black budget programs.

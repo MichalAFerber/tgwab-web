@@ -10,8 +10,6 @@ tags:
   - "mental-health"
   - "testimony"
 ---
-![Church wall in Rome](/assets/img/church-wall.webp)
-
 # From Church Walls to Spiritual Freedom
 
 This is the hardest post I've ever written. Not because the words are difficult to find, but because the story is messy — and I've spent most of my life in communities that don't do well with messy.

@@ -10,8 +10,6 @@ tags:
   - "tech-industry"
   - "memoir"
 ---
-![CA-Clipper Programming Language](/assets/img/ca-clipper.webp)
-
 While reading my daily email from [TLDR Web Dev](https://tldr.tech/webdev), one article in particular caught my eye: [10 Most(ly dead) Influential Programming Languages](https://www.hillelwayne.com/post/influential-dead-languages/) by Hillel Wayne. If you’re into the history of technology, this article is a great read—it explores languages that shaped the way we program today, even if they’re no longer in wide use. At number 4 on the list was **BASIC**, and that stopped me in my tracks.
 
 ## Where It All Started

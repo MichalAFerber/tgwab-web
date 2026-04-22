@@ -9,8 +9,6 @@ tags:
   - "holy-spirit"
   - "christianity"
 ---
-![A winding road symbolizing a personal journey](/assets/img/road-path.webp)
-
 My personal life has taken a lot of twists and turns. And as much as I have tried to control everything and be perfect in everything, I have found out the hard way that just isn’t how life works. I have also found that it’s the exact opposite of following Jesus. To follow Him, we have to lean on Him and seek His will. It has taken me 41 years to get where I am today.
 
 And trust me, I took a long way around.

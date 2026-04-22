@@ -10,8 +10,6 @@ tags:
   - "bible"
   - "dispensationalism"
 ---
-![Dispensationalism Definition](/assets/img/dispensationalism.webp)
-
 # Dispensationalism Makes Sense to an Engineer
 
 I've spent thirty years in IT. I think in systems, frameworks, and architecture. When I look at a problem, I instinctively ask: what's the structure? What are the layers? How do the pieces fit together?
