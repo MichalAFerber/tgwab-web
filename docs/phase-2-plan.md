@@ -64,7 +64,7 @@ Per post:
 
 ## 6. Commit
 
-- [ ] Commit as `feat: phase 2 — migrate michalferber.me blog + redirects`
+- [x] Commit as `feat: phase 2 — migrate michalferber.me blog + redirects`
 
 ## 7. Manual follow-ups (outside this repo)
 
