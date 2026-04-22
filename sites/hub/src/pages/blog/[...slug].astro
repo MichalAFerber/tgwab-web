@@ -22,6 +22,9 @@ const { Content } = await post.render();
       </time>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
+      {post.data.heroImage && (
+        <img class="hero" src={post.data.heroImage} alt="" />
+      )}
     </header>
     <Content />
   </article>
@@ -46,5 +49,11 @@ const { Content } = await post.render();
     font-size: var(--text-xl);
     color: var(--color-muted);
     margin: 0;
+  }
+  article header .hero {
+    display: block;
+    width: 100%;
+    margin-top: var(--space-8);
+    border-radius: var(--radius);
   }
 </style>

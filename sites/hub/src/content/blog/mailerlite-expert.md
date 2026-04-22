@@ -1,0 +1,26 @@
+---
+title: "MailerLite Certified Expert"
+description: "Certified MailerLite Expert helping businesses boost engagement, drive sales, and maximize ROI through targeted, effective email marketing campaigns."
+pubDate: 2024-01-21
+heroImage: "/assets/img/MailerLite-logo.webp"
+tags:
+  - "mailerlite"
+  - "email-marketing"
+  - "transactional-emails"
+  - "email-apis"
+---
+![MailerLite certified expert logo badge](/assets/img/MailerLite-logo.webp)
+
+## My Certificates
+
+- [BFCM emails that get delivered (avoiding spam!)](https://academy.mailerlite.com/certificates/va5g9iq8xx)
+- [Elevate email marketing with push notifications](https://academy.mailerlite.com/certificates/w5fwmkisco)
+- [Build websites and landing pages](https://academy.mailerlite.com/certificates/xfglxnyndf)
+- [E-commerce with MailerLite](https://academy.mailerlite.com/certificates/f94dohot0i)
+- [Collect leads](https://academy.mailerlite.com/certificates/klo3elgnh2)
+- [Send emails](https://academy.mailerlite.com/certificates/xwq4apr8il)
+- [Getting started with MailerLite](https://academy.mailerlite.com/certificates/bebjkw1xf1)
+
+![MailerLite Expert certificate badge](/assets/certs/mailerlite-expert.jpg){: loading="lazy"}  
+
+[Blog](https://www.mailerlite.com/blog/email-marketing-experts) Email marketing experts: Who they are, what they do, and how to hire one
