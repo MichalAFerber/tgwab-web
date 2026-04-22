@@ -1,15 +1,97 @@
 ---
 import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+const entries = (await getCollection("wiki", ({ data }) => !data.draft))
+  .sort((a, b) => a.slug.localeCompare(b.slug));
+
+// Group by the front-matter `category` when present, else by the first
+// slug segment, else "_root" for true top-level files.
+const groups: Record<string, typeof entries> = {};
+for (const entry of entries) {
+  const section =
+    entry.data.category ||
+    (entry.slug.includes("/") ? entry.slug.split("/")[0] : "_root");
+  (groups[section] ||= []).push(entry);
+}
+
+const sectionLabel: Record<string, string> = {
+  _root: "Top level",
+  "chrome-extensions": "Chrome Extensions",
+  "knowledge-base": "Knowledge Base",
+  "websites": "Websites",
+  "scripts": "Scripts",
+  "homelab": "Homelab",
+  "brand": "Brand",
+  "applications": "Applications",
+};
+
+const sectionOrder = [
+  "_root",
+  "knowledge-base",
+  "homelab",
+  "chrome-extensions",
+  "websites",
+  "scripts",
+  "brand",
+  "applications",
+];
+
+const orderedGroups = sectionOrder
+  .filter((s) => groups[s])
+  .concat(Object.keys(groups).filter((s) => !sectionOrder.includes(s)));
 ---
 
-<Layout title="Wiki — TechGuyWithABeard" description="Technical notes and reference material.">
+<Layout title="Wiki — TechGuyWithABeard" description="Technical notes, how-tos, and reference material.">
   <div class="container">
     <h1>Wiki</h1>
-    <p class="lede">Technical notes, how-tos, and reference material. Coming online in the current migration from my Obsidian vault.</p>
+    <p class="lede">Technical notes, how-tos, and reference material. Public subset of my working Obsidian vault.</p>
+
+    {orderedGroups.map((section) => (
+      <section class="section">
+        <h2>{sectionLabel[section] || section}</h2>
+        <ul class="entry-list">
+          {groups[section].map((entry) => (
+            <li>
+              <a href={`/wiki/${entry.slug}/`}>{entry.data.title}</a>
+              {entry.data.description && <span class="desc"> — {entry.data.description}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </div>
 </Layout>
 
 <style>
-  .container { padding-top: var(--space-8); padding-bottom: var(--space-24); }
-  .lede { color: var(--color-muted); font-size: var(--text-lg); max-width: 60ch; }
+  .lede { color: var(--color-muted); font-size: var(--text-lg); margin-bottom: var(--space-12); max-width: 60ch; }
+  .section { margin-bottom: var(--space-12); }
+  .section h2 {
+    font-family: var(--font-display);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-2) var(--space-8);
+  }
+  .entry-list li {
+    padding: var(--space-2) 0;
+    line-height: 1.5;
+  }
+  .entry-list a {
+    color: var(--color-ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .entry-list a:hover { color: var(--tgwab-red); }
+  .entry-list .desc {
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    font-weight: 400;
+  }
 </style>
