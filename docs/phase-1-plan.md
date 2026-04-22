@@ -48,12 +48,12 @@ When a task has sub-commands or file contents, follow them exactly.
   .env.*
   !.env.example
   ```
-- [ ] Initial commit: `chore: monorepo scaffold`
+- [x] Initial commit: `chore: monorepo scaffold`
 
 ## 2. Design tokens package
 
-- [ ] `mkdir -p packages/design-tokens`
-- [ ] Create `packages/design-tokens/package.json`:
+- [x] `mkdir -p packages/design-tokens`
+- [x] Create `packages/design-tokens/package.json`:
   ```json
   {
     "name": "@tgwab/design-tokens",
@@ -66,17 +66,17 @@ When a task has sub-commands or file contents, follow them exactly.
     }
   }
   ```
-- [ ] Create `packages/design-tokens/tokens.css` — full contents in `@docs/snippets/tokens.css.md`
-- [ ] Create `packages/design-tokens/base.css` — full contents in `@docs/snippets/base.css.md`
-- [ ] Create placeholder `packages/design-tokens/fonts.css` with comment:
+- [x] Create `packages/design-tokens/tokens.css` — full contents in `@docs/snippets/tokens.css.md`
+- [x] Create `packages/design-tokens/base.css` — full contents in `@docs/snippets/base.css.md`
+- [x] Create placeholder `packages/design-tokens/fonts.css` with comment:
   ```css
   /* TODO: self-host Inter + Trajan Pro. System fallbacks in tokens.css cover it for now. */
   ```
 
 ## 3. UI package
 
-- [ ] `mkdir -p packages/ui/src`
-- [ ] Create `packages/ui/package.json`:
+- [x] `mkdir -p packages/ui/src`
+- [x] Create `packages/ui/package.json`:
   ```json
   {
     "name": "@tgwab/ui",
@@ -94,21 +94,21 @@ When a task has sub-commands or file contents, follow them exactly.
     }
   }
   ```
-- [ ] Create `packages/ui/src/Head.astro` — see `@docs/snippets/Head.astro.md`
-- [ ] Create `packages/ui/src/Nav.astro` — see `@docs/snippets/Nav.astro.md`
-- [ ] Create `packages/ui/src/Footer.astro` — see `@docs/snippets/Footer.astro.md`
-- [ ] Create `packages/ui/src/Layout.astro` — see `@docs/snippets/Layout.astro.md`
+- [x] Create `packages/ui/src/Head.astro` — see `@docs/snippets/Head.astro.md`
+- [x] Create `packages/ui/src/Nav.astro` — see `@docs/snippets/Nav.astro.md`
+- [x] Create `packages/ui/src/Footer.astro` — see `@docs/snippets/Footer.astro.md`
+- [x] Create `packages/ui/src/Layout.astro` — see `@docs/snippets/Layout.astro.md`
 
 ## 4. Hub site scaffold
 
-- [ ] Scaffold hub:
+- [x] Scaffold hub:
   ```bash
   cd sites
   pnpm create astro@latest hub -- --template minimal --no-install --no-git --typescript strict
   cd hub
   ```
-- [ ] Clear scaffolded example pages (`src/pages/index.astro`, any welcome components)
-- [ ] Replace `sites/hub/package.json` with:
+- [x] Clear scaffolded example pages (`src/pages/index.astro`, any welcome components)
+- [x] Replace `sites/hub/package.json` with:
   ```json
   {
     "name": "@tgwab/hub",
@@ -127,7 +127,7 @@ When a task has sub-commands or file contents, follow them exactly.
     }
   }
   ```
-- [ ] Create `sites/hub/astro.config.mjs`:
+- [x] Create `sites/hub/astro.config.mjs`:
   ```js
   import { defineConfig } from "astro/config";
 
@@ -136,13 +136,13 @@ When a task has sub-commands or file contents, follow them exactly.
     build: { format: "directory" },
   });
   ```
-- [ ] Run `pnpm install` from repo root
+- [x] Run `pnpm install` from repo root
 
 ## 5. Content collections
 
-- [ ] Create `sites/hub/src/content/config.ts` — see `@docs/snippets/content-config.ts.md`
-- [ ] `mkdir -p sites/hub/src/content/blog sites/hub/src/content/products`
-- [ ] Create sample blog post `sites/hub/src/content/blog/hello-world.md`:
+- [x] Create `sites/hub/src/content/config.ts` — see `@docs/snippets/content-config.ts.md`
+- [x] `mkdir -p sites/hub/src/content/blog sites/hub/src/content/products`
+- [x] Create sample blog post `sites/hub/src/content/blog/hello-world.md`:
   ```markdown
   ---
   title: "Hello, new hub"
@@ -152,14 +152,14 @@ When a task has sub-commands or file contents, follow them exactly.
 
   This is the new TechGuyWithABeard hub. Same opinions, better plumbing.
   ```
-- [ ] Create product entries (one JSON file per product in `sites/hub/src/content/products/`):
-  - [ ] `resizewizard.json` — live, T1
-  - [ ] `mykk.json` — live, T1
-  - [ ] `automockup.json` — planning, T2
-  - [ ] `copywizard.json` — planning, T2
-  - [ ] `ipcow.json` — live, T2
-  - [ ] `degoog.json` — planning, T1
-  - [ ] `brokedns.json` — planning, T1
+- [x] Create product entries (one JSON file per product in `sites/hub/src/content/products/`):
+  - [x] `resizewizard.json` — live, T1
+  - [x] `mykk.json` — live, T1
+  - [x] `automockup.json` — planning, T2
+  - [x] `copywizard.json` — planning, T2
+  - [x] `ipcow.json` — live, T2
+  - [x] `degoog.json` — planning, T1
+  - [x] `brokedns.json` — planning, T1
 
   Example `resizewizard.json`:
   ```json
@@ -177,21 +177,21 @@ When a task has sub-commands or file contents, follow them exactly.
 
 ## 6. Hub pages
 
-- [ ] Create `sites/hub/src/pages/index.astro` — landing page, see `@docs/snippets/index.astro.md`
-- [ ] Create `sites/hub/src/pages/products/index.astro` — portfolio grid, see `@docs/snippets/products.astro.md`
-- [ ] Create `sites/hub/src/pages/blog/index.astro` — blog index, see `@docs/snippets/blog-index.astro.md`
-- [ ] Create `sites/hub/src/pages/blog/[...slug].astro` — blog post page, see `@docs/snippets/blog-post.astro.md`
+- [x] Create `sites/hub/src/pages/index.astro` — landing page, see `@docs/snippets/index.astro.md`
+- [x] Create `sites/hub/src/pages/products/index.astro` — portfolio grid, see `@docs/snippets/products.astro.md`
+- [x] Create `sites/hub/src/pages/blog/index.astro` — blog index, see `@docs/snippets/blog-index.astro.md`
+- [x] Create `sites/hub/src/pages/blog/[...slug].astro` — blog post page, see `@docs/snippets/blog-post.astro.md`
 
 ## 7. Local verification
 
-- [ ] `pnpm dev:hub` — confirm boots at `localhost:4321`
-- [ ] Verify landing page renders with featured products
-- [ ] Verify `/products/` renders full grid with status badges
-- [ ] Verify `/blog/` renders post list
-- [ ] Verify `/blog/hello-world/` renders post content
-- [ ] Verify footer appears on all pages
-- [ ] Verify nav links work and highlight current page
-- [ ] `pnpm build:hub` — confirm clean build to `sites/hub/dist/`
+- [x] `pnpm dev:hub` — confirm boots at `localhost:4321`
+- [x] Verify landing page renders with featured products
+- [x] Verify `/products/` renders full grid with status badges
+- [x] Verify `/blog/` renders post list
+- [x] Verify `/blog/hello-world/` renders post content
+- [x] Verify footer appears on all pages
+- [x] Verify nav links work and highlight current page
+- [x] `pnpm build:hub` — confirm clean build to `sites/hub/dist/`
 
 ## 8. Deploy to Cloudflare Pages
 

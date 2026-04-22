@@ -1,0 +1,10 @@
+{
+  "name": "DeGoog",
+  "tagline": "Get Google out of your life, one service at a time",
+  "url": "https://degoog.us",
+  "status": "planning",
+  "tier": 1,
+  "category": "Content Site",
+  "description": "Practical guides for replacing Google services with privacy-respecting alternatives that actually work.",
+  "featured": false
+}

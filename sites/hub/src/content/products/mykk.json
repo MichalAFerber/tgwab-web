@@ -1,0 +1,10 @@
+{
+  "name": "MyKK",
+  "tagline": "A browser startpage that stays out of your way",
+  "url": "https://mykk.us",
+  "status": "live",
+  "tier": 1,
+  "category": "Browser Startpage",
+  "description": "Minimal, fast, privacy-respecting new-tab replacement. No tracking, no ads, no nonsense.",
+  "featured": true
+}

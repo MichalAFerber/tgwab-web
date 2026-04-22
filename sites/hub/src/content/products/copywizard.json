@@ -1,0 +1,10 @@
+{
+  "name": "CopyWizard",
+  "tagline": "Smarter copy-paste for the browser",
+  "url": "https://copywizard.us",
+  "status": "planning",
+  "tier": 2,
+  "category": "Chrome Extension",
+  "description": "Clipboard history and formatted-paste controls that the browser should have shipped with.",
+  "featured": false
+}

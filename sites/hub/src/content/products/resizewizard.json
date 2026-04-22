@@ -1,0 +1,10 @@
+{
+  "name": "ResizeWizard",
+  "tagline": "One-click image resizing for Chrome",
+  "url": "https://resizewizard.app",
+  "status": "live",
+  "tier": 1,
+  "category": "Chrome Extension",
+  "description": "Resize images directly in your browser without uploading anywhere. Pro at $12/yr.",
+  "featured": true
+}

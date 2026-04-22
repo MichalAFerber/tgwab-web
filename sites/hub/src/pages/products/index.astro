@@ -1,0 +1,65 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+const all = await getCollection("products");
+all.sort((a, b) => a.data.tier - b.data.tier || a.data.name.localeCompare(b.data.name));
+---
+
+<Layout title="Products — TechGuyWithABeard">
+  <div class="container">
+    <h1>Products</h1>
+    <p class="lede">Everything I've shipped or am actively building.</p>
+
+    <ul class="product-grid">
+      {all.map(({ data }) => (
+        <li class="product-card">
+          <div class="product-card__header">
+            <h3><a href={data.url}>{data.name}</a></h3>
+            <span class={`status status--${data.status}`}>{data.status}</span>
+          </div>
+          <p>{data.description}</p>
+          <p class="product-card__meta">{data.category} · T{data.tier}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .lede { color: var(--color-muted); font-size: var(--text-lg); }
+  .product-grid {
+    list-style: none; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+  .product-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .product-card__header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: var(--space-3);
+  }
+  .status {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+  }
+  .status--live { background: #d4f5d4; color: #1a5a1a; }
+  .status--beta { background: #fff4cc; color: #8a5a00; }
+  .status--planning { background: #e5e5f5; color: #3a3a8a; }
+  .status--paused { background: #f0f0f0; color: #6a6a6a; }
+  .product-card__meta {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    margin-top: var(--space-3);
+    text-transform: uppercase;
+  }
+</style>
