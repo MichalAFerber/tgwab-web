@@ -1,0 +1,11 @@
+{
+  "name": "tgwab-web",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev:hub": "pnpm --filter @tgwab/hub dev",
+    "build:hub": "pnpm --filter @tgwab/hub build",
+    "build": "pnpm -r build"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

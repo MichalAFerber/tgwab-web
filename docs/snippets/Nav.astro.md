@@ -1,0 +1,76 @@
+# `packages/ui/src/Nav.astro`
+
+```astro
+---
+interface Props {
+  currentPath?: string;
+}
+const { currentPath = "" } = Astro.props;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/products/", label: "Products" },
+  { href: "/blog/", label: "Blog" },
+  { href: "https://michalferber.dev", label: "Wiki", external: true },
+];
+---
+
+<nav class="tgwab-nav">
+  <div class="container tgwab-nav__inner">
+    <a href="/" class="tgwab-nav__brand">
+      TechGuyWithABeard
+    </a>
+    <ul class="tgwab-nav__links">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[{ active: currentPath === link.href }]}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener" : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .tgwab-nav {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .tgwab-nav__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+  }
+  .tgwab-nav__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink);
+    text-decoration: none;
+    font-size: var(--text-lg);
+  }
+  .tgwab-nav__links {
+    display: flex;
+    gap: var(--space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tgwab-nav__links a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  .tgwab-nav__links a:hover,
+  .tgwab-nav__links a.active {
+    color: var(--tgwab-red);
+  }
+</style>
+```
