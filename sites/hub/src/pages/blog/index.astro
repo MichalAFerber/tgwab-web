@@ -1,0 +1,33 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Blog — TechGuyWithABeard">
+  <div class="container prose">
+    <h1>Blog</h1>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+          </time>
+          <h2><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h2>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .post-list { list-style: none; padding: 0; }
+  .post-list li { padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border); }
+  .post-list time { font-size: var(--text-sm); color: var(--color-muted); }
+  .post-list h2 { margin: var(--space-2) 0; }
+  .post-list h2 a { color: var(--color-ink); text-decoration: none; }
+  .post-list h2 a:hover { color: var(--tgwab-red); }
+</style>

@@ -1,0 +1,87 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+const products = await getCollection("products", ({ data }) => data.featured);
+products.sort((a, b) => a.data.tier - b.data.tier);
+---
+
+<Layout title="TechGuyWithABeard — Michal Ferber">
+  <section class="hero container">
+    <h1>Hi, I'm Michal.</h1>
+    <p class="lede">
+      30+ years in IT. MSP owner. Full-stack dev. I build tools for people
+      who'd rather own their stack than rent it.
+    </p>
+    <div class="cta">
+      <a href="/products/" class="btn btn--primary">See the products</a>
+      <a href="/blog/" class="btn">Read the blog</a>
+    </div>
+  </section>
+
+  <section class="featured container">
+    <h2>Featured products</h2>
+    <ul class="product-grid">
+      {products.map(({ data }) => (
+        <li class="product-card">
+          <h3><a href={data.url}>{data.name}</a></h3>
+          <p class="product-card__tagline">{data.tagline}</p>
+          <p class="product-card__meta">{data.category} · {data.status}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-24) 0 var(--space-16);
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-4);
+  }
+  .lede {
+    font-size: var(--text-xl);
+    color: var(--color-muted);
+    max-width: 50ch;
+    margin: 0 auto var(--space-8);
+  }
+  .cta { display: flex; gap: var(--space-4); justify-content: center; }
+  .btn {
+    display: inline-block;
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .btn--primary {
+    background: var(--tgwab-red);
+    color: white;
+    border-color: var(--tgwab-red);
+  }
+  .featured { padding: var(--space-16) 0; }
+  .product-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+  .product-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .product-card h3 { margin: 0 0 var(--space-2); }
+  .product-card__meta {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

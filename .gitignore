@@ -8,3 +8,6 @@ dist
 
 # Starter archive, not tracked
 TGWAB-Project-Starter.zip
+
+# Claude Code local settings
+.claude/settings.local.json

@@ -1,0 +1,10 @@
+{
+  "name": "IPCow",
+  "tagline": "IP info and network tools without the ad farm",
+  "url": "https://ipcow.com",
+  "status": "live",
+  "tier": 2,
+  "category": "Network Tools",
+  "description": "What's my IP, reverse DNS, subnet math, and other common network lookups. No popups, no crypto miner, no 'sign up for a free account'.",
+  "featured": false
+}
