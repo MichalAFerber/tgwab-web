@@ -43,10 +43,18 @@ pnpm build:hub       # or: pnpm preview:hub
 **Source:** `~/Obsidian/Obsidian-Master/wiki/<any-folder>/<page>.md`
 
 - Everything in the wiki folder is **public by default**. To hide a page, add `draft: true`.
-- Folder structure is preserved as URL structure:
+- The wiki is two levels deep: `wiki/<category>/<file>.md`. Allowed categories:
+  **Chrome Extensions, Websites, Scripts, Knowledge Base, Window Applications, Downloads**.
+- Deeper folder nesting gets flattened by hyphenating the remaining segments:
   - `Chrome Extensions/ResizeWizard/README.md` → `/wiki/chrome-extensions/resizewizard/`
   - `Knowledge Base/Cloudflare DNS Setup Guide.md` → `/wiki/knowledge-base/cloudflare-dns-setup-guide/`
-- `README.md` or `index.md` in a folder becomes the folder's landing page.
+  - `Window Applications/ModMan/user-guide.md` → `/wiki/window-applications/modman-user-guide/`
+  - `Websites/ipcow.com/assets.md` → `/wiki/websites/ipcow-com-assets/`
+- `README.md` or `index.md` inside a folder becomes the folder's landing page
+  at that category's URL (e.g. `Chrome Extensions/ResizeWizard/README.md` serves at
+  `/wiki/chrome-extensions/resizewizard/`).
+- Top-level files in the wiki root (e.g. `About Me.md`, `Homelab.md`, `kj4dia-wiki.md`)
+  serve at `/wiki/<slug>/`.
 - Use native Obsidian `[[WikiLinks]]` and `![[image.png]]` embeds — the migrator resolves them.
 
 ### Front matter (all optional)
@@ -64,7 +72,7 @@ github: "owner/repo"             # optional; fetches README and appends
 
 ### GitHub README pull
 
-Add `github: "owner/repo"` (or a full GitHub URL) to a wiki page's front matter. The migrator fetches `raw.githubusercontent.com/<owner>/<repo>/<branch>/README.md` (tries `main`, then `master`), rewrites relative image/link paths to absolute repo URLs, and appends the README below the existing body under a "From the repository README" heading.
+Add `github: "owner/repo"` (or a full GitHub URL) to a wiki page's front matter. The migrator fetches `raw.githubusercontent.com/<owner>/<repo>/<branch>/README.md` (tries `main`, then `master`), rewrites relative image/link paths to absolute repo URLs, and appends the README to the body — no heading or separator, it reads as a continuation of the page.
 
 If the fetch fails (offline, private repo, no README), the page keeps its existing body. The failure is logged to `scripts/wiki-scrub-report.txt`.
 

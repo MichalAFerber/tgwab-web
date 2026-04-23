@@ -19,10 +19,6 @@ Static HTML/CSS/JS site for El San Jose Mexican Restaurant. Hosted on GitHub Pag
 
 Details below are pulled directly from the repository on every build.
 
----
-
-## From the repository README
-
 # El San Jose Mexican Restaurant
 
 ![El San Jose Mexican Restaurant](https://raw.githubusercontent.com/MichalAFerber/elsanjose.com/main/assets/images/image03.jpg)
