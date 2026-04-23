@@ -7,6 +7,5 @@
   "category": "script",
   "categoryLabel": "Scripts",
   "description": "Planned UI refresh and rename of the MichalAFerber/resources repo into a browsable tree tool. Scope and pitch still being defined.",
-  "featured": false,
-  "wikiPath": "scripts/github-tree-browser"
+  "featured": false
 }

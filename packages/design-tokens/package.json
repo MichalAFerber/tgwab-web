@@ -6,5 +6,10 @@
     "./tokens.css": "./tokens.css",
     "./base.css": "./base.css",
     "./fonts.css": "./fonts.css"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.2.11",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8"
   }
 }

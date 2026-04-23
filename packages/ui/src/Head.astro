@@ -9,7 +9,7 @@ interface Props {
 const {
   title,
   description = "TechGuyWithABeard — IT, tools, and opinions by Michal Ferber.",
-  ogImage = "/og-default.png",
+  ogImage,
   canonical,
 } = Astro.props;
 
@@ -24,10 +24,11 @@ const canonicalURL = canonical || Astro.url.href;
 
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
+{ogImage && <meta property="og:image" content={ogImage} />}
 <meta property="og:type" content="website" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@techguywithabeard" />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title="TechGuyWithABeard Blog" href="/rss.xml" />

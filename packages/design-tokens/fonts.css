@@ -1,1 +1,21 @@
-/* TODO: self-host Inter + Trajan Pro. System fallbacks in tokens.css cover it for now. */
+/*
+ * Self-hosted font stack — Fontsource bundles the font files with the build,
+ * so nothing is loaded from a third-party CDN.
+ *
+ * Display: Cormorant Garamond (SIL OFL) — fallback for Trajan Pro (paid,
+ *   reserved for the primary wordmark only).
+ * Body:    Inter
+ * Mono:    JetBrains Mono
+ */
+
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/700.css";
+
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/600.css";
