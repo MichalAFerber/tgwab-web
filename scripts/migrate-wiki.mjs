@@ -211,7 +211,10 @@ function parseFrontMatter(src) {
     if (value === "") {
       const items = [];
       while (i + 1 < lines.length && /^\s+-\s+/.test(lines[i + 1])) {
-        items.push(lines[++i].replace(/^\s+-\s+/, "").trim());
+        let item = lines[++i].replace(/^\s+-\s+/, "").trim();
+        const q = item.match(/^(['"])(.*)\1$/);
+        if (q) item = q[2];
+        items.push(item);
       }
       fm[key] = items;
       continue;
@@ -296,9 +299,14 @@ async function fetchGithubReadme(ref) {
         // Rewrite relative image/link paths to absolute repo URLs.
         const rawBase = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/`;
         const blobBase = `https://github.com/${owner}/${repo}/blob/${branch}/`;
+        // Only rewrite paths that are clearly relative: no leading slash,
+        // no anchor, and no URI scheme (anything matching `<word>:`).
+        const isAbsolute = (p) => /^([a-z][a-z0-9+.-]*:|\/|#)/i.test(p);
         return text
-          .replace(/!\[([^\]]*)\]\((?!https?:|\/|#)([^)]+)\)/g, `![$1](${rawBase}$2)`)
-          .replace(/(?<!!)\[([^\]]+)\]\((?!https?:|\/|#|mailto:)([^)]+)\)/g, `[$1](${blobBase}$2)`);
+          .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (m, alt, p) =>
+            isAbsolute(p) ? m : `![${alt}](${rawBase}${p})`)
+          .replace(/(?<!!)\[([^\]]+)\]\(([^)]+)\)/g, (m, txt, p) =>
+            isAbsolute(p) ? m : `[${txt}](${blobBase}${p})`);
       }
     } catch {}
   }

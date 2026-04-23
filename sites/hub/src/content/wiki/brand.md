@@ -3,8 +3,8 @@ title: "Brand"
 description: "The TechGuyWithABeard / michalferber.dev visual system — colors, fonts, logo usage."
 category: "brand"
 tags:
-  - "\"brand\""
-  - "\"design\""
+  - "brand"
+  - "design"
 ---
 The TGWAB / michalferber.dev brand is intentionally minimal. Serif display face for the wordmark, a single accent red, system sans for body.
 
