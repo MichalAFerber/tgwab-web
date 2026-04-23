@@ -1,7 +1,6 @@
 ---
 title: "Claude Code Cheatsheet"
 description: "One-page printable daily essentials for maximum Claude Code productivity"
-draft: true
 tags:
   - "cheatsheet"
   - "reference"

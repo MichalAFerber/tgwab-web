@@ -1,6 +1,5 @@
 ---
 title: "El San Jose Mexican Restaurant"
-draft: false
 ---
 ![El San Jose Mexican Restaurant](https://raw.githubusercontent.com/MichalAFerber/elsanjose.com/main/assets/images/image03.jpg)
 
@@ -43,7 +42,7 @@ This website is hosted on **GitHub Pages** and automatically deploys when change
 
 ## 📁 Project Structure
 
-```
+```bash
 elsanjose.com/
 ├── index.html              # Main website page
 ├── 404.html                # Custom 404 error page

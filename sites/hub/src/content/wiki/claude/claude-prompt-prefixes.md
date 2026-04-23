@@ -1,6 +1,5 @@
 ---
 title: "Claude Prompt Command Modifiers"
-draft: true
 ---
 > These are **prompt prefix conventions**, not true slash commands. Claude has no built-in slash command parser — these work because you're instructing the model in plain language. Think of them as shorthand prompting patterns.
 

@@ -1,6 +1,5 @@
 ---
 title: "gsamanager.org"
-draft: true
 ---
 ![GSA Manager](https://raw.githubusercontent.com/MichalAFerber/gsamanager.org/main/thumbnail.png)
 

@@ -2,8 +2,12 @@
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
 
-const products = await getCollection("portfolio", ({ data }) => data.featured);
-products.sort((a, b) => a.data.tier - b.data.tier);
+const featured = (await getCollection("wiki", ({ data }) => data.portfolio && data.featured && !data.draft))
+  .sort((a, b) => (a.data.tier ?? 9) - (b.data.tier ?? 9));
+
+const recentPosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
 ---
 
 <Layout title="TechGuyWithABeard — Michal Ferber">
@@ -21,15 +25,38 @@ products.sort((a, b) => a.data.tier - b.data.tier);
 
   <section class="featured container">
     <h2>Featured work</h2>
-    <ul class="product-grid">
-      {products.map(({ data }) => (
-        <li class="product-card">
-          <h3><a href={data.url} target="_blank" rel="noopener noreferrer">{data.name}</a></h3>
-          <p class="product-card__tagline">{data.tagline}</p>
-          <p class="product-card__meta">{data.category} · {data.status}</p>
+    <ul class="card-grid">
+      {featured.map((entry) => (
+        <li class="card">
+          <h3><a href={`/wiki/${entry.slug}/`}>{entry.data.portfolioName ?? entry.data.title}</a></h3>
+          {entry.data.tagline && <p class="card__tagline">{entry.data.tagline}</p>}
+          <p class="card__meta">{entry.data.categoryLabel} · {entry.data.status}</p>
         </li>
       ))}
     </ul>
+  </section>
+
+  <section class="recent container">
+    <h2>Recent posts</h2>
+    <ul class="card-grid">
+      {recentPosts.map((post) => (
+        <li class="card">
+          <a href={`/blog/${post.slug}/`} class="card__link">
+            {post.data.heroImage && (
+              <img class="card__thumb" src={post.data.heroImage} alt="" loading="lazy" />
+            )}
+            <div class="card__body">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+              </time>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="more"><a href="/blog/">All posts →</a></p>
   </section>
 </Layout>
 
@@ -38,10 +65,7 @@ products.sort((a, b) => a.data.tier - b.data.tier);
     padding: var(--space-24) 0 var(--space-16);
     text-align: center;
   }
-  .hero h1 {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--space-4);
-  }
+  .hero h1 { font-size: var(--text-4xl); margin-bottom: var(--space-4); }
   .lede {
     font-size: var(--text-xl);
     color: var(--color-muted);
@@ -62,26 +86,80 @@ products.sort((a, b) => a.data.tier - b.data.tier);
     color: white;
     border-color: var(--tgwab-red);
   }
-  .featured { padding: var(--space-16) 0; }
-  .product-grid {
-    list-style: none;
-    padding: 0;
+
+  section.featured,
+  section.recent {
+    padding: var(--space-12) 0;
+  }
+  section.featured h2,
+  section.recent h2 {
+    font-family: var(--font-display);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .card-grid {
+    list-style: none; padding: 0; margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-6);
-    margin-top: var(--space-8);
   }
-  .product-card {
-    padding: var(--space-6);
+  .card {
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     background: var(--color-surface);
+    overflow: hidden;
   }
-  .product-card h3 { margin: 0 0 var(--space-2); }
-  .product-card__meta {
+  /* Featured work cards: plain padded layout (no thumbnail). */
+  .featured .card { padding: var(--space-6); }
+  .featured .card h3 { margin: 0 0 var(--space-2); font-size: var(--text-xl); }
+  .featured .card h3 a { color: var(--color-ink); text-decoration: none; }
+  .featured .card h3 a:hover { color: var(--tgwab-red); }
+  .featured .card__tagline { margin: 0 0 var(--space-3); }
+  .featured .card__meta {
     font-size: var(--text-xs);
     color: var(--color-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  /* Recent posts cards: thumbnail on top, body below. */
+  .recent .card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .recent .card__thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+  .recent .card__body { padding: var(--space-6); }
+  .recent .card__body time {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .recent .card__body h3 {
+    margin: var(--space-2) 0;
+    font-size: var(--text-xl);
+    color: var(--color-ink);
+  }
+  .recent .card__link:hover h3 { color: var(--tgwab-red); }
+  .recent .card__body p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+  .recent .more {
+    margin-top: var(--space-8);
+    text-align: right;
+  }
+  .recent .more a {
+    color: var(--tgwab-red);
+    text-decoration: none;
+    font-size: var(--text-sm);
   }
 </style>

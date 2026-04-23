@@ -3,10 +3,9 @@ title: "Homelab"
 description: "Index page for homelab notes — hardware, networking, services, backups, and the stuff that keeps my rack running."
 category: "homelab"
 tags:
-  - "homelab"
-  - "self-hosted"
+  - "\"homelab\""
+  - "\"self-hosted\""
 ---
-
 The homelab section is actively being backfilled. Most of the source material lives as blog posts in `/blog/` and short-form notes throughout the rest of the wiki; this page will grow into the canonical landing for anything rack-related.
 
 ## Related content that exists today

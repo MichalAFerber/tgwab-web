@@ -1,5 +1,17 @@
 ---
-title: "mykk.us"
+title: "MyKK.us"
+description: "Browser dashboard + Chrome extension — start page done right"
+portfolio: true
+portfolioName: "MyKK.us"
+tagline: "Browser dashboard + Chrome extension — start page done right"
+url: "https://mykk.us"
+status: "live"
+tier: 1
+portfolioCategory: "chrome-extension"
+categoryLabel: "Chrome Extensions"
+featured: true
+revenue: "Pro $12/yr"
+repoPath: "/Volumes/Yoda/GitHub/the-mykk-project"
 ---
 ![](https://raw.githubusercontent.com/MichalAFerber/mykk.us/main/images/mykk-2560x1440.jpeg)
 

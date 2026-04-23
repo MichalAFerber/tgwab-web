@@ -1,5 +1,4 @@
 ---
 title: "TelecomManager"
-draft: true
 ---
 

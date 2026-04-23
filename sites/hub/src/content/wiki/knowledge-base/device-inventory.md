@@ -1,6 +1,5 @@
 ---
 title: "Device Inventory"
-draft: true
 ---
 1. Aruba InstantOn 1830 Switch
 2. Cisco 250 Switch

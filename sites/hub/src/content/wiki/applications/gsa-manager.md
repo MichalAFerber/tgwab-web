@@ -1,6 +1,5 @@
 ---
 title: "GSA Manager"
-draft: true
 ---
 **GSA Manager** is a Windows-based application developed for managing associations and clubs. It provides comprehensive functionality for:
 
