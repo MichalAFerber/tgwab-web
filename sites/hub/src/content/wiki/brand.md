@@ -3,10 +3,9 @@ title: "Brand"
 description: "The TechGuyWithABeard / michalferber.dev visual system — colors, fonts, logo usage."
 category: "brand"
 tags:
-  - "brand"
-  - "design"
+  - "\"brand\""
+  - "\"design\""
 ---
-
 The TGWAB / michalferber.dev brand is intentionally minimal. Serif display face for the wordmark, a single accent red, system sans for body.
 
 ## Logo
@@ -29,22 +28,35 @@ Defined as CSS custom properties in `@tgwab/design-tokens/tokens.css`:
 --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 ```
 
-System fallbacks ship today. Self-hosted font files (Inter, JetBrains Mono via Bunny Fonts or Fontsource) are a follow-up when a site's Lighthouse report justifies it.
+Fonts are self-hosted via Fontsource npm packages — `@fontsource/inter`, `@fontsource/cormorant-garamond`, `@fontsource/jetbrains-mono`. No third-party CDN. Trajan (paid) is reserved for the michalferber.dev wordmark; the hub itself substitutes Cormorant Garamond on display headings.
 
 ## Color
 
-```css
---tgwab-red:      #e04c2f   /* primary accent */
---tgwab-red-dark: #c23920   /* hover */
---tgwab-gray:     #4a4a4a   /* wordmark secondary */
+The authoritative values live in `packages/design-tokens/tokens.css`. This doc mirrors them — if they drift, `tokens.css` wins.
 
---color-gold:   #f0a500
---color-blue:   #3b82f6
---color-green:  #22c55e
+```css
+--tgwab-red:      #e04c2f   /* primary accent — MICHAL, CTAs, active nav */
+--tgwab-red-dark: #c23920   /* hover state for --tgwab-red */
+--tgwab-gray:     #4a4a4a   /* FERBER wordmark secondary */
+--tgwab-gray-light: #8a8a8a
+
+--color-gold:   #f0a500     /* warning / beta status */
+--color-blue:   #3b82f6     /* info / planning status */
+--color-green:  #22c55e     /* success / live status */
 --color-purple: #a855f7
 ```
 
-Neutrals and dark-mode surfaces are in `tokens.css`. Dark is primary — the hub is designed dark-first.
+Dark-mode neutrals (default):
+```css
+--color-bg:         #0d0f14
+--color-surface:    #141720
+--color-surface-2:  #1c2030
+--color-ink:        #e8eaf0
+--color-muted:      #6b7280
+--color-border:     #252a3a
+```
+
+Dark is primary — the hub is designed dark-first; light mode is provided via `@media (prefers-color-scheme: light)`.
 
 ## Usage rules
 

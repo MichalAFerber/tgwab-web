@@ -1,6 +1,5 @@
 ---
 title: "michalferber.me"
-draft: true
 ---
 ![Header](https://raw.githubusercontent.com/MichalAFerber/michalaferber.github.io/main/assets/img/github-header-banner.png)
 # Michal's Beautiful Jekyll

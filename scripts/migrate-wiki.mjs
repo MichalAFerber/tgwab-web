@@ -40,7 +40,10 @@ mkdirSync(assetsOut, { recursive: true });
 
 const slugifyPart = (s) =>
   s.toLowerCase()
-    .replace(/[^a-z0-9.\-_]+/g, "-")
+    // Astro's content-collection slug generator strips dots, so pre-convert
+    // them to hyphens for predictable, readable URLs (`mykk-us` not `mykkus`).
+    .replace(/\./g, "-")
+    .replace(/[^a-z0-9\-_]+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 
@@ -78,17 +81,10 @@ function mapPath(relPath) {
 
 // --- draft rules ----------------------------------------------------------
 
-const PRIVATE_PATH_RULES = [
-  /^Claude(\/|$)/,
-  /^Applications(\/|$)/,
-  /^Downloads(\/|$)/,
-  /^Knowledge Base\/(Obsidian Master TODO List|Device Inventory|Gaming PC|mini-pc-specs)\.md$/,
-  /^Websites\/(elsanjose\.com|ferber\.me|grandfathershoney\.com|gsamanager\.org|michalferber\.me)\//,
-];
-
-function isPrivateByPath(relPath) {
-  return PRIVATE_PATH_RULES.some((re) => re.test(relPath));
-}
+// Default: everything in the Obsidian wiki is public. Mark a specific file
+// draft by adding `draft: true` to its front matter.
+// (Previously this was a path-based private-by-default list — removed per
+// owner preference.)
 
 // --- personal data scrubbing ---------------------------------------------
 
@@ -242,20 +238,71 @@ const yamlEscape = (s) => {
   return '"' + str + '"';
 };
 
-function renderFrontMatter({ title, description, draft, tags, category, updatedDate, portfolioRef }) {
+function renderFrontMatter(fields) {
+  const {
+    title, description, draft, tags, category, updatedDate,
+    portfolio, portfolioName, tagline, url, status, tier, portfolioCategory,
+    categoryLabel, featured, revenue, repoPath, github, wikiPath,
+  } = fields;
   const lines = ["---"];
   lines.push(`title: ${yamlEscape(title)}`);
   if (description) lines.push(`description: ${yamlEscape(description)}`);
   if (draft) lines.push(`draft: true`);
   if (category) lines.push(`category: ${yamlEscape(category)}`);
   if (updatedDate) lines.push(`updatedDate: ${updatedDate}`);
-  if (portfolioRef) lines.push(`portfolioRef: ${yamlEscape(portfolioRef)}`);
+  if (github) lines.push(`github: ${yamlEscape(github)}`);
+
+  // Portfolio metadata passthrough (option C: portfolio entries are wiki
+  // entries with `portfolio: true` in their front matter).
+  if (portfolio === true) {
+    lines.push(`portfolio: true`);
+    if (portfolioName) lines.push(`portfolioName: ${yamlEscape(portfolioName)}`);
+    if (tagline) lines.push(`tagline: ${yamlEscape(tagline)}`);
+    if (url) lines.push(`url: ${yamlEscape(url)}`);
+    if (status) lines.push(`status: ${yamlEscape(status)}`);
+    if (typeof tier === "number") lines.push(`tier: ${tier}`);
+    if (portfolioCategory) lines.push(`portfolioCategory: ${yamlEscape(portfolioCategory)}`);
+    if (categoryLabel) lines.push(`categoryLabel: ${yamlEscape(categoryLabel)}`);
+    if (featured) lines.push(`featured: true`);
+    if (revenue) lines.push(`revenue: ${yamlEscape(revenue)}`);
+    if (repoPath) lines.push(`repoPath: ${yamlEscape(repoPath)}`);
+  }
+
   if (tags && tags.length) {
     lines.push("tags:");
     for (const t of tags) lines.push(`  - ${yamlEscape(String(t))}`);
   }
   lines.push("---", "");
   return lines.join("\n");
+}
+
+/**
+ * Fetch a repo's README.md at build time. Supports the short `owner/repo`
+ * form or a full GitHub URL. Silently falls back to `null` on failure; the
+ * caller should keep the original body instead.
+ */
+async function fetchGithubReadme(ref) {
+  const short = ref.replace(/^https?:\/\/github\.com\//, "").replace(/\.git$/, "").replace(/\/$/, "");
+  const m = short.match(/^([^\/]+)\/([^\/]+)/);
+  if (!m) return null;
+  const [, owner, repo] = m;
+  // Try main, then master.
+  for (const branch of ["main", "master"]) {
+    try {
+      const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/README.md`;
+      const res = await fetch(url);
+      if (res.ok) {
+        const text = await res.text();
+        // Rewrite relative image/link paths to absolute repo URLs.
+        const rawBase = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/`;
+        const blobBase = `https://github.com/${owner}/${repo}/blob/${branch}/`;
+        return text
+          .replace(/!\[([^\]]*)\]\((?!https?:|\/|#)([^)]+)\)/g, `![$1](${rawBase}$2)`)
+          .replace(/(?<!!)\[([^\]]+)\]\((?!https?:|\/|#|mailto:)([^)]+)\)/g, `[$1](${blobBase}$2)`);
+      }
+    } catch {}
+  }
+  return null;
 }
 
 // --- title extraction -----------------------------------------------------
@@ -379,20 +426,36 @@ for (const { full, rel } of files) {
 }
 
 // Pass 2: write output
-let written = 0, drafted = 0;
+let written = 0, drafted = 0, readmeFetched = 0;
 for (const { full, rel, map, fm, body, title } of fileEntries) {
   const dstPath = join(outRoot, map.outFile);
   mkdirSync(dirname(dstPath), { recursive: true });
 
-  const draft = fm.publish === true ? false : (fm.draft === true || isPrivateByPath(rel));
+  // Public by default. Only draft if the source file explicitly says so.
+  const finalDraft = fm.draft === true;
 
   let newBody = rewriteBody(body, linkMap, imageFiles, rel, reportLines);
   newBody = scrub(newBody, reportLines, rel);
   newBody = stripLeadingDuplicateH1(newBody, title);
 
-  // Stub detection: very short body → draft.
-  const realLines = newBody.split("\n").filter((l) => l.trim().length > 0).length;
-  const finalDraft = draft || realLines < 3;
+  // If the page declares a github repo, fetch its README and append below
+  // the existing body content under a separator. Falls back silently on
+  // network failure.
+  if (fm.github) {
+    const readme = await fetchGithubReadme(String(fm.github));
+    if (readme) {
+      newBody = newBody.trim() +
+        "\n\n---\n\n## From the repository README\n\n" +
+        readme.trim() + "\n";
+      readmeFetched++;
+    } else {
+      reportLines.push(`${rel}: github README fetch failed for ${fm.github}`);
+    }
+  }
+
+  // Numeric parsing for tier.
+  const tierNum = typeof fm.tier === "number" ? fm.tier
+    : (fm.tier != null && !isNaN(Number(fm.tier))) ? Number(fm.tier) : undefined;
 
   const out =
     renderFrontMatter({
@@ -402,7 +465,18 @@ for (const { full, rel, map, fm, body, title } of fileEntries) {
       tags: Array.isArray(fm.tags) ? fm.tags : [],
       category: fm.category,
       updatedDate: fm.updatedDate,
-      portfolioRef: fm.portfolioRef,
+      github: fm.github,
+      portfolio: fm.portfolio === true,
+      portfolioName: fm.portfolioName,
+      tagline: fm.tagline,
+      url: fm.url,
+      status: fm.status,
+      tier: tierNum,
+      portfolioCategory: fm.portfolioCategory,
+      categoryLabel: fm.categoryLabel,
+      featured: fm.featured === true,
+      revenue: fm.revenue,
+      repoPath: fm.repoPath,
     }) +
     newBody.replace(/^\n+/, "") +
     (newBody.endsWith("\n") ? "" : "\n");
@@ -425,4 +499,5 @@ writeFileSync(
 );
 
 console.log(`wiki migrated: ${written} files (${drafted} draft, ${written - drafted} public)`);
+if (readmeFetched) console.log(`github READMEs fetched: ${readmeFetched}`);
 console.log(`scrub report: ${reportPath} (${reportLines.length} entries)`);

@@ -1,6 +1,18 @@
 ---
-title: "IP Cow 🐮"
+title: "IP Cow"
+description: "IP lookup and network tools — running since 2005"
+portfolio: true
+portfolioName: "IP Cow"
+tagline: "IP lookup and network tools — running since 2005"
+url: "https://ipcow.com"
+status: "live"
+tier: 2
+portfolioCategory: "website"
+categoryLabel: "Websites"
+repoPath: "/Volumes/Yoda/GitHub/the-ipcow-project"
 ---
+# IP Cow 🐮
+
 A modern, privacy-focused web application that displays your IP address, geolocation, ISP information, and device details with a beautiful glass-morphism design.
 
 ![IP Cow Screenshot](https://img.shields.io/badge/Status-Live-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue)

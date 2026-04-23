@@ -1,5 +1,4 @@
 ---
 title: "Applications"
-draft: true
 ---
 

@@ -1,5 +1,4 @@
 ---
 title: "CopyForm"
-draft: true
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "User Guide"
-draft: true
 ---
 *==Last updated on May 02, 2022==*  
 

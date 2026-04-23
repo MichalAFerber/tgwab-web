@@ -1,6 +1,5 @@
 ---
 title: "Obsidian Master TODO List"
-draft: true
 ---
 Here's your Master TODO list with multiple views.
 ## How It Works

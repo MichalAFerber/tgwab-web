@@ -1,6 +1,5 @@
 ---
 title: "claude-prompts-v1"
-draft: true
 ---
 ## Reference
 - [AGENT.md: The Universal Agent Configuration File](https://github.com/agentmd/agent.md) 

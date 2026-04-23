@@ -1,6 +1,5 @@
 ---
 title: "Mini PC Specs: Beelink Mini S12 (N95) & GMKtec NucBox K12 (Ryzen 7 H 255)"
-draft: true
 ---
 Quick reference spec sheet for both units. Specs sourced from manufacturer listings and independent reviews as of April 2026. Note that both vendors ship multiple SKU variants under the same model name — confirm your exact config at purchase.
 

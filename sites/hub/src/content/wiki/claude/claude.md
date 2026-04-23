@@ -1,6 +1,5 @@
 ---
 title: "CLAUDE.md"
-draft: true
 ---
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 

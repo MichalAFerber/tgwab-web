@@ -2,7 +2,7 @@
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
 
-const all = await getCollection("portfolio");
+const all = (await getCollection("wiki", ({ data }) => data.portfolio && !data.draft));
 
 const groupOrder = ["chrome-extension", "script", "website", "service", "other"];
 const groupLabel: Record<string, string> = {
@@ -18,8 +18,8 @@ const grouped = groupOrder
     category: cat,
     label: groupLabel[cat],
     items: all
-      .filter((p) => p.data.category === cat)
-      .sort((a, b) => a.data.tier - b.data.tier || a.data.name.localeCompare(b.data.name)),
+      .filter((p) => p.data.portfolioCategory === cat)
+      .sort((a, b) => (a.data.tier ?? 9) - (b.data.tier ?? 9) || (a.data.portfolioName ?? a.data.title).localeCompare(b.data.portfolioName ?? b.data.title)),
   }))
   .filter((g) => g.items.length > 0);
 ---
@@ -27,29 +27,29 @@ const grouped = groupOrder
 <Layout title="Portfolio — TechGuyWithABeard">
   <div class="container">
     <h1>Portfolio</h1>
-    <p class="lede">Everything I've shipped or am actively building, grouped by type.</p>
+    <p class="lede">Everything I've shipped or am actively building, grouped by type. Each card links to the wiki entry.</p>
 
     {grouped.map((group) => (
       <section class="group">
         <h2>{group.label}</h2>
         <ul class="card-grid">
-          {group.items.map(({ data }) => (
+          {group.items.map((entry) => (
             <li class="card">
               <div class="card__header">
                 <h3>
-                  {data.wikiPath ? (
-                    <a href={`/wiki/${data.wikiPath}/`}>{data.name}</a>
-                  ) : (
-                    <a href={data.url} target="_blank" rel="noopener noreferrer">{data.name}</a>
-                  )}
+                  <a href={`/wiki/${entry.slug}/`}>{entry.data.portfolioName ?? entry.data.title}</a>
                 </h3>
-                <span class={`status status--${data.status}`}>{data.status}</span>
+                {entry.data.status && (
+                  <span class={`status status--${entry.data.status}`}>{entry.data.status}</span>
+                )}
               </div>
-              <p class="card__tagline">{data.tagline}</p>
-              <p class="card__desc">{data.description}</p>
+              {entry.data.tagline && <p class="card__tagline">{entry.data.tagline}</p>}
+              {entry.data.description && <p class="card__desc">{entry.data.description}</p>}
               <div class="card__meta">
-                <a href={data.url} target="_blank" rel="noopener noreferrer" class="card__visit">Visit →</a>
-                <span>T{data.tier}{data.revenue ? ` · ${data.revenue}` : ""}</span>
+                {entry.data.url ? (
+                  <a href={entry.data.url} target="_blank" rel="noopener noreferrer" class="card__visit">Visit →</a>
+                ) : <span></span>}
+                <span>{entry.data.tier ? `T${entry.data.tier}` : ""}{entry.data.revenue ? ` · ${entry.data.revenue}` : ""}</span>
               </div>
             </li>
           ))}

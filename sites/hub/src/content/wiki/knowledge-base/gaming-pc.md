@@ -1,6 +1,5 @@
 ---
 title: "Gaming PC"
-draft: true
 ---
 {: .note }
 > My current Windows 11 pc, hardly use it, I am a converted MacBook, Mac mini type of guy now.

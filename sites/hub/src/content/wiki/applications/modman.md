@@ -1,6 +1,5 @@
 ---
 title: "ModMan"
-draft: true
 ---
 *Mod Manager for the Farming Simulator 2019 game*
 
