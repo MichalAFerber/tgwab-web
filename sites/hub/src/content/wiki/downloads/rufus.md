@@ -1,6 +1,7 @@
 ---
-title: "Rufus <img src=\"https://michalferber.dev/assets/images/windows.svg\" alt=\"Windows\" width=\"20\">"
+title: "Rufus"
 ---
+# Rufus <img src="https://michalferber.dev/assets/images/windows.svg" alt="Windows" width="20">  
 [https://rufus.ie/](https://rufus.ie/)
 
 **Developer:** Pete Batard  

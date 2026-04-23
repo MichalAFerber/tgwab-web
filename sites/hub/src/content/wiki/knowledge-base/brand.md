@@ -1,7 +1,6 @@
 ---
 title: "Brand"
 description: "The TechGuyWithABeard / michalferber.dev visual system — colors, fonts, logo usage."
-category: "brand"
 tags:
   - "brand"
   - "design"

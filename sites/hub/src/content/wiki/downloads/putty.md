@@ -1,6 +1,7 @@
 ---
-title: "PuTTY <img src=\"https://michalferber.dev/assets/images/linux.svg\" alt=\"Linux\" width=\"20\"> <img src=\"https://michalferber.dev/assets/images/apple.svg\" alt=\"macOS\" width=\"20\"> <img src=\"https://michalferber.dev/assets/images/windows.svg\" alt=\"Windows\" width=\"20\">"
+title: "PuTTY"
 ---
+# PuTTY <img src="https://michalferber.dev/assets/images/linux.svg" alt="Linux" width="20"> <img src="https://michalferber.dev/assets/images/apple.svg" alt="macOS" width="20"> <img src="https://michalferber.dev/assets/images/windows.svg" alt="Windows" width="20">  
 [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
 **Developer:** Simon Tatham and team  

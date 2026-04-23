@@ -2,44 +2,47 @@
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
 
-const entries = (await getCollection("wiki", ({ data }) => !data.draft))
-  .sort((a, b) => a.slug.localeCompare(b.slug));
+const entries = await getCollection("wiki", ({ data }) => !data.draft);
 
-// Group by the front-matter `category` when present, else by the first
-// slug segment, else "_root" for true top-level files.
+// Known top-level categories. When an entry's slug is exactly one of these
+// (i.e. the file is `wiki/<category>.md` — the category's own landing page),
+// group it into that category's section instead of leaving it stranded in
+// "Top level".
+const CATEGORIES = [
+  "chrome-extensions",
+  "downloads",
+  "knowledge-base",
+  "scripts",
+  "websites",
+  "windows-applications",
+];
+
+const titleCase = (s) =>
+  s.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+
 const groups: Record<string, typeof entries> = {};
 for (const entry of entries) {
-  const section =
-    entry.data.category ||
-    (entry.slug.includes("/") ? entry.slug.split("/")[0] : "_root");
+  let section;
+  if (entry.data.category) {
+    section = entry.data.category;
+  } else if (entry.slug.includes("/")) {
+    section = entry.slug.split("/")[0];
+  } else if (CATEGORIES.includes(entry.slug)) {
+    section = entry.slug;
+  } else {
+    section = "_root";
+  }
   (groups[section] ||= []).push(entry);
 }
 
-const sectionLabel: Record<string, string> = {
-  _root: "Top level",
-  "chrome-extensions": "Chrome Extensions",
-  "knowledge-base": "Knowledge Base",
-  "websites": "Websites",
-  "scripts": "Scripts",
-  "homelab": "Homelab",
-  "brand": "Brand",
-  "applications": "Applications",
-};
-
-const sectionOrder = [
-  "_root",
-  "knowledge-base",
-  "homelab",
-  "chrome-extensions",
-  "websites",
-  "scripts",
-  "brand",
-  "applications",
-];
-
-const orderedGroups = sectionOrder
-  .filter((s) => groups[s])
-  .concat(Object.keys(groups).filter((s) => !sectionOrder.includes(s)));
+const sections = Object.entries(groups).map(([key, items]) => ({
+  key,
+  label: key === "_root" ? "Top level" : titleCase(key),
+  items: [...items].sort((a, b) =>
+    a.data.title.localeCompare(b.data.title, "en", { sensitivity: "base" }),
+  ),
+}));
+sections.sort((a, b) => a.label.localeCompare(b.label));
 ---
 
 <Layout title="Wiki — TechGuyWithABeard" description="Technical notes, how-tos, and reference material.">
@@ -47,14 +50,18 @@ const orderedGroups = sectionOrder
     <h1>Wiki</h1>
     <p class="lede">Technical notes, how-tos, and reference material. Public subset of my working Obsidian vault.</p>
 
-    {orderedGroups.map((section) => (
+    {sections.map((section) => (
       <section class="section">
-        <h2>{sectionLabel[section] || section}</h2>
-        <ul class="entry-list">
-          {groups[section].map((entry) => (
-            <li>
-              <a href={`/wiki/${entry.slug}/`}>{entry.data.title}</a>
-              {entry.data.description && <span class="desc"> — {entry.data.description}</span>}
+        <h2>{section.label}</h2>
+        <ul class="card-grid">
+          {section.items.map((entry) => (
+            <li class="card">
+              <a href={`/wiki/${entry.slug}/`} class="card__link">
+                <h3>{entry.data.title}</h3>
+                {entry.data.description && (
+                  <p class="card__desc">{entry.data.description}</p>
+                )}
+              </a>
             </li>
           ))}
         </ul>
@@ -64,34 +71,55 @@ const orderedGroups = sectionOrder
 </Layout>
 
 <style>
-  .lede { color: var(--color-muted); font-size: var(--text-lg); margin-bottom: var(--space-12); max-width: 60ch; }
-  .section { margin-bottom: var(--space-12); }
+  .lede {
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-12);
+    max-width: 60ch;
+  }
+  .section { margin-bottom: var(--space-16); }
   .section h2 {
     font-family: var(--font-display);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
     border-bottom: 1px solid var(--color-border);
   }
-  .entry-list {
+  .card-grid {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: var(--space-2) var(--space-8);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-4);
   }
-  .entry-list li {
-    padding: var(--space-2) 0;
-    line-height: 1.5;
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: border-color 0.15s, transform 0.15s;
   }
-  .entry-list a {
-    color: var(--color-ink);
+  .card:hover {
+    border-color: var(--tgwab-red);
+    transform: translateY(-1px);
+  }
+  .card__link {
+    display: block;
+    padding: var(--space-4) var(--space-6);
     text-decoration: none;
-    font-weight: 600;
+    color: inherit;
+    height: 100%;
   }
-  .entry-list a:hover { color: var(--tgwab-red); }
-  .entry-list .desc {
-    color: var(--color-muted);
+  .card__link h3 {
+    font-size: var(--text-base);
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0 0 var(--space-2);
+  }
+  .card:hover h3 { color: var(--tgwab-red); }
+  .card__desc {
     font-size: var(--text-sm);
-    font-weight: 400;
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.5;
   }
 </style>
