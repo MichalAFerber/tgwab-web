@@ -44,11 +44,11 @@ pnpm build:hub       # or: pnpm preview:hub
 
 - Everything in the wiki folder is **public by default**. To hide a page, add `draft: true`.
 - The wiki is two levels deep: `wiki/<category>/<file>.md`. Allowed categories:
-  **Chrome Extensions, Websites, Scripts, Knowledge Base, Window Applications, Downloads**.
+  **Chrome Extensions, Websites, Scripts, Knowledge Base, Windows Applications, Downloads**.
 - Deeper folder nesting gets flattened by hyphenating the remaining segments:
   - `Chrome Extensions/ResizeWizard/README.md` → `/wiki/chrome-extensions/resizewizard/`
   - `Knowledge Base/Cloudflare DNS Setup Guide.md` → `/wiki/knowledge-base/cloudflare-dns-setup-guide/`
-  - `Window Applications/ModMan/user-guide.md` → `/wiki/window-applications/modman-user-guide/`
+  - `Windows Applications/ModMan-user-guide.md` → `/wiki/windows-applications/modman-user-guide/`
   - `Websites/ipcow.com/assets.md` → `/wiki/websites/ipcow-com-assets/`
 - `README.md` or `index.md` inside a folder becomes the folder's landing page
   at that category's URL (e.g. `Chrome Extensions/ResizeWizard/README.md` serves at
