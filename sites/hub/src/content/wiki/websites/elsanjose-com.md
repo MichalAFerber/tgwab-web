@@ -1,6 +1,30 @@
 ---
 title: "El San Jose Mexican Restaurant"
+description: "Marketing site for a family-owned Mexican restaurant in Lake City, SC."
+github: "MichalAFerber/elsanjose.com"
+portfolio: true
+portfolioName: "El San Jose"
+tagline: "Marketing site for a family-owned Mexican restaurant — Lake City, SC"
+url: "https://elsanjose.com"
+status: "live"
+tier: 3
+portfolioCategory: "website"
+categoryLabel: "Websites"
+tags:
+  - "website"
+  - "client-work"
+  - "static-site"
 ---
+Static HTML/CSS/JS site for El San Jose Mexican Restaurant. Hosted on GitHub Pages, auto-deployed from `main`. Includes a photo gallery, menu slideshow, and full web-standards compliance (robots.txt, sitemap, humans.txt, security.txt, 404 page, OpenGraph).
+
+Details below are pulled directly from the repository on every build.
+
+---
+
+## From the repository README
+
+# El San Jose Mexican Restaurant
+
 ![El San Jose Mexican Restaurant](https://raw.githubusercontent.com/MichalAFerber/elsanjose.com/main/assets/images/image03.jpg)
 
 Official website for **El San Jose Mexican Restaurant**, serving authentic Mexican cuisine in Lake City, South Carolina.
@@ -42,7 +66,7 @@ This website is hosted on **GitHub Pages** and automatically deploys when change
 
 ## 📁 Project Structure
 
-```bash
+```
 elsanjose.com/
 ├── index.html              # Main website page
 ├── 404.html                # Custom 404 error page
@@ -99,6 +123,6 @@ This website includes:
 - ✅ Responsive viewport meta tag
 - ✅ Semantic HTML5
 
-## 📝 [License](LICENSE)
+## 📝 [License](https://github.com/MichalAFerber/elsanjose.com/blob/main/LICENSE)
 
 Created by Michal Ferber, aka TechGuyWithABeard
