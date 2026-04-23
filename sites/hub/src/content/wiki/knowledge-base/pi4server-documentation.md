@@ -136,7 +136,7 @@ services:
         environment:
             - PUID=1000
             - PGID=1003
-            - APP_KEY=base64:YE6GIv3J8LeEWZWkEJ0dPAobe4pqDZw03ly7Qv9OcBs=
+            - APP_KEY=base64:YOURLONGSTRING
             - DB_CONNECTION=sqlite
             - SPEEDTEST_INTERFACE=eth0
         volumes:
@@ -153,8 +153,8 @@ cd noip-duc
 nano noip-duc.env
 
 # noip-duc.env with DDNS Key
-NOIP_USERNAME=f7vkeee
-NOIP_PASSWORD=QogtsE5v7ceG
+NOIP_USERNAME=YOURUSERNAME
+NOIP_PASSWORD=YOURPASSWORD
 NOIP_HOSTNAMES=all.ddnskey.com
 
 docker run -d --env-file noip-duc.env --name noip-duc --restart=always ghcr.io/noipcom/noip-duc:3.2.0@sha256:57301f2f54e3f8575bbe33caae40f154806d7ed272e8c94cf37b38581aac6f72
