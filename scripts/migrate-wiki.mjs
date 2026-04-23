@@ -48,34 +48,57 @@ const slugifyPart = (s) =>
     .replace(/^-|-$/g, "");
 
 /**
- * Map an Obsidian-relative file path to the Astro content path (relative
- * to outRoot) and the public URL path. README.md / index.md collapse into
- * their parent folder name.
+ * Map an Obsidian-relative file path to the Astro content path and URL slug.
+ *
+ * Target structure: wiki/<category>/<file>.md — two levels max.
+ *
+ *   About Me.md                                  → about-me.md
+ *   Chrome Extensions/ResizeWizard/README.md     → chrome-extensions/resizewizard.md
+ *   Knowledge Base/Cloudflare DNS Setup.md       → knowledge-base/cloudflare-dns-setup.md
+ *   Window Applications/ModMan/user-guide.md     → window-applications/modman-user-guide.md
+ *   Websites/mykk.us/start.md                    → websites/mykk-us-start.md
+ *   Websites/ipcow.com/index.md                  → websites/ipcow-com.md
  */
 function mapPath(relPath) {
   const parts = relPath.split("/");
   const filename = parts.pop();
   const stem = filename.replace(/\.md$/i, "");
+  const isIndex = /^(readme|index)$/i.test(stem);
 
-  // Root-level index/README: skip — handled by /wiki/ Astro page.
-  if (parts.length === 0 && /^(readme|index)$/i.test(stem)) return null;
+  // Root-level readme/index: skip — handled by /wiki/ Astro page.
+  if (parts.length === 0 && isIndex) return null;
 
-  // Folder index: collapse into parent.
-  if (parts.length > 0 && /^(readme|index)$/i.test(stem)) {
-    const folderParts = parts.map(slugifyPart);
-    const file = folderParts.pop();
+  // Top-level file in the wiki root (About Me, Homelab, kj4dia-wiki, etc).
+  if (parts.length === 0) {
+    const name = slugifyPart(stem);
+    return { outFile: `${name}.md`, urlSlug: name };
+  }
+
+  const category = slugifyPart(parts[0]);
+
+  // One folder deep — direct file under a category.
+  if (parts.length === 1) {
+    if (isIndex) {
+      // Category/index.md becomes the category landing page at category.md
+      // (root of the wiki, not inside the category dir).
+      return { outFile: `${category}.md`, urlSlug: category };
+    }
+    const name = slugifyPart(stem);
     return {
-      outFile: join(...folderParts, `${file}.md`),
-      urlSlug: [...folderParts, file].join("/"),
+      outFile: `${category}/${name}.md`,
+      urlSlug: `${category}/${name}`,
     };
   }
 
-  // Normal file.
-  const folderParts = parts.map(slugifyPart);
-  const fileSlug = slugifyPart(stem);
+  // Two or more folders deep — flatten into a single file inside the
+  // category, joining the remaining segments with hyphens.
+  const subParts = parts.slice(1).map(slugifyPart);
+  const name = isIndex
+    ? subParts.join("-")
+    : [...subParts, slugifyPart(stem)].join("-");
   return {
-    outFile: join(...(folderParts.length ? folderParts : []), `${fileSlug}.md`),
-    urlSlug: [...folderParts, fileSlug].join("/"),
+    outFile: `${category}/${name}.md`,
+    urlSlug: `${category}/${name}`,
   };
 }
 
@@ -452,9 +475,7 @@ for (const { full, rel, map, fm, body, title } of fileEntries) {
   if (fm.github) {
     const readme = await fetchGithubReadme(String(fm.github));
     if (readme) {
-      newBody = newBody.trim() +
-        "\n\n---\n\n## From the repository README\n\n" +
-        readme.trim() + "\n";
+      newBody = newBody.trim() + "\n\n" + readme.trim() + "\n";
       readmeFetched++;
     } else {
       reportLines.push(`${rel}: github README fetch failed for ${fm.github}`);
