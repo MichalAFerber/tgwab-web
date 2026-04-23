@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
     "@tgwab/design-tokens": "workspace:*",
     "@tgwab/ui": "workspace:*",
     "astro": "^5.0.0"

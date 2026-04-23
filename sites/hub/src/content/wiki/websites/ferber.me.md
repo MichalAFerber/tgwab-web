@@ -1,6 +1,6 @@
 ---
 title: "The Ferber Family Website"
-draft: true
+draft: false
 ---
 ![Ferber Family Crest](https://raw.githubusercontent.com/MichalAFerber/ferber.me/main/assets/images/ferber_crest.jpg)
 
@@ -39,7 +39,7 @@ Visit: [https://ferber.me](https://ferber.me)
 
 ## 📁 Project Structure
 
-```bash
+```
 ferber.me/
 ├── _config.yml          # Jekyll configuration
 ├── index.md             # Home page

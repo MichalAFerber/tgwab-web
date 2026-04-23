@@ -8,7 +8,6 @@
   "categoryLabel": "Websites",
   "description": "Content site steering readers from Google services to Proton alternatives (Mail, Drive, VPN, Calendar, Pass). Phase 0 half-done: domain registered, Cloudflare configured, Jekyll installed, brand system locked (Void Black/Ghost White/Signal Green/Privacy Purple, Montserrat + Inter + JetBrains Mono). Legal: ThompsonBlack LLC dba TGWAB. Revenue via Proton Partner Program.",
   "featured": false,
-  "wikiPath": "websites/degoog.us",
   "revenue": "Proton affiliate",
   "repoPath": "/Volumes/Yoda/GitHub/degoog.us"
 }
