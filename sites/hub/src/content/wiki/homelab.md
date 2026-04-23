@@ -1,7 +1,6 @@
 ---
 title: "Homelab"
 description: "Index page for homelab notes — hardware, networking, services, backups, and the stuff that keeps my rack running."
-category: "homelab"
 tags:
   - "homelab"
   - "self-hosted"

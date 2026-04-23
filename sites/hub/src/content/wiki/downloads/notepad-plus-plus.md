@@ -1,6 +1,7 @@
 ---
-title: "Notepad++ <img src=\"https://michalferber.dev/assets/images/windows.svg\" alt=\"Windows\" width=\"20\">"
+title: "Notepad++"
 ---
+# Notepad++ <img src="https://michalferber.dev/assets/images/windows.svg" alt="Windows" width="20">  
 [https://notepad-plus-plus.org/](https://notepad-plus-plus.org/)
 
 **Developer:** Don Ho  

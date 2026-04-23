@@ -1,6 +1,7 @@
 ---
-title: "Latest <img src=\"https://michalferber.dev/assets/images/apple.svg\" alt=\"macOS\" width=\"20\">"
+title: "Latest"
 ---
+# Latest <img src="https://michalferber.dev/assets/images/apple.svg" alt="macOS" width="20">  
 [https://max.codes/latest/](https://max.codes/latest/)  
 
 **Developer:** Max Langer  

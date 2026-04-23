@@ -1,6 +1,7 @@
 ---
-title: "EditPad™ Classic <img src=\"https://michalferber.dev/assets/images/windows.svg\" alt=\"Windows\" width=\"20\">"
+title: "EditPad™ Classic"
 ---
+# EditPad™ Classic <img src="https://michalferber.dev/assets/images/windows.svg" alt="Windows" width="20">  
 [https://www.editpadclassic.com/](https://www.editpadclassic.com/)
 
 **Developer:** Just Great Software (JGsoft)  

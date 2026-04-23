@@ -341,7 +341,10 @@ async function fetchGithubReadme(ref) {
 function deriveTitle(fm, body, relPath) {
   if (fm.title) return fm.title;
   const h1 = body.match(/^\s*#\s+([^\n]+)/);
-  if (h1) return h1[1].trim();
+  if (h1) {
+    // Strip HTML tags (Jekyll-era <img> badges, etc.) and collapse whitespace.
+    return h1[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  }
   // Filename (minus README/index) as fallback.
   const parts = relPath.replace(/\.md$/i, "").split("/");
   const stem = parts.pop();

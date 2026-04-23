@@ -1,6 +1,7 @@
 ---
-title: "Mist <img src=\"https://michalferber.dev/assets/images/apple.svg\" alt=\"macOS\" width=\"20\">"
+title: "Mist"
 ---
+# Mist <img src="https://michalferber.dev/assets/images/apple.svg" alt="macOS" width="20">  
 [https://github.com/ninxsoft/Mist/](https://github.com/ninxsoft/Mist/)
 
 **Developer:** ninxsoft  
