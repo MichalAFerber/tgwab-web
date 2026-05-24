@@ -1,6 +1,13 @@
 # Phase 3 — Portfolio + Wiki
 
-**Status: shipped.** Kept for reference. Where the final implementation diverged
+> **Superseded (2026-05-23).** The wiki was removed entirely. The portfolio was
+> re-homed off the wiki collection into a standalone data module
+> (`sites/hub/src/data/portfolio.ts`) — grid-only, each card links out to the
+> project. The `wiki` content collection, `/wiki/` routes, `migrate-wiki.mjs`,
+> and the Option-C "portfolio entries are wiki entries" coupling described below
+> no longer exist. This doc is kept as a historical record of what was built.
+
+**Status: shipped, then removed.** Where the final implementation diverged
 from the original plan, the divergence is noted inline.
 
 Two pieces landed together:
