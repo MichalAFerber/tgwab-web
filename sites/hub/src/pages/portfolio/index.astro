@@ -1,8 +1,6 @@
 ---
 import Layout from "@tgwab/ui/Layout.astro";
-import { getCollection } from "astro:content";
-
-const all = (await getCollection("wiki", ({ data }) => data.portfolio && !data.draft));
+import { portfolio } from "../../data/portfolio";
 
 const groupOrder = ["chrome-extension", "script", "website", "service", "other"];
 const groupLabel: Record<string, string> = {
@@ -17,9 +15,9 @@ const grouped = groupOrder
   .map((cat) => ({
     category: cat,
     label: groupLabel[cat],
-    items: all
-      .filter((p) => p.data.portfolioCategory === cat)
-      .sort((a, b) => (a.data.tier ?? 9) - (b.data.tier ?? 9) || (a.data.portfolioName ?? a.data.title).localeCompare(b.data.portfolioName ?? b.data.title)),
+    items: portfolio
+      .filter((p) => p.category === cat)
+      .sort((a, b) => (a.tier ?? 9) - (b.tier ?? 9) || a.name.localeCompare(b.name)),
   }))
   .filter((g) => g.items.length > 0);
 ---
@@ -27,7 +25,7 @@ const grouped = groupOrder
 <Layout title="Portfolio — TechGuyWithABeard">
   <div class="container">
     <h1>Portfolio</h1>
-    <p class="lede">Everything I've shipped or am actively building, grouped by type. Each card links to the wiki entry.</p>
+    <p class="lede">Everything I've shipped or am actively building, grouped by type. Each card links out to the project.</p>
 
     {grouped.map((group) => (
       <section class="group">
@@ -37,19 +35,16 @@ const grouped = groupOrder
             <li class="card">
               <div class="card__header">
                 <h3>
-                  <a href={`/wiki/${entry.slug}/`}>{entry.data.portfolioName ?? entry.data.title}</a>
+                  <a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.name}</a>
                 </h3>
-                {entry.data.status && (
-                  <span class={`status status--${entry.data.status}`}>{entry.data.status}</span>
+                {entry.status && (
+                  <span class={`status status--${entry.status}`}>{entry.status}</span>
                 )}
               </div>
-              {entry.data.tagline && <p class="card__tagline">{entry.data.tagline}</p>}
-              {entry.data.description && <p class="card__desc">{entry.data.description}</p>}
+              {entry.tagline && <p class="card__tagline">{entry.tagline}</p>}
               <div class="card__meta">
-                {entry.data.url ? (
-                  <a href={entry.data.url} target="_blank" rel="noopener noreferrer" class="card__visit">Visit →</a>
-                ) : <span></span>}
-                <span>{entry.data.tier ? `T${entry.data.tier}` : ""}{entry.data.revenue ? ` · ${entry.data.revenue}` : ""}</span>
+                <a href={entry.url} target="_blank" rel="noopener noreferrer" class="card__visit">Visit →</a>
+                <span>{entry.tier ? `T${entry.tier}` : ""}{entry.revenue ? ` · ${entry.revenue}` : ""}</span>
               </div>
             </li>
           ))}
@@ -90,8 +85,7 @@ const grouped = groupOrder
   .card__header h3 { margin: 0; font-size: var(--text-xl); }
   .card__header h3 a { color: var(--color-ink); text-decoration: none; }
   .card__header h3 a:hover { color: var(--tgwab-red); }
-  .card__tagline { margin: 0; font-size: var(--text-base); color: var(--color-ink); }
-  .card__desc { margin: 0; font-size: var(--text-sm); color: var(--color-muted); flex: 1; }
+  .card__tagline { margin: 0; font-size: var(--text-base); color: var(--color-ink); flex: 1; }
   .card__meta {
     display: flex; justify-content: space-between; align-items: center;
     font-size: var(--text-xs); color: var(--color-muted);

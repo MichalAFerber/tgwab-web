@@ -1,9 +1,11 @@
 ---
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
+import { portfolio } from "../data/portfolio";
 
-const featured = (await getCollection("wiki", ({ data }) => data.portfolio && data.featured && !data.draft))
-  .sort((a, b) => (a.data.tier ?? 9) - (b.data.tier ?? 9));
+const featured = portfolio
+  .filter((p) => p.featured)
+  .sort((a, b) => (a.tier ?? 9) - (b.tier ?? 9));
 
 const recentPosts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -28,9 +30,9 @@ const recentPosts = (await getCollection("blog", ({ data }) => !data.draft))
     <ul class="card-grid">
       {featured.map((entry) => (
         <li class="card">
-          <h3><a href={`/wiki/${entry.slug}/`}>{entry.data.portfolioName ?? entry.data.title}</a></h3>
-          {entry.data.tagline && <p class="card__tagline">{entry.data.tagline}</p>}
-          <p class="card__meta">{entry.data.categoryLabel} · {entry.data.status}</p>
+          <h3><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.name}</a></h3>
+          {entry.tagline && <p class="card__tagline">{entry.tagline}</p>}
+          <p class="card__meta">{entry.categoryLabel} · {entry.status}</p>
         </li>
       ))}
     </ul>

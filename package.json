@@ -8,8 +8,7 @@
     "preview:hub": "pnpm --filter @tgwab/hub preview",
     "build": "pnpm -r build",
     "migrate:blog": "node scripts/migrate-blog.mjs",
-    "migrate:wiki": "node scripts/migrate-wiki.mjs",
-    "migrate": "pnpm migrate:blog && pnpm migrate:wiki"
+    "migrate": "pnpm migrate:blog"
   },
   "packageManager": "pnpm@9.0.0"
 }
