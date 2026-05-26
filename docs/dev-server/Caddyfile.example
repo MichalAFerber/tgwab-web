@@ -1,0 +1,28 @@
+# Caddy dev-test server for *.dev.mykk.foo
+#
+# Live copy lives at /etc/caddy/Caddyfile on the dev box. This is a
+# secret-free template — the Cloudflare token is supplied via the
+# CF_DNS_API_TOKEN environment variable (see docs/dev-server.md), never
+# hardcoded here.
+#
+# One subdomain per workspace site, served from its own root so the build
+# is byte-identical to production. Certs come from Let's Encrypt via the
+# Cloudflare DNS-01 challenge (no inbound HTTP needed).
+
+(cf_tls) {
+	tls {
+		dns cloudflare {env.CF_DNS_API_TOKEN}
+		resolvers 1.1.1.1
+	}
+}
+
+hub.dev.mykk.foo {
+	import cf_tls
+	root * /home/michal/code/tgwab-web/sites/hub/dist
+	encode zstd gzip
+	file_server
+}
+
+# To add a site: copy the block above, change the host to
+# <site>.dev.mykk.foo and root to that site's dist, then
+# `sudo systemctl reload caddy`. No new DNS record, no manual cert step.
