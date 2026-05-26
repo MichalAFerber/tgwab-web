@@ -29,13 +29,27 @@ service via systemd `EnvironmentFile`. Never committed to git.
 
 ### Install + configure Caddy
 
-See "Paste-ready setup commands" below. In short:
-
 1. Install Caddy from its apt repo.
 2. Add the Cloudflare DNS module: `sudo caddy add-package github.com/caddy-dns/cloudflare`.
 3. systemd drop-in: `User=michal`, `Group=michal`, `EnvironmentFile=/etc/caddy/cloudflare.env`.
 4. Install `/etc/caddy/Caddyfile` (template: `Caddyfile.example` in this dir).
 5. `sudo systemctl daemon-reload && sudo systemctl restart caddy`.
+
+### Open the firewall (ufw)
+
+The box runs ufw default-deny incoming (only SSH is open out of the box).
+DNS-01 cert issuance is outbound so it succeeds regardless, but inbound 443
+(and 80 for the HTTP→HTTPS redirect) must be allowed or the browser just hangs:
+
+```bash
+sudo ufw allow 80/tcp  comment 'Caddy HTTP'
+sudo ufw allow 443/tcp comment 'Caddy HTTPS'
+```
+
+Safe because the box's address is the private `192.168.50.2` — no public route,
+so this only unblocks LAN/VPN traffic. For a stricter rule, scope to the LAN:
+`sudo ufw allow from 192.168.50.0/24 to any port 443 proto tcp` (note: that
+would block VPN/Tailscale clients on a different subnet).
 
 ## Daily use
 
@@ -72,3 +86,8 @@ auto-issues on first request).
   root (subdomain), not a subpath — this setup already does that.
 - **`dev.mykk.foo` doesn't resolve from your laptop.** You must be on the LAN
   (or VPN). The wildcard points at a private IP.
+- **DNS resolves and the cert issued, but the browser hangs/can't connect.**
+  Host firewall. Check `sudo ufw status` — 80/tcp and 443/tcp must be allowed
+  (see "Open the firewall" above). To confirm the stack is otherwise fine, fetch
+  locally on the box (loopback bypasses ufw):
+  `curl -sI --resolve hub.dev.mykk.foo:443:127.0.0.1 https://hub.dev.mykk.foo/`.
