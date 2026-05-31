@@ -82,15 +82,18 @@ const links = {
   canonical="https://kj4dia.me/"
 >
   <section class="container hero reveal">
-    <p class="eyebrow">KJ4DIA.ME</p>
-    <h1>KJ4DIA - Technician Class</h1>
-    <p class="lede">
-      Radios have been my passion since I joined the
-      <a href="https://www.gocivilairpatrol.com/" target="_blank" rel="noopener noreferrer">Civil Air Patrol</a>
-      in 1991. I love exploring technology and helping with emergency communications. I used to
-      operate packet radio in the CAP. Now I am into D-STAR and DMR. I have a lot of experience in
-      Emergency Communications for Healthcare, collaborating with SC DHEC, SC EMD, and SCHEART.
-    </p>
+    <div class="hero-copy">
+      <p class="eyebrow">KJ4DIA.ME</p>
+      <h1>KJ4DIA - Technician Class</h1>
+      <p class="lede">
+        Radios have been my passion since I joined the
+        <a href="https://www.gocivilairpatrol.com/" target="_blank" rel="noopener noreferrer">Civil Air Patrol</a>
+        in 1991. I love exploring technology and helping with emergency communications. I used to
+        operate packet radio in the CAP. Now I am into D-STAR and DMR. I have a lot of experience in
+        Emergency Communications for Healthcare, collaborating with SC DHEC, SC EMD, and SCHEART.
+      </p>
+    </div>
+    <img class="crest surface-card" src="/assets/images/arrl-sc-section.png" alt="ARRL South Carolina Section" />
   </section>
 
   <section class="container reveal" data-delay="1">
@@ -188,6 +191,15 @@ const links = {
 <style>
   .hero {
     padding: var(--space-16) 0 var(--space-12);
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: var(--space-4);
   }
 
   .eyebrow {
@@ -195,16 +207,20 @@ const links = {
     letter-spacing: 0.08em;
     color: var(--ink-faint);
     font-size: 0.72rem;
-    margin-bottom: var(--space-3);
   }
 
   .hero h1 {
     max-width: 18ch;
-    margin-bottom: var(--space-4);
   }
 
   .lede {
     max-width: 64ch;
+  }
+
+  .crest {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
   }
 
   .board {
@@ -253,6 +269,12 @@ const links = {
 
   .card a:hover {
     color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 700px) {
