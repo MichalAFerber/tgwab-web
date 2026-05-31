@@ -1,0 +1,74 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+}
+
+const { site } = Astro.props;
+
+const domainBySite = {
+  ferber: "https://michalferber.me",
+  tgwab: "https://techguywithabeard.com",
+  dev: "https://michalferber.dev",
+  kj4dia: "https://kj4dia.me",
+  ferberme: "https://ferber.me",
+};
+
+const titleBySite = {
+  ferber: "Privacy Policy | Michal Ferber",
+  tgwab: "Privacy Policy | TechGuyWithABeard",
+  dev: "Privacy Policy | MichalFerber.dev",
+  kj4dia: "Privacy Policy | KJ4DIA",
+  ferberme: "Privacy Policy | Ferber.me",
+};
+---
+
+<Layout
+  site={site}
+  title={titleBySite[site]}
+  description="Privacy policy for Michal Ferber websites and related services."
+  canonical={`${domainBySite[site]}/privacy-policy/`}
+>
+  <article class="container legal reveal">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: May 31, 2026</p>
+
+    <h2>Overview</h2>
+    <p>
+      This site is part of the Michal Ferber web network. We collect the minimum information needed
+      to operate the sites, respond to messages, and improve reliability.
+    </p>
+
+    <h2>Data We Collect</h2>
+    <p>
+      If you submit forms, we may collect your name, email address, and message content. Basic
+      server and analytics logs may include IP address, user agent, and request metadata.
+    </p>
+
+    <h2>How Data Is Used</h2>
+    <p>
+      Data is used to respond to inquiries, troubleshoot issues, monitor availability, and protect
+      services from abuse.
+    </p>
+
+    <h2>Data Sharing</h2>
+    <p>
+      Personal information is not sold. Limited data may be processed by infrastructure providers
+      used to host and secure these sites.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Privacy questions: <a href="mailto:michal@techguywithabeard.com">michal@techguywithabeard.com</a>
+    </p>
+  </article>
+</Layout>
+
+<style>
+  .legal {
+    padding: var(--space-20) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+</style>

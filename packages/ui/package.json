@@ -1,0 +1,24 @@
+{
+  "name": "@tgwab/ui",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Layout.astro": "./src/Layout.astro",
+    "./Footer.astro": "./src/Footer.astro",
+    "./Nav.astro": "./src/Nav.astro",
+    "./Head.astro": "./src/Head.astro",
+    "./PdfViewer.astro": "./src/PdfViewer.astro",
+    "./SharedAboutPage.astro": "./src/SharedAboutPage.astro",
+    "./SharedContactPage.astro": "./src/SharedContactPage.astro",
+    "./SharedPrivacyPolicyPage.astro": "./src/SharedPrivacyPolicyPage.astro",
+    "./SharedTermsOfUsePage.astro": "./src/SharedTermsOfUsePage.astro",
+    "./SharedSearchPage.astro": "./src/SharedSearchPage.astro"
+  },
+  "dependencies": {
+    "@tgwab/design-tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "astro": "^5.0.0"
+  }
+}

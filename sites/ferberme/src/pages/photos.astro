@@ -1,0 +1,223 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+
+const photos = [
+  "4af756d1", "25bd0da3", "e56bb567", "f1105d60", "f0e19ddf", "30cf44f3", "a2dcd8f7",
+  "81eed74d", "7a2fdd2e", "9b32d92c", "190f0c7c", "59518d4b", "238d20aa", "ea4a1fed",
+  "48b606af", "ad6dfed5", "6be4aa2d", "07acaa00", "2e50f2fb", "33fa6c78", "f82e4fd5",
+  "cd2fd8ca", "0b2c03cc", "44b10e60", "52769412", "506129b7", "dca5f48b", "c7b81c46",
+  "f880f7c6", "5932d9d9", "fa9555b8", "82a72efc", "645df9be", "1c6e579b", "4a04ca68",
+  "af65cf54", "d5c67fed", "b600b773", "ffc8fef2", "70b6a898", "45f52dc1", "41d2c121"
+];
+---
+
+<Layout
+  site="ferberme"
+  title="Photos | Ferber.me"
+  description="Ferber family photo archive with full-size gallery viewing."
+  canonical="https://ferber.me/photos/"
+>
+  <section class="container page reveal">
+    <p class="eyebrow">FERBER.ME</p>
+    <h1>Ferber Photos</h1>
+    <p class="lede">A collection of family photos throughout the years. Click any photo to view it full size.</p>
+
+    <div class="gallery" id="gallery">
+      {photos.map((photo, index) => (
+        <button
+          class="gallery-item"
+          type="button"
+          data-index={index}
+          data-full={`/assets/images/gallery/${photo}_original.jpg`}
+          aria-label={`Open Ferber family photo ${index + 1}`}
+        >
+          <img src={`/assets/images/gallery/${photo}.jpg`} alt={`Ferber family photo ${index + 1}`} loading="lazy" />
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-backdrop" type="button" aria-label="Close photo viewer"></button>
+    <div class="lightbox-panel">
+      <button class="lightbox-close" type="button" aria-label="Close">×</button>
+      <button class="lightbox-nav" type="button" data-prev aria-label="Previous">‹</button>
+      <img id="lightbox-image" class="lightbox-image" alt="Full size Ferber family photo" />
+      <button class="lightbox-nav" type="button" data-next aria-label="Next">›</button>
+      <p class="lightbox-count"><span id="lightbox-current">1</span> / <span id="lightbox-total">{photos.length}</span></p>
+    </div>
+  </div>
+
+  <script>
+    const galleryItems = Array.from(document.querySelectorAll(".gallery-item"));
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxCurrent = document.getElementById("lightbox-current");
+    let currentIndex = 0;
+
+    const showImage = (index) => {
+      currentIndex = (index + galleryItems.length) % galleryItems.length;
+      const item = galleryItems[currentIndex];
+      const full = item.getAttribute("data-full");
+      if (!lightbox || !lightboxImage || !lightboxCurrent || !full) return;
+      lightboxImage.setAttribute("src", full);
+      lightboxCurrent.textContent = String(currentIndex + 1);
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeLightbox = () => {
+      if (!lightbox) return;
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener("click", () => showImage(index));
+    });
+
+    document.querySelector(".lightbox-backdrop")?.addEventListener("click", closeLightbox);
+    document.querySelector(".lightbox-close")?.addEventListener("click", closeLightbox);
+    document.querySelector("[data-prev]")?.addEventListener("click", () => showImage(currentIndex - 1));
+    document.querySelector("[data-next]")?.addEventListener("click", () => showImage(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (!lightbox || lightbox.hidden) return;
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+      if (event.key === "ArrowRight") showImage(currentIndex + 1);
+    });
+  </script>
+</Layout>
+
+<style>
+  .page {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+  }
+
+  .lede {
+    max-width: 56ch;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .gallery-item {
+    appearance: none;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: zoom-in;
+    background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+    transition: transform 180ms ease, border-color 180ms ease;
+  }
+
+  .gallery-item:hover,
+  .gallery-item:focus-visible {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  .gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgb(0 0 0 / 0.8);
+  }
+
+  .lightbox-panel {
+    position: relative;
+    width: min(1100px, calc(100vw - 2rem));
+    margin: 1rem auto;
+    min-height: calc(100vh - 2rem);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .lightbox-image {
+    width: 100%;
+    max-height: calc(100vh - 6rem);
+    object-fit: contain;
+    border-radius: var(--radius);
+  }
+
+  .lightbox-close,
+  .lightbox-nav {
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .lightbox-count {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface-raised) 92%, transparent);
+    border: 1px solid var(--line);
+  }
+
+  @media (max-width: 900px) {
+    .gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .lightbox-panel {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      padding-top: 3rem;
+    }
+  }
+</style>

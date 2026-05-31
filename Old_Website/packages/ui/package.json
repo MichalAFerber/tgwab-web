@@ -8,7 +8,11 @@
     "./Footer.astro": "./src/Footer.astro",
     "./Nav.astro": "./src/Nav.astro",
     "./Head.astro": "./src/Head.astro",
-    "./PdfViewer.astro": "./src/PdfViewer.astro"
+    "./PdfViewer.astro": "./src/PdfViewer.astro",
+    "./SharedAboutPage.astro": "./src/SharedAboutPage.astro",
+    "./SharedContactPage.astro": "./src/SharedContactPage.astro",
+    "./SharedPrivacyPolicyPage.astro": "./src/SharedPrivacyPolicyPage.astro",
+    "./SharedTermsOfUsePage.astro": "./src/SharedTermsOfUsePage.astro"
   },
   "dependencies": {
     "@tgwab/design-tokens": "workspace:*"

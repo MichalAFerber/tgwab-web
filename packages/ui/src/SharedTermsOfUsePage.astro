@@ -1,0 +1,74 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+}
+
+const { site } = Astro.props;
+
+const domainBySite = {
+  ferber: "https://michalferber.me",
+  tgwab: "https://techguywithabeard.com",
+  dev: "https://michalferber.dev",
+  kj4dia: "https://kj4dia.me",
+  ferberme: "https://ferber.me",
+};
+
+const titleBySite = {
+  ferber: "Terms of Use | Michal Ferber",
+  tgwab: "Terms of Use | TechGuyWithABeard",
+  dev: "Terms of Use | MichalFerber.dev",
+  kj4dia: "Terms of Use | KJ4DIA",
+  ferberme: "Terms of Use | Ferber.me",
+};
+---
+
+<Layout
+  site={site}
+  title={titleBySite[site]}
+  description="Terms of use for Michal Ferber websites and related services."
+  canonical={`${domainBySite[site]}/terms-of-use/`}
+>
+  <article class="container legal reveal">
+    <h1>Terms of Use</h1>
+    <p>Last updated: May 31, 2026</p>
+
+    <h2>Acceptance</h2>
+    <p>
+      By using this website, you agree to these terms. If you do not agree, please stop using the
+      site.
+    </p>
+
+    <h2>Content and Intellectual Property</h2>
+    <p>
+      Site content is provided for informational use unless otherwise noted. Do not copy, republish,
+      or redistribute material without permission.
+    </p>
+
+    <h2>No Warranty</h2>
+    <p>
+      Content and tools are provided "as is" without warranties of any kind. Availability and
+      accuracy are not guaranteed.
+    </p>
+
+    <h2>Limitation of Liability</h2>
+    <p>
+      To the maximum extent allowed by law, we are not liable for direct or indirect damages arising
+      from use of this site.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Terms questions: <a href="mailto:michal@techguywithabeard.com">michal@techguywithabeard.com</a>
+    </p>
+  </article>
+</Layout>
+
+<style>
+  .legal {
+    padding: var(--space-20) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+</style>

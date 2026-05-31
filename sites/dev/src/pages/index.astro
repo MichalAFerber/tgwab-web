@@ -1,0 +1,397 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+
+const extensionCards = [
+  {
+    name: "MyKK.us",
+    status: "Live",
+    external: "https://mykk.us",
+    github: "https://github.com/MichalAFerber/mykk.us",
+    chrome: "#",
+    wizardSeries: true,
+  },
+  {
+    name: "ResizeWizard.app",
+    status: "Active",
+    external: "https://resizewizard.app",
+    github: "https://github.com/MichalAFerber/resizewizard-website",
+    chrome: "#",
+    wizardSeries: true,
+  },
+  {
+    name: "CopyWizard.us",
+    status: "In Development",
+    external: "https://copywizard.us",
+    github: "https://github.com/MichalAFerber/uploadwizard",
+    chrome: "#",
+    wizardSeries: true,
+  },
+  {
+    name: "CaptureWizard.app",
+    status: "In Development",
+    external: "https://capturewizard.app",
+    github: "https://github.com/MichalAFerber/uploadwizard",
+    chrome: "#",
+    wizardSeries: true,
+  },
+];
+
+const productCards = [
+  {
+    name: "GSA Manager",
+    external: "https://gsamanager.org",
+    github: "https://github.com/MichalAFerber/gsamanager.org",
+  },
+  {
+    name: "ModMan",
+    external: "https://michalferber.dev",
+    github: "https://github.com/MichalAFerber/ModMan",
+  },
+  {
+    name: "VCV",
+    external: "#",
+    github: "https://github.com/MichalAFerber/scripts",
+    modal: "vcv",
+  },
+  {
+    name: "SilentApp",
+    external: "#",
+    github: "https://github.com/MichalAFerber/scripts",
+    modal: "silentapp",
+  },
+];
+
+const scriptCards = [
+  {
+    name: "welcome-message",
+    external: "https://github.com/MichalAFerber/welcome-message",
+    github: "https://github.com/MichalAFerber/welcome-message",
+  },
+  {
+    name: "IMDbMovieFileFixer",
+    external: "https://github.com/MichalAFerber/IMDbMovieFileFixer",
+    github: "https://github.com/MichalAFerber/IMDbMovieFileFixer",
+  },
+  {
+    name: "email-to-discord_cf-worker",
+    external: "https://github.com/MichalAFerber/email-to-discord_cf-worker",
+    github: "https://github.com/MichalAFerber/email-to-discord_cf-worker",
+  },
+];
+
+const websiteCards = [
+  {
+    name: "IPCow",
+    external: "https://ipcow.com",
+    github: "https://github.com/MichalAFerber/ipcow",
+  },
+  {
+    name: "TextWizard.us",
+    external: "https://textwizard.us",
+    github: "https://github.com/MichalAFerber/textwizard",
+    wizardSeries: true,
+  },
+  {
+    name: "UploadWizard.app",
+    external: "https://uploadwizard.app",
+    github: "https://github.com/MichalAFerber/uploadwizard",
+    wizardSeries: true,
+  },
+];
+
+const placeholderDescription = (name) => `Placeholder description for ${name}.`;
+---
+
+<Layout
+  site="dev"
+  title="Products | Michal Ferber"
+  description="Products, extensions, scripts, and websites by Michal Ferber."
+  canonical="https://michalferber.dev/"
+>
+  <section class="container hero reveal">
+    <p class="eyebrow">MICHALFERBER.DEV</p>
+    <h1>Products, experiments, and useful tools.</h1>
+    <p class="lede">
+      One page to navigate active products, in-progress ideas, scripts, and companion websites.
+    </p>
+  </section>
+
+  <section class="container reveal" data-delay="1">
+    <h2 class="section-title">Chrome Extensions</h2>
+    <div class="grid">
+      {extensionCards.map((card) => (
+        <article class="surface-card card">
+          <div class="card-head">
+            <h3>{card.name}</h3>
+            <span class="status">{card.status}</span>
+          </div>
+          <p class="card-description">{placeholderDescription(card.name)}</p>
+          <div class="card-footer">
+            <div class="links">
+              <a href={card.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub for ${card.name}`}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/></svg>
+                GitHub
+              </a>
+              <a href={card.external} target="_blank" rel="noopener noreferrer" aria-label={`External site for ${card.name}`}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3z"/><path d="M19 19H5V5h6V3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-6h-2v6z"/></svg>
+                Visit
+              </a>
+              <a href={card.chrome} aria-label={`Chrome Web Store for ${card.name}`}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 1 8.66 5H12a5 5 0 0 0-4.33 2.5L5.5 5.75A10 10 0 0 1 12 2z"/><path d="M3.34 7A10 10 0 0 0 12 22l4.33-7.5A5 5 0 0 1 12 17a5 5 0 0 1-4.33-2.5L3.34 7z"/><path d="M20.66 7h-8.66a5 5 0 0 1 4.33 7.5H21A10 10 0 0 0 20.66 7z"/></svg>
+                Chrome
+              </a>
+            </div>
+            {card.wizardSeries && <p class="wizard-tag">Part of Wizard Series</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container reveal" data-delay="2">
+    <h2 class="section-title">Windows Apps</h2>
+    <div class="grid">
+      {productCards.map((card) => (
+        <article class="surface-card card">
+          <h3>{card.name}</h3>
+          <p class="card-description">{placeholderDescription(card.name)}</p>
+          <div class="card-footer">
+            <div class="links">
+              <a href={card.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+              {card.modal ? (
+                <button class="link-btn" type="button" data-modal-target={card.modal}>Details</button>
+              ) : (
+                <a href={card.external} target="_blank" rel="noopener noreferrer">Visit</a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container reveal" data-delay="3">
+    <h2 class="section-title">Scripts</h2>
+    <div class="grid compact">
+      {scriptCards.map((card) => (
+        <article class="surface-card card compact-card">
+          <h3>{card.name}</h3>
+          <p class="card-description">{placeholderDescription(card.name)}</p>
+          <div class="card-footer">
+            <div class="links">
+              <a href={card.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href={card.external} target="_blank" rel="noopener noreferrer">Open</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container reveal" data-delay="3">
+    <h2 class="section-title">Websites</h2>
+    <div class="grid compact">
+      {websiteCards.map((card) => (
+        <article class="surface-card card compact-card">
+          <h3>{card.name}</h3>
+          <p class="card-description">{placeholderDescription(card.name)}</p>
+          <div class="card-footer">
+            <div class="links">
+              <a href={card.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href={card.external} target="_blank" rel="noopener noreferrer">Visit</a>
+            </div>
+            {card.wizardSeries && <p class="wizard-tag">Part of Wizard Series</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <dialog id="vcv-modal" class="detail-modal">
+    <h3>VCV</h3>
+    <p>Placeholder details: product description and release notes will be added.</p>
+    <button type="button" data-modal-close>Close</button>
+  </dialog>
+
+  <dialog id="silentapp-modal" class="detail-modal">
+    <h3>SilentApp</h3>
+    <p>Placeholder details: product description and release notes will be added.</p>
+    <button type="button" data-modal-close>Close</button>
+  </dialog>
+
+  <script>
+    const openButtons = document.querySelectorAll("[data-modal-target]");
+    const closeButtons = document.querySelectorAll("[data-modal-close]");
+
+    openButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.getAttribute("data-modal-target");
+        const dialog = document.getElementById(`${target}-modal`);
+        if (dialog instanceof HTMLDialogElement) dialog.showModal();
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const dialog = button.closest("dialog");
+        if (dialog instanceof HTMLDialogElement) dialog.close();
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero h1 {
+    max-width: 20ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    max-width: 64ch;
+  }
+
+  section {
+    margin-bottom: var(--space-8);
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .compact-card {
+    gap: var(--space-3);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+
+  .status {
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-2);
+  }
+
+  .wizard-tag {
+    font-size: 0.68rem;
+    color: color-mix(in srgb, var(--wizard) 80%, white);
+    border: 1px solid color-mix(in srgb, var(--wizard) 55%, var(--line));
+    border-radius: var(--radius-pill);
+    padding: 0.24rem 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-left: auto;
+  }
+
+  .card-description {
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: auto;
+    flex-wrap: wrap;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .links a,
+  .link-btn {
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.34rem 0.66rem;
+    font-size: var(--step--1);
+    background: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .links a:hover,
+  .link-btn:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  .link-btn {
+    font: inherit;
+    cursor: pointer;
+  }
+
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    fill: currentColor;
+  }
+
+  .detail-modal {
+    width: min(560px, calc(100vw - 2rem));
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    background: var(--surface-raised);
+    color: var(--ink);
+  }
+
+  .detail-modal::backdrop {
+    background: rgb(4 10 20 / 0.65);
+    backdrop-filter: blur(3px);
+  }
+
+  .detail-modal button {
+    margin-top: var(--space-4);
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.38rem 0.72rem;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    .grid,
+    .grid.compact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

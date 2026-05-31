@@ -1,0 +1,97 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+}
+
+const { site } = Astro.props;
+
+const domainBySite = {
+  ferber: "https://michalferber.me",
+  tgwab: "https://techguywithabeard.com",
+  dev: "https://michalferber.dev",
+  kj4dia: "https://kj4dia.me",
+  ferberme: "https://ferber.me",
+};
+
+const titleBySite = {
+  ferber: "Contact | Michal Ferber",
+  tgwab: "Contact | TechGuyWithABeard",
+  dev: "Contact | MichalFerber.dev",
+  kj4dia: "Contact | KJ4dia.me",
+  ferberme: "Contact | Ferber.me",
+};
+---
+
+<Layout
+  site={site}
+  title={titleBySite[site]}
+  description="Contact form for questions, project inquiries, product support, and collaboration."
+  canonical={`${domainBySite[site]}/contact/`}
+>
+  <section class="container contact reveal">
+    <h1>Contact</h1>
+    <p>Share what you need, your timeline, and what a successful outcome looks like.</p>
+
+    <form class="surface-card form" method="post" name="project-intake">
+      <label>
+        Name
+        <input name="name" type="text" required />
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" required />
+      </label>
+      <label>
+        How can I help?
+        <textarea name="details" rows="6" required></textarea>
+      </label>
+      <button type="submit">Send inquiry</button>
+    </form>
+  </section>
+</Layout>
+
+<style>
+  .contact {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .form {
+    padding: var(--space-8);
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  label {
+    display: grid;
+    gap: 0.35rem;
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--surface-raised) 85%, black);
+    color: var(--ink);
+    font: inherit;
+    padding: 0.62rem 0.74rem;
+  }
+
+  button {
+    width: fit-content;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    color: var(--bg);
+    font: inherit;
+    font-weight: 700;
+    padding: 0.66rem 1.1rem;
+    cursor: pointer;
+  }
+</style>

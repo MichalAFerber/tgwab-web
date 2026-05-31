@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Hero image for Personal Infrastructure Notes">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111c32"/>
+      <stop offset="1" stop-color="#101820"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g stroke="#4d8cf5" opacity="0.4">
+    <path d="M100 120h1000"/>
+    <path d="M100 220h1000"/>
+    <path d="M100 320h1000"/>
+    <path d="M100 420h1000"/>
+    <path d="M100 520h1000"/>
+  </g>
+  <text x="90" y="560" fill="#e8e4d8" font-family="Georgia, serif" font-size="64" font-weight="700">Personal Infrastructure Notes</text>
+</svg>

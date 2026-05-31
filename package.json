@@ -1,0 +1,22 @@
+{
+  "name": "tgwab-web",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter @tgwab/ferber --filter @tgwab/tgwab --filter @tgwab/dev --filter @tgwab/kj4dia --filter @tgwab/ferberme dev",
+    "dev:ferber": "pnpm --filter @tgwab/ferber dev",
+    "dev:tgwab": "pnpm --filter @tgwab/tgwab dev",
+    "dev:dev": "pnpm --filter @tgwab/dev dev",
+    "dev:kj4dia": "pnpm --filter @tgwab/kj4dia dev",
+    "dev:ferberme": "pnpm --filter @tgwab/ferberme dev",
+    "build:ferber": "pnpm --filter @tgwab/ferber build",
+    "build:tgwab": "pnpm --filter @tgwab/tgwab build",
+    "build:dev": "pnpm --filter @tgwab/dev build",
+    "build:kj4dia": "pnpm --filter @tgwab/kj4dia build",
+    "build:ferberme": "pnpm --filter @tgwab/ferberme build",
+    "build": "pnpm -r build",
+    "migrate:blog": "node scripts/migrate-blog.mjs",
+    "migrate": "pnpm migrate:blog"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

@@ -1,0 +1,160 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+
+const services = [
+  {
+    name: "FixDNS.net",
+    href: "https://fixdns.net",
+    price: "$250+",
+    description: "DNS diagnostics, cleanup, and migration support for businesses with recurring DNS pain.",
+    links: [{ label: "fixdns.net", href: "https://fixdns.net" }],
+  },
+  {
+    name: "De-Google",
+    href: "https://de-google.us",
+    price: "$0",
+    description: "Guided migration away from Google services with practical alternatives and continuity planning.",
+    links: [
+      { label: "de-google.us", href: "https://de-google.us" },
+      { label: "degoog.us", href: "https://degoog.us" },
+    ],
+  },
+  {
+    name: "Client Site Build + Hosting",
+    href: "https://capondargan.com",
+    price: "$150+",
+    description:
+      "Responsive websites with modern stacks (Astro, static HTML/CSS/JS, Cloudflare Pages) plus Wix, Squarespace, and Carrd options. Most websites can be a single web page.",
+    links: [
+      { label: "capondargan.com", href: "https://capondargan.com" },
+      { label: "elsanjose.com", href: "https://elsanjose.com" },
+      { label: "ferber.me", href: "https://ferber.me" },
+      { label: "kj4dia.me", href: "https://kj4dia.me" },
+    ],
+  },
+  {
+    name: "Legacy Site Recovery",
+    href: "https://grandfathershoney.com",
+    price: "$150+",
+    description: "Recover, modernize, and redeploy older sites without losing SEO equity or brand continuity.",
+    links: [{ label: "grandfathershoney.com", href: "https://grandfathershoney.com" }],
+  },
+];
+---
+
+<Layout
+  site="tgwab"
+  title="Professional Services | TechGuyWithABeard"
+  description="Migrations, DNS repair, and client website work by TechGuyWithABeard."
+  canonical="https://techguywithabeard.com/"
+>
+  <section class="container hero reveal">
+    <p class="eyebrow">TECHGUYWITHABEARD.COM</p>
+    <h1>Professional services for practical fixes and reliable delivery.</h1>
+    <p class="lede">
+      Hands-on help for DNS issues, de-Google transitions, client website builds, and legacy site
+      recovery. Clear scope, direct communication, and outcomes you can ship.
+    </p>
+  </section>
+
+  <section class="container reveal" data-delay="1">
+    <h2 class="section-title">Services</h2>
+    <div class="cards">
+      {services.map((service) => (
+        <article class="surface-card card">
+          <div class="row">
+            <h3>{service.name}</h3>
+            <span class="price">{service.price}</span>
+          </div>
+          <p>{service.description}</p>
+          <p class="links">
+            {(service.links ?? [{ label: service.href.replace(/^https?:\/\//, ""), href: service.href }]).map((link) => (
+              <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+            ))}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero h1 {
+    max-width: 20ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    max-width: 64ch;
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-height: 22rem;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  .price {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: var(--step-0);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.34rem 0.66rem;
+    font-size: var(--step--1);
+    background: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .links a:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  @media (max-width: 700px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

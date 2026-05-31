@@ -1,0 +1,139 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const slugifyTag = (tag) =>
+  tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+const parseDateFromSlug = (slug) => {
+  const match = slug.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+  if (!match) return null;
+  return new Date(`${match[1]}-${match[2]}-${match[3]}T00:00:00Z`);
+};
+
+const postDate = parseDateFromSlug(post.slug);
+---
+
+<Layout
+  site="ferber"
+  title={`${post.data.title} | Michal Ferber`}
+  description={post.data.description}
+  canonical={`https://michalferber.me/${post.slug}/`}
+>
+  <article class="container post reveal">
+    {postDate && (
+      <p class="meta">
+        {postDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+      </p>
+    )}
+    <h1>{post.data.title}</h1>
+    {post.data.description && <p class="lede">{post.data.description}</p>}
+
+    <div class="post-content">
+      <Content />
+    </div>
+
+    {post.data.tags.length > 0 && (
+      <footer class="post-tags">
+        {post.data.tags.map((tag) => (
+          <a href={`/tags/#${slugifyTag(tag)}`}>{tag}</a>
+        ))}
+      </footer>
+    )}
+  </article>
+</Layout>
+
+<style>
+  .post {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .meta {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+
+  .lede {
+    max-width: 64ch;
+  }
+
+  .post-content {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .post-content :global(* + *) {
+    margin-top: var(--space-4);
+  }
+
+  .post-content :global(h2),
+  .post-content :global(h3),
+  .post-content :global(h4) {
+    margin-top: var(--space-4);
+  }
+
+  .post-content :global(p),
+  .post-content :global(ul),
+  .post-content :global(ol),
+  .post-content :global(blockquote),
+  .post-content :global(pre),
+  .post-content :global(table),
+  .post-content :global(figure) {
+    margin: 0;
+  }
+
+  .post-content :global(img),
+  .post-content :global(iframe),
+  .post-content :global(video) {
+    display: block;
+    margin: var(--space-6) auto;
+  }
+
+  .post-content :global(iframe) {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .post-tags {
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .post-tags a {
+    text-decoration: none;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.28rem 0.62rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+  }
+
+  .post-tags a:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+</style>

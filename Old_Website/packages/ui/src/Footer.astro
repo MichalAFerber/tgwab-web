@@ -1,49 +1,275 @@
 ---
-interface Props {
-  productName?: string;
-}
-const { productName } = Astro.props;
+import bookCallButtonImage from "./assets/book-call-button.svg";
+
+const localLinks = [
+  { href: "/about/", label: "About", kind: "about" },
+  { href: "/contact/", label: "Contact", kind: "contact" },
+  { href: "/privacy-policy/", label: "Privacy Policy", kind: "privacy" },
+  { href: "/terms-of-use/", label: "Terms of Use", kind: "terms" },
+];
+
+const domainLinks = [
+  { href: "https://michalferber.com/", label: "michalferber.com", tooltip: "Blog" },
+  { href: "https://techguywithabeard.com/", label: "techguywithabeard.com", tooltip: "Services" },
+  { href: "https://michalferber.dev/", label: "michalferber.dev", tooltip: "Products" },
+  { href: "https://kj4dia.me/", label: "KJ4dia.me", tooltip: "Amateur Radio" },
+  { href: "https://ferber.me/", label: "Ferber.me", tooltip: "Family", external: true },
+];
+
+const bmcLink = {
+  href: "https://www.buymeacoffee.com/TechGuyWithABeard",
+  label: "Buy Me A Coffee",
+  external: true,
+};
+
+const socialLinks = [
+  { href: "mailto:michal@techguywithabeard.com", label: "Email", kind: "email" },
+  { href: "https://github.com/MichalAFerber", label: "GitHub", external: true, kind: "github" },
+  { href: "https://x.com/MichalAFerber", label: "X", external: true, kind: "x" },
+];
 ---
 
 <footer class="tgwab-footer">
   <div class="container tgwab-footer__inner">
     <div class="tgwab-footer__brand">
-      {productName ? (
-        <>
-          <strong>{productName}</strong> —
-          <a href="https://techguywithabeard.com">A TechGuyWithABeard product</a>
-        </>
-      ) : (
-        <span>© {new Date().getFullYear()} Michal Ferber</span>
-      )}
+      <nav class="tgwab-footer__actions" aria-label="Profile links">
+        <a
+          href={bmcLink.href}
+          target={bmcLink.external ? "_blank" : undefined}
+          rel={bmcLink.external ? "noopener noreferrer" : undefined}
+          class="bmc-link"
+        >
+          <img
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+            alt="Buy Me A Coffee"
+            class="action-image"
+          />
+        </a>
+
+        <a
+          href="/contact/"
+          class="bmc-link"
+          data-cal-link="techguywithabeard/meet"
+          data-cal-namespace="meet"
+        >
+          <img src={bookCallButtonImage} alt="Book call" class="action-image" />
+        </a>
+      </nav>
+      <span>© {new Date().getFullYear()} Michal Ferber</span>
     </div>
-    <nav class="tgwab-footer__links">
-      <a href="https://techguywithabeard.com/">Home</a>
-      <a href="https://techguywithabeard.com/portfolio/">Portfolio</a>
-      <a href="https://techguywithabeard.com/blog/">Blog</a>
-      <a href="https://techguywithabeard.com/search/">Search</a>
-    </nav>
+    <div class="tgwab-footer__right">
+      <nav class="tgwab-footer__social" aria-label="Social links">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            class="domain-pill social-pill"
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
+            {link.kind === "email" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-.4 2L12 11.4 4.4 6h15.2zM4 18V8.2l7.42 5.26a1 1 0 0 0 1.16 0L20 8.2V18H4z" />
+              </svg>
+            )}
+            {link.kind === "github" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z" />
+              </svg>
+            )}
+            {link.kind === "x" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.24 2H21l-6.02 6.9L22 22h-5.48l-4.3-6.59L6.48 22H3.7l6.44-7.36L2 2h5.62l3.89 5.95L18.24 2zm-.97 18h1.52L6.8 3.9H5.18L17.27 20z" />
+              </svg>
+            )}
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <nav class="tgwab-footer__local-links" aria-label="Footer links">
+        {localLinks.map((link) => (
+          <a href={link.href} class="domain-pill">
+            {link.kind === "about" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2zm0 4a1.6 1.6 0 1 1-1.6 1.6A1.6 1.6 0 0 1 12 6zm2 12h-4v-1.5h1V11h-1V9.5h3V16h1z" />
+              </svg>
+            )}
+            {link.kind === "contact" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-.4 2L12 11.4 4.4 6h15.2zM4 18V8.2l7.42 5.26a1 1 0 0 0 1.16 0L20 8.2V18H4z" />
+              </svg>
+            )}
+            {link.kind === "privacy" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2 4 5v6c0 5.1 3.4 9.9 8 11 4.6-1.1 8-5.9 8-11V5l-8-3zm0 2.1 6 2.25V11c0 4.2-2.7 8.1-6 9-3.3-.9-6-4.8-6-9V6.35L12 4.1z" />
+              </svg>
+            )}
+            {link.kind === "terms" && (
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 12h8v1.5H8V12zm0 3h8v1.5H8V15zm0 3h6v1.5H8V18z" />
+              </svg>
+            )}
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <nav class="tgwab-footer__domains" aria-label="Footer domains">
+        {domainLinks.map((link) => (
+          <a
+            href={link.href}
+            class="domain-pill"
+            title={link.tooltip}
+            data-tooltip={link.tooltip}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
   </div>
 </footer>
 
 <style>
   .tgwab-footer {
-    margin-top: var(--space-24);
+    margin-top: var(--space-20);
     padding: var(--space-8) 0;
-    border-top: 1px solid var(--color-border);
-    background: var(--color-surface);
-    font-size: var(--text-sm);
-    color: var(--color-muted);
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
   }
+
   .tgwab-footer__inner {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: var(--space-4);
   }
-  .tgwab-footer__links {
-    display: flex;
+
+  .tgwab-footer__brand {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .tgwab-footer__actions {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .tgwab-footer__right {
+    margin-left: auto;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
     gap: var(--space-6);
+    align-items: flex-start;
+  }
+
+  .tgwab-footer__local-links {
+    display: grid;
+    gap: var(--space-2);
+    align-items: flex-end;
+    justify-items: end;
+  }
+
+  .tgwab-footer__social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-end;
+  }
+
+  .tgwab-footer__domains {
+    display: grid;
+    gap: var(--space-2);
+    align-items: flex-end;
+    justify-items: end;
+  }
+
+  .domain-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    font-size: 0.73rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.32rem 0.62rem;
+    transition: transform 180ms ease, color 180ms ease;
+  }
+
+  .domain-pill:hover {
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
+
+  .tgwab-footer__actions .domain-pill,
+  .tgwab-footer__local-links .domain-pill {
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: var(--step--1);
+  }
+
+  .domain-pill[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.35rem);
+    transform: translateX(-50%);
+    font-size: 0.66rem;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    background: var(--surface-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 0.16rem 0.38rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 130ms ease;
+  }
+
+  .domain-pill[data-tooltip]:hover::after {
+    opacity: 1;
+  }
+
+  .social-icon {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .bmc-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .action-image {
+    width: 217px;
+    height: 60px;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .tgwab-footer__right {
+      width: 100%;
+      grid-auto-flow: row;
+      grid-auto-columns: unset;
+      margin-left: 0;
+    }
+
+    .tgwab-footer__local-links,
+    .tgwab-footer__domains,
+    .tgwab-footer__social {
+      align-items: flex-start;
+      justify-items: start;
+    }
   }
 </style>

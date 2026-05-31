@@ -1,40 +1,28 @@
 :root {
-  /* Brand */
-  --tgwab-red: #e04c2f;
-  --tgwab-red-dark: #c23920;
-  --tgwab-gray: #4a4a4a;
-  --tgwab-gray-light: #8a8a8a;
+  --bg: #0e0f13;
+  --surface: #14161c;
+  --surface-raised: #1c1f28;
+  --ink: #e8e4d8;
+  --ink-soft: #9fa9bf;
+  --ink-faint: #697087;
+  --line: #252833;
+  --accent: #de5c1e;
+  --accent-2: #4d8cf5;
+  --success: #57b78f;
+  --warning: #d8aa4f;
+  --wizard: #7c5cbf;
 
-  /* Supporting accents */
-  --color-gold: #f0a500;
-  --color-blue: #3b82f6;
-  --color-green: #22c55e;
-  --color-purple: #a855f7;
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
-  /* Surfaces */
-  --color-bg: #fafafa;
-  --color-surface: #ffffff;
-  --color-surface-2: #f2f3f7;
-  --color-ink: #1a1a1a;
-  --color-muted: #6a6a6a;
-  --color-border: #e5e5e5;
+  --step--1: clamp(0.78rem, 0.72rem + 0.2vw, 0.9rem);
+  --step-0: clamp(0.95rem, 0.88rem + 0.3vw, 1.05rem);
+  --step-1: clamp(1.16rem, 1.03rem + 0.45vw, 1.34rem);
+  --step-2: clamp(1.4rem, 1.2rem + 0.7vw, 1.72rem);
+  --step-3: clamp(1.75rem, 1.45rem + 1.1vw, 2.35rem);
+  --step-4: clamp(2.2rem, 1.7rem + 1.8vw, 3.2rem);
 
-  /* Type */
-  --font-display: "Trajan Pro", "Cormorant Garamond", Georgia, serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
-
-  /* Scale */
-  --text-xs: 0.8rem;
-  --text-sm: 0.9rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.375rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.25rem;
-  --text-4xl: 3rem;
-
-  /* Space */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -43,26 +31,64 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --space-20: 5rem;
   --space-24: 6rem;
 
-  /* Misc */
-  --radius-sm: 0.25rem;
-  --radius: 0.5rem;
-  --radius-lg: 1rem;
-  --max-width: 72ch;
-  --max-width-wide: 1200px;
+  --radius-sm: 0.4rem;
+  --radius: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 9999px;
+  --shadow-soft: 0 8px 30px rgb(0 0 0 / 0.28);
+  --shadow-glow: 0 0 0 1px rgb(255 255 255 / 0.05), 0 18px 40px rgb(0 0 0 / 0.35);
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
-  --shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+  --content-width: 72ch;
+  --page-width: min(1160px, calc(100vw - 2rem));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0d0f14;
-    --color-surface: #141720;
-    --color-surface-2: #1c2030;
-    --color-ink: #e8eaf0;
-    --color-muted: #6b7280;
-    --color-border: #252a3a;
-  }
+.theme-ferber {
+  --bg: #0d1118;
+  --surface: #151d2a;
+  --surface-raised: #1b2434;
+  --ink: #ecf4ff;
+  --ink-soft: #98abc7;
+  --ink-faint: #66768d;
+  --line: #263246;
+  --accent: #5fb2ff;
+  --accent-2: #f6ad56;
+}
+
+.theme-tgwab {
+  --bg: #0d0e12;
+  --surface: #171820;
+  --surface-raised: #212330;
+  --ink: #efe8db;
+  --ink-soft: #b6ab98;
+  --ink-faint: #756d61;
+  --line: #312d29;
+  --accent: #e36b2a;
+  --accent-2: #59a7ff;
+}
+
+.theme-dev {
+  --bg: #0b1017;
+  --surface: #111a26;
+  --surface-raised: #182434;
+  --ink: #e5fbff;
+  --ink-soft: #9ac8d4;
+  --ink-faint: #5f8188;
+  --line: #203445;
+  --accent: #36d8a4;
+  --accent-2: #46a3ff;
+}
+
+.theme-kj4dia {
+  --bg: #130d1e;
+  --surface: #1a1230;
+  --surface-raised: #241843;
+  --ink: #efe9ff;
+  --ink-soft: #c2b6e6;
+  --ink-faint: #8879b0;
+  --line: #35285a;
+  --accent: #9f7aea;
+  --accent-2: #3ea7ff;
 }

@@ -1,0 +1,111 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+const tagMap = new Map<string, typeof posts>();
+
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    const taggedPosts = tagMap.get(tag) ?? [];
+    taggedPosts.push(post);
+    tagMap.set(tag, taggedPosts);
+  }
+}
+
+const tags = [...tagMap.entries()].sort((left, right) => left[0].localeCompare(right[0]));
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+---
+
+<Layout
+  site="ferber"
+  title="Tags | Michal Ferber"
+  description="Browse blog tags and related posts from Michal Ferber."
+  canonical="https://michalferber.me/tags/"
+>
+  <section class="container page reveal">
+    <h1>Tags</h1>
+    <p class="lede">A quick way to jump through topics across the blog.</p>
+
+    <div class="tag-cloud" aria-label="Tag cloud">
+      {tags.map(([tag, posts]) => (
+        <a href={`#${slugify(tag)}`} style={`--tag-size:${0.95 + posts.length * 0.18}rem`}>
+          {tag}
+        </a>
+      ))}
+    </div>
+
+    <div class="tag-groups">
+      {tags.map(([tag, posts]) => (
+        <section id={slugify(tag)} class="tag-group surface-card">
+          <h2>{tag}</h2>
+          <ul>
+            {posts.map((post) => (
+              <li>
+                <a href={`/${post.slug}/`}>{post.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .lede {
+    max-width: 52ch;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .tag-cloud a {
+    --tag-size: 1rem;
+    font-size: var(--tag-size);
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.4rem 0.82rem;
+    background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+  }
+
+  .tag-cloud a:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  .tag-groups {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .tag-group {
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .tag-group ul {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .tag-group li {
+    color: var(--ink-soft);
+  }
+
+</style>

@@ -1,0 +1,875 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+}
+
+const { site } = Astro.props;
+
+const domainBySite = {
+  ferber: "https://michalferber.me",
+  tgwab: "https://techguywithabeard.com",
+  dev: "https://michalferber.dev",
+  kj4dia: "https://kj4dia.me",
+  ferberme: "https://ferber.me",
+};
+
+const titleBySite = {
+  ferber: "About | Michal Ferber",
+  tgwab: "About | TechGuyWithABeard",
+  dev: "About | MichalFerber.dev",
+  kj4dia: "About | KJ4dia.me",
+  ferberme: "About | Ferber.me",
+};
+
+const skillsLeft = [
+  { name: "HTML/CSS", level: 100 },
+  { name: "JavaScript", level: 95 },
+  { name: "TypeScript", level: 60 },
+  { name: "Python", level: 80 },
+  { name: "C#", level: 50 },
+  { name: "PHP", level: 65 },
+  { name: "Ruby", level: 50 },
+  { name: "Kotlin", level: 40 },
+  { name: "Next.js/React", level: 45 },
+  { name: "PowerShell", level: 70 },
+  { name: "SQL", level: 70 },
+  { name: "YAML/JSON", level: 95 },
+  { name: "Markdown", level: 100 },
+  { name: "Docker / Docker Compose", level: 95 },
+];
+
+const skillsRight = [
+  { name: "Linux", level: 95 },
+  { name: "Windows", level: 85 },
+  { name: "Telephony Systems", level: 90 },
+  { name: "Asterisk", level: 50 },
+  { name: "API Integration", level: 90 },
+  { name: "Communication", level: 100 },
+  { name: "Technical Writing", level: 60 },
+  { name: "Teamwork", level: 95 },
+  { name: "Leadership", level: 95 },
+  { name: "Public Speaking", level: 95 },
+  { name: "Sales", level: 90 },
+  { name: "Project Management", level: 75 },
+  { name: "Adaptability/Flexibility", level: 75 },
+  { name: "Creativity", level: 75 },
+];
+
+const badges = [
+  { src: "/assets/badges/microsoft-azure-fundamentals.avif", alt: "Microsoft Azure Fundamentals badge" },
+  {
+    src: "/assets/badges/microsoft-365-teams-administrator-associate.avif",
+    alt: "Microsoft 365 Teams Administrator Associate badge",
+  },
+  { src: "/assets/badges/mcse-square.avif", alt: "MCSE square badge" },
+  { src: "/assets/badges/csc-champion-badge.avif", alt: "CSC champion badge" },
+  { src: "/assets/badges/sip-ssca-elite.avif", alt: "SIP SSCA elite badge" },
+  {
+    src: "/assets/badges/milestone-certified-integration-technician-mcit.avif",
+    alt: "Milestone certified integration technician badge",
+  },
+  { src: "/assets/badges/mosyle.avif", alt: "Mosyle badge" },
+];
+
+const certificationFiles = [
+  "Microsoft-Certified-Azure-Fundamentals.jpg",
+  "Microsoft-365-Certified-Teams-Administrator-Associate.jpg",
+  "Microsoft-Certified-System-Engineer.jpg",
+  "Microsoft-Certified-Professional-Internet.jpg",
+  "Microsoft-Certified-Professional.jpg",
+  "2003-10-16_Microsoft_SQL_Server_2000_M2073.jpg",
+  "2002-05-24_Citrix_Certificate_NFuse_Administrator.jpg",
+  "2002-09-20_ININ_IC2x_Certificate_System_Administration.jpg",
+  "2002-09-27_ININ_IC2x_Certificate_System_Handler_Development.jpg",
+  "2008-12-10_DCC_Certification_Communicator-NXT-System-Administrator.jpg",
+  "2009-03-20_Ascom_FreeNET_Advanced.jpg",
+  "2009-03-20_Ascom_FreeNET_Basic.jpg",
+  "2009-03-26_Ascom_FreeNET_Avaya.jpg",
+  "2009-03-26_Ascom_FreeNET_Cisco.jpg",
+  "2009-03-26_Ascom_FreeNET_ShoreTel.jpg",
+  "2009-05-08_Ascom_UNITE.jpg",
+  "2009-05-31_Ascom_Certified_Systems_Integrator.jpg",
+  "2013-10-29_Software_House_C-CURE_9000.jpg",
+  "2015-06-25_Milestone-Advanced-Certification.jpg",
+  "2019-01-10_Milestone-Certified-Integration-Technician-MCIT.jpg",
+  "2021-09-26_Mosyle_certificate_628-A4F.jpg",
+  "2021-10-19_Netwrix-Certified-Partner-Sales-Professional-(NCPSP).jpg",
+  "2022-01-02_SIP_SSCA_Certification.jpg",
+  "Google-Chrome-Enterprise-and-SMB-Deployment-Credential.jpg",
+  "Google-Cloud-Sales-Credential.jpg",
+  "Google-Workspace-Sales-Credential.jpg",
+  "2022-03-20_Chrome_Enterprise_Deployment_Exam.jpg",
+  "2022-04-14_Druva_Endpoints_Onboarding.jpg",
+  "2022-08-17_Druva-Level-1-Druva-Cloud-Platform-Basics.jpg",
+  "2022-08-17_Druva-Level-1-Endpoints-Basics.jpg",
+  "2022-08-17_Druva-Level-2-Configure-Druva-Cloud-Platform.jpg",
+  "2022-08-17_Druva-Level-2-Endpoints-Configuration.jpg",
+  "GoFullPage.jpg",
+  "MailerLite-BFCM_emails_that_get_delivered_(avoiding_spam!).jpg",
+  "MailerLite-Build_websites_and_landing_pages.jpg",
+  "MailerLite-Collect_leads.jpg",
+  "MailerLite-E-commerce_with_MailerLite.jpg",
+  "MailerLite-Elevate_email_marketing_with_push_notifications.jpg",
+  "MailerLite-Getting_started_with_MailerLite.jpg",
+  "MailerLite-Send_emails.jpg",
+];
+
+const certifications = certificationFiles.map((file) => ({
+  src: `/assets/certs/${file}`,
+  alt: file
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim(),
+}));
+
+const transcripts = [
+  { label: "Google", href: "https://michalferber.me/assets/certs/Transcript-Google.pdf" },
+  {
+    label: "Microsoft",
+    href: "https://michalferber.me/assets/certs/Transcript-Microsoft-2023.pdf",
+  },
+  { label: "Milestone", href: "https://michalferber.me/assets/certs/Transcript-Milestone.pdf" },
+];
+
+const timeline = [
+  {
+    role: "Founder & CEO",
+    company: "AF Integration LLC",
+    location: "Hartsville, NC",
+    period: "Oct 2023 - Jun 2025",
+    summary:
+      "Founded and operated a consulting business focused on web delivery, systems integration, and communications automation for SMB and enterprise clients.",
+  },
+  {
+    role: "Director of Telecommunications",
+    company: "McLeod Health",
+    location: "Florence, SC",
+    period: "Oct 2020 - Oct 2022",
+    summary:
+      "Led enterprise telephony and contact center operations, modernization planning, and service reliability across multi-site healthcare environments.",
+  },
+  {
+    role: "Telecommunications Manager",
+    company: "McLeod Health",
+    location: "Florence, SC",
+    period: "Dec 2017 - Oct 2020",
+    summary:
+      "Managed voice infrastructure, carrier relationships, and support teams while improving uptime, change management, and escalation workflows.",
+  },
+  {
+    role: "Software Engineer",
+    company: "Taylor Data Systems, Inc.",
+    location: "Florence, SC",
+    period: "Aug 2006 - Nov 2007",
+    summary:
+      "Designed and maintained business applications and integrations in Microsoft-centric environments with a strong focus on reliability.",
+  },
+  {
+    role: "Software Engineer",
+    company: "Knight Software, Inc.",
+    location: "Florence, SC",
+    period: "Nov 2005 - Nov 2006",
+    summary:
+      "Built and supported software components for line-of-business platforms and customer-facing data workflows.",
+  },
+  {
+    role: "Server Engineer",
+    company: "McLeod Health",
+    location: "Florence, SC",
+    period: "Jan 2001 - Nov 2004",
+    summary:
+      "Maintained Windows server systems, virtualization, backup strategy, and service monitoring for critical healthcare workloads.",
+  },
+  {
+    role: "Project Manager",
+    company: "Netcom Information Systems",
+    location: "Florence, SC",
+    period: "Feb 1999 - Jan 2000",
+    summary:
+      "Coordinated deployment projects, customer communications, and implementation teams for network and systems rollouts.",
+  },
+  {
+    role: "Freelance Consultant",
+    company: "Self-Employed",
+    location: "Florence, SC",
+    period: "Mar 1997 - Jan 1999",
+    summary:
+      "Delivered independent IT support, web projects, and infrastructure work for local businesses and organizations.",
+  },
+  {
+    role: "Support Engineer",
+    company: "ACS Technologies",
+    location: "Florence, SC",
+    period: "Jan 1994 - Nov 1996",
+    summary:
+      "Provided software and systems support with a focus on troubleshooting, customer success, and documentation.",
+  },
+  {
+    role: "Chief Technologist",
+    company: "Victory Industries, Inc.",
+    location: "Lamar, SC",
+    period: "1992 - 1993",
+    summary:
+      "Led technical operations and system planning for internal platforms and service programs.",
+  },
+  {
+    role: "Intern",
+    company: "Victory Industries, Inc.",
+    location: "Lamar, SC",
+    period: "1991 - 1992",
+    summary:
+      "Started in technical administration and software development support, building the foundation for a long IT career.",
+  },
+];
+---
+
+<Layout
+  site={site}
+  title={titleBySite[site]}
+  description="About Michal Ferber: 30+ years in IT across development, infrastructure, automation, and consulting."
+  canonical={`${domainBySite[site]}/about/`}
+>
+  <section class="container page reveal">
+    <header class="about-hero">
+      <h1>About Michal Ferber</h1>
+      <p class="hero-subtitle">
+        31+ years as a developer, network engineer, sysadmin, and consultant.
+      </p>
+    </header>
+
+    <div class="section-nav" aria-label="About sections">
+      <a href="#bio">Bio</a>
+      <a href="#skills">Skills</a>
+      <a href="#badges">Badges</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#transcripts">Transcripts</a>
+      <a href="#timeline">Timeline</a>
+    </div>
+
+    <section id="bio" class="content-block">
+      <h2>Bio</h2>
+      <p>
+        Hi, I am Michal Ferber. As a hands-on technical leader and founder, I have deep experience
+        in software engineering, telecommunications, systems design, and digital operations.
+        Throughout my career I have helped teams modernize infrastructure, automate workflows,
+        and deliver measurable business outcomes.
+      </p>
+      <p>
+        Over the past 30+ years, I have led efforts in cloud migration, communications,
+        API integration, and customer-facing service delivery across healthcare, education,
+        and enterprise environments.
+      </p>
+      <p>
+        What makes me unique is my ability to blend technical detail with strategic direction.
+        Whether building software, managing telecom systems, or guiding teams through complex
+        transitions, I deliver practical and sustainable results.
+      </p>
+      <p>
+        Through my consulting and technical leadership work, I continue to help organizations
+        transform operations and build resilient technology foundations.
+      </p>
+    </section>
+
+    <section id="skills" class="content-block">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div>
+          <h3>Programming Skills</h3>
+          <ul class="skills-list">
+            {skillsLeft.map((skill) => (
+              <li>
+                <div class="skill-row">
+                  <span>{skill.name}</span>
+                  <span>{skill.level}%</span>
+                </div>
+                <div class="bar"><span style={`width: ${skill.level}%`}></span></div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Other Skills</h3>
+          <ul class="skills-list">
+            {skillsRight.map((skill) => (
+              <li>
+                <div class="skill-row">
+                  <span>{skill.name}</span>
+                  <span>{skill.level}%</span>
+                </div>
+                <div class="bar"><span style={`width: ${skill.level}%`}></span></div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="badges" class="content-block">
+      <h2>Badges</h2>
+      <div class="media-carousel" data-carousel>
+        <button type="button" class="carousel-arrow" data-prev aria-label="Previous badge">‹</button>
+        <ul class="carousel-track">
+        {badges.map((badge) => (
+          <li class="carousel-item" data-slide>
+            <button
+              type="button"
+              class="media-link media-trigger"
+              data-lightbox-type="image"
+              data-lightbox-src={badge.src}
+              data-lightbox-title={badge.alt}
+              aria-label={`Open ${badge.alt} in lightbox`}
+            >
+              <img src={badge.src} alt={badge.alt} loading="lazy" class="media-image badge-image" />
+            </button>
+          </li>
+        ))}
+        </ul>
+        <button type="button" class="carousel-arrow" data-next aria-label="Next badge">›</button>
+      </div>
+    </section>
+
+    <section id="certifications" class="content-block">
+      <h2>Certifications</h2>
+      <div class="media-carousel" data-carousel>
+        <button type="button" class="carousel-arrow" data-prev aria-label="Previous certification">‹</button>
+        <ul class="carousel-track">
+        {certifications.map((cert) => (
+          <li class="carousel-item" data-slide>
+            <button
+              type="button"
+              class="media-link media-trigger"
+              data-lightbox-type="image"
+              data-lightbox-src={cert.src}
+              data-lightbox-title={cert.alt}
+              aria-label={`Open ${cert.alt} in lightbox`}
+            >
+              <img src={cert.src} alt={cert.alt} loading="lazy" class="media-image cert-image" />
+            </button>
+          </li>
+        ))}
+        </ul>
+        <button type="button" class="carousel-arrow" data-next aria-label="Next certification">›</button>
+      </div>
+    </section>
+
+    <section id="transcripts" class="content-block">
+      <h2>Transcripts</h2>
+      <p class="transcript-links">
+        {transcripts.map((item) => (
+          <button
+            type="button"
+            class="transcript-pill media-trigger"
+            data-lightbox-type="pdf"
+            data-lightbox-src={item.href}
+            data-lightbox-title={`${item.label} Transcript`}
+            aria-label={`Open ${item.label} transcript in lightbox`}
+          >
+            {item.label}
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="external-link-icon">
+              <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"></path>
+              <path d="M5 5h6v2H7v10h10v-4h2v6H5V5z"></path>
+            </svg>
+          </button>
+        ))}
+      </p>
+    </section>
+
+    <section id="timeline" class="content-block">
+      <h2>Timeline</h2>
+      <ol class="timeline">
+        {timeline.map((entry) => (
+          <li>
+            <h3>{entry.role}</h3>
+            <p class="meta">{entry.company} • {entry.location}</p>
+            <p class="meta">{entry.period}</p>
+            <p>{entry.summary}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <div class="lightbox" data-lightbox hidden>
+      <div class="lightbox-backdrop" data-lightbox-close></div>
+      <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Media lightbox">
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">×</button>
+        <h3 class="lightbox-title" data-lightbox-title></h3>
+        <div class="lightbox-content" data-lightbox-content></div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const carousels = Array.from(document.querySelectorAll("[data-carousel]"));
+
+    carousels.forEach((carousel) => {
+      const slides = Array.from(carousel.querySelectorAll("[data-slide]"));
+      const prev = carousel.querySelector("[data-prev]");
+      const next = carousel.querySelector("[data-next]");
+      let active = 0;
+      let timer;
+
+      const sync = () => {
+        slides.forEach((slide, idx) => {
+          slide.hidden = idx !== active;
+        });
+      };
+
+      const stop = () => {
+        if (timer) {
+          clearInterval(timer);
+          timer = undefined;
+        }
+      };
+
+      const start = () => {
+        stop();
+        timer = setInterval(() => {
+          active = (active + 1) % slides.length;
+          sync();
+        }, 4500);
+      };
+
+      prev?.addEventListener("click", () => {
+        active = (active - 1 + slides.length) % slides.length;
+        sync();
+      });
+
+      next?.addEventListener("click", () => {
+        active = (active + 1) % slides.length;
+        sync();
+      });
+
+      carousel.addEventListener("mouseenter", stop);
+      carousel.addEventListener("mouseleave", start);
+      carousel.addEventListener("focusin", stop);
+      carousel.addEventListener("focusout", () => {
+        if (!carousel.contains(document.activeElement)) {
+          start();
+        }
+      });
+
+      sync();
+      if (slides.length > 1) start();
+    });
+
+    const lightbox = document.querySelector("[data-lightbox]");
+    const lightboxContent = lightbox?.querySelector("[data-lightbox-content]");
+    const lightboxTitle = lightbox?.querySelector("[data-lightbox-title]");
+
+    const closeLightbox = () => {
+      if (!lightbox || !lightboxContent) return;
+      lightbox.hidden = true;
+      lightboxContent.innerHTML = "";
+    };
+
+    document.querySelectorAll("[data-lightbox-close]").forEach((node) => {
+      node.addEventListener("click", closeLightbox);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeLightbox();
+    });
+
+    document.querySelectorAll(".media-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        if (!lightbox || !lightboxContent || !lightboxTitle) return;
+
+        const type = trigger.getAttribute("data-lightbox-type");
+        const src = trigger.getAttribute("data-lightbox-src");
+        const title = trigger.getAttribute("data-lightbox-title") || "Preview";
+        if (!src) return;
+
+        lightboxTitle.textContent = title;
+        lightboxContent.innerHTML = "";
+
+        if (type === "pdf") {
+          const frame = document.createElement("iframe");
+          frame.src = src;
+          frame.title = title;
+          frame.className = "lightbox-frame";
+          frame.loading = "lazy";
+          lightboxContent.appendChild(frame);
+        } else {
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = title;
+          image.className = "lightbox-image";
+          image.loading = "lazy";
+          lightboxContent.appendChild(image);
+        }
+
+        lightbox.hidden = false;
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  .page {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .about-hero {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .hero-subtitle {
+    margin: 0;
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    max-width: 52ch;
+  }
+
+  .section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+  }
+
+  .section-nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--ink-faint);
+    background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    padding: 0.34rem 0.72rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    transition: transform 180ms ease, color 180ms ease, background 180ms ease;
+  }
+
+  .section-nav a:hover,
+  .section-nav a:focus-visible {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .content-block {
+    border-top: 1px solid var(--line);
+    scroll-margin-top: calc(var(--space-24) + var(--space-8));
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .section-nav + .content-block {
+    margin-top: 0;
+    border-top: 0;
+  }
+
+  .content-block > h2,
+  .content-block > h3 {
+    margin: 0;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-12);
+    row-gap: var(--space-6);
+  }
+
+  .skills-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .skill-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--step--1);
+  }
+
+  .bar {
+    width: 100%;
+    height: 0.35rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface-raised) 80%, black);
+    overflow: hidden;
+  }
+
+  .bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #2f9bff 0%, #50d86a 100%);
+  }
+
+  .carousel-track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .media-carousel {
+    position: relative;
+    width: min(100%, 820px);
+    margin-inline: auto;
+  }
+
+  .carousel-item {
+    margin: 0;
+  }
+
+  .media-link {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    max-width: 700px;
+    margin-inline: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--space-2);
+    background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+    transition: transform 180ms ease, border-color 180ms ease;
+    cursor: zoom-in;
+    text-align: left;
+  }
+
+  .media-link:hover,
+  .media-link:focus-visible {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  }
+
+  .media-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .badge-image {
+    aspect-ratio: 1 / 1;
+    max-height: 420px;
+  }
+
+  .cert-image {
+    aspect-ratio: 16 / 10;
+    max-height: 420px;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+    color: var(--ink);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  }
+
+  .carousel-arrow[data-prev] {
+    left: -3rem;
+  }
+
+  .carousel-arrow[data-next] {
+    right: -3rem;
+  }
+
+  .carousel-arrow:hover,
+  .carousel-arrow:focus-visible {
+    transform: translateY(-50%) scale(1.06);
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+    background: color-mix(in srgb, var(--surface-raised) 98%, transparent);
+  }
+
+  .timeline {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .timeline li {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .meta {
+    margin: 0;
+    color: var(--ink-faint);
+    font-size: var(--step--1);
+  }
+
+  .connect-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .connect-links a {
+    text-decoration: none;
+  }
+
+  .transcript-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+  }
+
+  .transcript-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: var(--ink-faint);
+    background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.32rem 0.68rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    transition: transform 180ms ease, color 180ms ease, background 180ms ease;
+    cursor: pointer;
+  }
+
+  .transcript-pill:hover,
+  .transcript-pill:focus-visible {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .external-link-icon {
+    width: 0.78rem;
+    height: 0.78rem;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+  }
+
+  .lightbox[hidden] {
+    display: none !important;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.74);
+  }
+
+  .lightbox-panel {
+    position: relative;
+    width: min(1100px, calc(100vw - 2rem));
+    max-height: calc(100vh - 2rem);
+    overflow: hidden;
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--surface) 95%, black);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .lightbox-title {
+    margin: 0;
+    padding-right: 2rem;
+    font-size: var(--step-0);
+    color: var(--ink);
+  }
+
+  .lightbox-content {
+    min-height: min(65vh, 720px);
+    display: grid;
+    place-items: center;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: min(72vh, 780px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .lightbox-frame {
+    width: 100%;
+    height: min(72vh, 780px);
+    border: 0;
+    background: white;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.6rem;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--surface-raised) 85%, transparent);
+    color: var(--ink);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  @media (max-width: 900px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .content-block {
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .carousel-arrow {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .carousel-arrow[data-prev] {
+      left: 0.25rem;
+    }
+
+    .carousel-arrow[data-next] {
+      right: 0.25rem;
+    }
+
+    .lightbox-panel {
+      width: calc(100vw - 1rem);
+      padding: var(--space-3);
+    }
+  }
+</style>

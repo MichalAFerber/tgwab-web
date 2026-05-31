@@ -1,0 +1,263 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+
+const documents = {
+  amateurRadio: [
+    { label: "ARRL Membership", href: "https://kj4dia.me/docs/ARRL-Certificate-of-Membership.pdf" },
+    { label: "FCC License", href: "https://kj4dia.me/docs/KJ4DIA.pdf" },
+  ],
+  certifications: [
+    {
+      label: "Certified Healthcare Emergency Professional Master Level (CHEP)",
+      href: "https://kj4dia.me/docs/Certified-Healthcare-Emergency-Professional-Master-Level-(CHEP).pdf",
+    },
+  ],
+  fema: [
+    {
+      label: "FEMA IS-00100.HCb - Introduction to the Incident Command System, ICS 100",
+      href: "https://kj4dia.me/docs/FEMA-IS-100.HCb.pdf",
+    },
+    {
+      label: "FEMA IS-00120.a - An Introduction to Exercises",
+      href: "https://kj4dia.me/docs/FEMA-IS-120.a.pdf",
+    },
+    {
+      label: "FEMA IS-00200.HCa - ICS for Single Resources and Initial Action Incidents",
+      href: "https://kj4dia.me/docs/FEMA-IS-200.HCa.pdf",
+    },
+    {
+      label: "FEMA IS-00700.a - National Incident Management System (NIMS) An Introduction",
+      href: "https://kj4dia.me/docs/FEMA-IS-700.a.pdf",
+    },
+    {
+      label: "FEMA IS-00800.b - National Response Framework, An Introduction",
+      href: "https://kj4dia.me/docs/FEMA-IS-800.b.pdf",
+    },
+  ],
+};
+
+const links = {
+  amateurRadio: [
+    { label: "Charlotte D-Star Group", href: "https://charlottedstar.org/" },
+    { label: "DMR-MARC Worldwide Network", href: "https://www.dmr-marc.net/" },
+    { label: "Florence Amateur Radio Club", href: "https://www.w4ulh.net/" },
+    { label: "Mac Ham Radio", href: "https://machamradio.com/" },
+    { label: "NE4SC Repeater Group", href: "https://ne4sc.org/" },
+    { label: "NE4SC DPLUS Dashboard", href: "https://ne4sc.dstargateway.org/" },
+    { label: "North Carolina PRN", href: "https://ncprn.net/" },
+    { label: "Palmetto Amateur Linked System Network (PALS)", href: "https://www.palsnet.com/" },
+    { label: "Southeastern Repeater Association (SERA)", href: "https://sera.org/" },
+  ],
+  emergency: [
+    { label: "Duke Energy Outage Map", href: "https://outagemaps.duke-energy.com/#/carolinas" },
+    { label: "Florence County 911", href: "https://psgis.azurewebsites.net/PublicCad.html" },
+    { label: "SC ARES", href: "https://ares-sc.org/" },
+    { label: "SCHEART", href: "https://scheart.us/" },
+    { label: "South Carolina Emergency Management Division", href: "https://www.scemd.org/" },
+  ],
+  flights: [
+    { label: "ADS-B Exchange", href: "https://globe.adsbexchange.com/" },
+    { label: "FlightAware", href: "https://www.flightaware.com/live/" },
+    { label: "Flightradar24", href: "https://www.flightradar24.com/" },
+  ],
+  weather: [
+    {
+      label: "SpaceWeatherLive.com",
+      href: "https://www.spaceweatherlive.com/en/solar-activity/solar-flares.html",
+    },
+    { label: "WeatherStar 3000+", href: "https://weatherstar3000.netbymatt.com/" },
+    { label: "WeatherStar 4000+", href: "https://weatherstar.netbymatt.com/" },
+  ],
+  tools: [
+    { label: "NIST - Official US Time", href: "https://nist.time.gov/" },
+    { label: "WebSDR", href: "https://websdr.org/" },
+  ],
+};
+---
+
+<Layout
+  site="kj4dia"
+  title="Amateur Radio | KJ4DIA"
+  description="KJ4DIA amateur radio page for projects, operating notes, and station updates."
+  canonical="https://kj4dia.me/"
+>
+  <section class="container hero reveal">
+    <p class="eyebrow">KJ4DIA.ME</p>
+    <h1>KJ4DIA - Technician Class</h1>
+    <p class="lede">
+      Radios have been my passion since I joined the
+      <a href="https://www.gocivilairpatrol.com/" target="_blank" rel="noopener noreferrer">Civil Air Patrol</a>
+      in 1991. I love exploring technology and helping with emergency communications. I used to
+      operate packet radio in the CAP. Now I am into D-STAR and DMR. I have a lot of experience in
+      Emergency Communications for Healthcare, collaborating with SC DHEC, SC EMD, and SCHEART.
+    </p>
+  </section>
+
+  <section class="container reveal" data-delay="1">
+    <h2 class="section-title">Resources</h2>
+    <div class="board">
+      <div class="column">
+        <article class="surface-card card">
+          <h3>Documents</h3>
+          <p>Professional certifications and licenses related to amateur radio and emergency communications.</p>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Amateur Radio</h4>
+          <ul>
+            {documents.amateurRadio.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Certifications</h4>
+          <ul>
+            {documents.certifications.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="surface-card card">
+          <h4>FEMA Training</h4>
+          <ul>
+            {documents.fema.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+      </div>
+
+      <div class="column">
+        <article class="surface-card card">
+          <h3>Links</h3>
+          <p>Useful resources for amateur radio operators and emergency communications.</p>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Amateur Radio Organizations</h4>
+          <ul>
+            {links.amateurRadio.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Emergency Management</h4>
+          <ul>
+            {links.emergency.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Flight Tracking</h4>
+          <ul>
+            {links.flights.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Weather</h4>
+          <ul>
+            {links.weather.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="surface-card card">
+          <h4>Tools and Resources</h4>
+          <ul>
+            {links.tools.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero h1 {
+    max-width: 18ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    max-width: 64ch;
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .column {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .card {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .column > .card:first-child {
+    min-height: 10.5rem;
+  }
+
+  .card h4 {
+    margin: 0;
+    font-size: var(--step-0);
+    color: var(--ink);
+  }
+
+  .card ul {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .card li {
+    color: var(--ink-soft);
+  }
+
+  .card a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .card a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    .board {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

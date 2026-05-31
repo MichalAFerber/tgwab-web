@@ -1,0 +1,159 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+const parseDateFromSlug = (slug: string) => {
+  const match = slug.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+  if (!match) return 0;
+  return new Date(`${match[1]}-${match[2]}-${match[3]}T00:00:00Z`).valueOf();
+};
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((left, right) => parseDateFromSlug(right.slug) - parseDateFromSlug(left.slug))
+  .map((post) => ({
+    title: post.data.title,
+    href: `/${post.slug}/`,
+    dateValue: parseDateFromSlug(post.slug),
+    heroImage: post.data.heroImage || post.data["thumbnail-img"] || "/img/post-build.svg",
+    excerpt: post.data.description,
+    tags: post.data.tags,
+  }));
+---
+
+<Layout
+  site="ferber"
+  title="Blog | Michal Ferber"
+  description="Notes on building, operating, and shipping projects by Michal Ferber."
+  canonical="https://michalferber.me/"
+>
+  <section class="hero container reveal">
+    <p class="eyebrow">MICHALFERBER.ME</p>
+    <h1>Blog posts and practical notes from a builder who likes working software.</h1>
+    <p class="lede">
+      Long-form writing about projects, infrastructure, and decisions behind the work.
+      michalferber.me always points directly to the post list.
+    </p>
+  </section>
+
+  <section class="container reveal" data-delay="1">
+    <h2 class="section-title">Posts</h2>
+    <div class="grid">
+      {posts.map((post) => (
+        <article class="surface-card card">
+          <a class="thumb-link" href={post.href} aria-label={`Read ${post.title}`}>
+            <img class="thumb" src={post.heroImage} alt="" loading="lazy" />
+          </a>
+          <p class="meta">
+            {new Date(post.dateValue).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+          </p>
+          <h3><a href={post.href}>{post.title}</a></h3>
+          <p>{post.excerpt}</p>
+          <div class="tag-list" aria-label={`Tags for ${post.title}`}>
+            {post.tags.map((tag) => (
+              <a href={`/tags/#${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`}>{tag}</a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero h1 {
+    max-width: 18ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    max-width: 62ch;
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: var(--space-6);
+  }
+
+  .thumb-link {
+    display: block;
+    margin: calc(-1 * var(--space-6));
+    margin-bottom: var(--space-4);
+  }
+
+  .thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .meta {
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: var(--space-3);
+  }
+
+  .card h3 {
+    margin-bottom: var(--space-3);
+  }
+
+  .card h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .tag-list a {
+    text-decoration: none;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.28rem 0.62rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+  }
+
+  .tag-list a:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
