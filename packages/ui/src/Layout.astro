@@ -1,0 +1,68 @@
+---
+import "@tgwab/design-tokens/fonts.css";
+import "@tgwab/design-tokens/tokens.css";
+import "@tgwab/design-tokens/base.css";
+import Head from "./Head.astro";
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+
+interface Props {
+  site?: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  showNav?: boolean;
+}
+
+const {
+  site = "tgwab",
+  title,
+  description,
+  ogImage,
+  canonical,
+  showNav = true,
+} = Astro.props;
+
+const themeClass =
+  site === "ferber"
+    ? "theme-ferber"
+    : site === "tgwab"
+      ? "theme-tgwab"
+      : site === "dev"
+        ? "theme-dev"
+        : site === "kj4dia"
+          ? "theme-kj4dia"
+          : "theme-ferberme";
+
+const siteName =
+  site === "ferber"
+    ? "MichalFerber.me"
+    : site === "tgwab"
+      ? "TechGuyWithABeard.com"
+      : site === "dev"
+        ? "MichalFerber.dev"
+        : site === "kj4dia"
+          ? "KJ4dia.me"
+          : "Ferber.me";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      canonical={canonical}
+      siteName={siteName}
+    />
+  </head>
+  <body class={themeClass}>
+    {showNav && <Nav site={site} currentPath={Astro.url.pathname} />}
+    <main>
+      <slot />
+    </main>
+    <Footer site={site} />
+  </body>
+</html>

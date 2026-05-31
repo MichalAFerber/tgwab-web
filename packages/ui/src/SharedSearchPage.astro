@@ -1,0 +1,200 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+}
+
+const { site } = Astro.props;
+
+const domainBySite = {
+  ferber: "https://michalferber.me",
+  tgwab: "https://techguywithabeard.com",
+  dev: "https://michalferber.dev",
+  kj4dia: "https://kj4dia.me",
+  ferberme: "https://ferber.me",
+};
+
+const titleBySite = {
+  ferber: "Search | Michal Ferber",
+  tgwab: "Search | TechGuyWithABeard",
+  dev: "Search | MichalFerber.dev",
+  kj4dia: "Search | KJ4DIA",
+  ferberme: "Search | Ferber.me",
+};
+
+const searchEntries = [
+  { title: "Blog Home", site: "michalferber.me", url: "https://michalferber.me/", keywords: "blog posts tags writing" },
+  { title: "Blog Tags", site: "michalferber.me", url: "https://michalferber.me/tags/", keywords: "tags topics cloud" },
+  { title: "Docker Compose Update Automation", site: "michalferber.me", url: "https://michalferber.me/2026-03-27-docker-compose-update-automation/", keywords: "docker compose automation homelab" },
+  { title: "Pi-hole Setup Guide", site: "michalferber.me", url: "https://michalferber.me/2026-03-25-pihole-setup-guide/", keywords: "pihole dns homelab" },
+  { title: "Michal's Podman Cheat Sheet", site: "michalferber.me", url: "https://michalferber.me/2026-01-12-michals-podman-cheat-sheet/", keywords: "podman containers cheat sheet" },
+  { title: "Services Home", site: "techguywithabeard.com", url: "https://techguywithabeard.com/", keywords: "services dns migration website" },
+  { title: "Products Home", site: "michalferber.dev", url: "https://michalferber.dev/", keywords: "products scripts tools extensions" },
+  { title: "Amateur Radio Home", site: "kj4dia.me", url: "https://kj4dia.me/", keywords: "amateur radio emergency communications" },
+  { title: "Family Home", site: "ferber.me", url: "https://ferber.me/", keywords: "family history archive" },
+  { title: "Family About", site: "ferber.me", url: "https://ferber.me/about/", keywords: "about ferber family" },
+  { title: "Family History", site: "ferber.me", url: "https://ferber.me/history/", keywords: "history crest coats of arms" },
+  { title: "Family Photos", site: "ferber.me", url: "https://ferber.me/photos/", keywords: "photos gallery" },
+];
+---
+
+<Layout
+  site={site}
+  title={titleBySite[site]}
+  description="Search across all five Michal Ferber websites."
+  canonical={`${domainBySite[site]}/search/`}
+>
+  <section class="container page reveal">
+    <p class="eyebrow">SEARCH</p>
+    <h1>Search Across All Five Sites</h1>
+    <p class="lede">Type a keyword to filter pages from michalferber.me, techguywithabeard.com, michalferber.dev, kj4dia.me, and ferber.me.</p>
+
+    <label class="search-label" for="site-search-input">Query</label>
+    <input id="site-search-input" class="search-input" type="search" placeholder="Try: dns, podman, family, scripts" autocomplete="off" />
+
+    <ul id="search-results" class="results" aria-live="polite"></ul>
+    <p id="search-empty" class="empty" hidden>No matches found. Try a different keyword.</p>
+  </section>
+
+  <script is:inline>
+    const entries = JSON.parse({JSON.stringify(JSON.stringify(searchEntries))});
+    const input = document.getElementById("site-search-input");
+    const results = document.getElementById("search-results");
+    const empty = document.getElementById("search-empty");
+
+    const render = (query) => {
+      if (!results || !empty) return;
+
+      const q = query.trim().toLowerCase();
+      const filtered = entries.filter((entry) => {
+        const haystack = `${entry.title} ${entry.site} ${entry.keywords}`.toLowerCase();
+        return q.length === 0 || haystack.includes(q);
+      });
+
+      results.innerHTML = "";
+
+      filtered.forEach((entry) => {
+        const li = document.createElement("li");
+        li.className = "result-card surface-card";
+
+        const header = document.createElement("div");
+        header.className = "result-header";
+
+        const title = document.createElement("a");
+        title.href = entry.url;
+        title.textContent = entry.title;
+        title.className = "result-link";
+
+        const site = document.createElement("span");
+        site.textContent = entry.site;
+        site.className = "site-pill";
+
+        const url = document.createElement("p");
+        url.textContent = entry.url;
+        url.className = "result-url";
+
+        header.appendChild(title);
+        header.appendChild(site);
+        li.appendChild(header);
+        li.appendChild(url);
+        results.appendChild(li);
+      });
+
+      empty.hidden = filtered.length !== 0;
+    };
+
+    render("");
+    input?.addEventListener("input", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      render(target.value);
+    });
+  </script>
+</Layout>
+
+<style>
+  .page {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+  }
+
+  .lede {
+    max-width: 72ch;
+  }
+
+  .search-label {
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+
+  .search-input {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--surface-raised) 86%, black);
+    color: var(--ink);
+    font: inherit;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .result-card {
+    padding: var(--space-5);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .result-link {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .result-link:hover {
+    color: var(--accent);
+  }
+
+  .site-pill {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.24rem 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .result-url {
+    color: var(--ink-faint);
+    font-size: var(--step--1);
+    overflow-wrap: anywhere;
+  }
+
+  .empty {
+    color: var(--ink-faint);
+  }
+</style>

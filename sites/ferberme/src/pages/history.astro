@@ -1,0 +1,119 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+---
+
+<Layout
+  site="ferberme"
+  title="Family History | Ferber.me"
+  description="History of the Ferber family, surname background, and family crest reference materials."
+  canonical="https://ferber.me/history/"
+>
+  <article class="container page reveal">
+    <p class="eyebrow">FERBER.ME</p>
+    <h1>Ferber History, Family Crest &amp; Coats of Arms</h1>
+
+    <img src="/assets/images/german_flag.jpg" alt="National Flag of Germany" class="flag" />
+
+    <section class="content-block">
+      <h2>Early Origins of the Ferber Family</h2>
+      <p>
+        The surname Ferber was first found in <strong>Austria</strong>, where the name Farber became
+        noted for its many branches in the region, each house acquiring a status and influence which
+        was envied by the princes of the region.
+      </p>
+      <p>
+        In their later history the name became a power unto themselves and were elevated to the ranks
+        of nobility as they grew into this most influential family.
+      </p>
+    </section>
+
+    <section class="content-block">
+      <h2>Ferber Spelling Variations</h2>
+      <div class="surface-card note">
+        <p><strong>Spelling variations of this family name include:</strong></p>
+        <p>
+          Fearber, Farber, Ferber, Farbman, Fariarz, Farbiasz, Farbstein, Farbszstein, Ferver,
+          Ferfers, Farberson, Farbersohn and many more.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <h2>Ferber Surname History</h2>
+      <p>
+        For detailed information about the Ferber surname history, view the comprehensive PDF document
+        below.
+      </p>
+      <iframe
+        src="/assets/docs/Ferber_Germany_History.pdf"
+        title="Ferber Germany History PDF"
+        class="document-frame"
+      ></iframe>
+      <p>Source: <a href="http://houseofnames.com/Ferber-family-crest/">houseofnames.com/Ferber-family-crest</a></p>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .page {
+    padding: var(--space-16) 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+  }
+
+  .flag {
+    width: min(100%, 460px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+
+  .content-block {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .content-block h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .content-block h2::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--line);
+    transform: translateY(0.2rem);
+  }
+
+  .note {
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .document-frame {
+    width: 100%;
+    min-height: 70vh;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: white;
+  }
+
+  @media (max-width: 700px) {
+    .content-block h2 {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .content-block h2::after {
+      width: 100%;
+    }
+  }
+</style>

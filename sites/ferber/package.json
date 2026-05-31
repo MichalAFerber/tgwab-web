@@ -1,0 +1,17 @@
+{
+  "name": "@tgwab/ferber",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@tgwab/design-tokens": "workspace:*",
+    "@tgwab/ui": "workspace:*",
+    "astro": "^5.0.0"
+  }
+}

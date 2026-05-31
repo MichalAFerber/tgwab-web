@@ -1,0 +1,106 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+---
+
+<Layout
+  site="ferberme"
+  title="Family | Ferber"
+  description="Family history, photos, and documents from the Ferber family archive."
+  canonical="https://ferber.me/"
+>
+  <section class="container hero reveal">
+    <div class="hero-copy">
+      <p class="eyebrow">FERBER.ME</p>
+      <h1>Family history, photos, and archive documents.</h1>
+      <p class="lede">
+        A simple home for the Ferber family archive, with the existing history notes, photo gallery,
+        and surname reference document preserved in one place.
+      </p>
+    </div>
+    <img class="crest surface-card" src="/assets/images/ferber_crest.jpg" alt="Ferber family crest" />
+  </section>
+
+  <section class="container reveal" data-delay="1">
+    <h2 class="section-title">Family Archive</h2>
+    <div class="grid">
+      <article class="surface-card card">
+        <h3>History</h3>
+        <p>Origins, surname history, and the family crest, including the original PDF reference.</p>
+        <a class="pill" href="/history/">Open history</a>
+      </article>
+      <article class="surface-card card">
+        <h3>Photos</h3>
+        <p>A gallery of Ferber family photos from throughout the years with full-size lightbox viewing.</p>
+        <a class="pill" href="/photos/">Browse photos</a>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-16) 0 var(--space-12);
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+  }
+
+  .lede {
+    max-width: 58ch;
+  }
+
+  .crest {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .card {
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-4);
+    min-height: 15rem;
+  }
+
+  .pill {
+    width: fit-content;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.34rem 0.66rem;
+    background: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+    margin-top: auto;
+  }
+
+  .pill:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  @media (max-width: 900px) {
+    .hero,
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

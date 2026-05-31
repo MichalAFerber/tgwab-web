@@ -1,0 +1,118 @@
+---
+import Layout from "@tgwab/ui/Layout.astro";
+---
+
+<Layout
+  site="ferberme"
+  title="About | Ferber.me"
+  description="About the Ferber family and links into the family archive."
+  canonical="https://ferber.me/about/"
+>
+  <section class="container hero reveal">
+    <div class="hero-copy">
+      <p class="eyebrow">FERBER.ME</p>
+      <h1>About the Ferbers</h1>
+      <p class="lede">
+        Originally from Germany, the Ferbers came to the great United States of America arriving at
+        Ellis Island in the New York Harbor. Their first sight was the newly built Statue of
+        Liberty. They settled in Ohio and after some years some migrated to North Carolina.
+      </p>
+      <p>
+        My father, <strong>Thomas Eugene Ferber</strong> (Tom), was the 4th generation Ferber born in
+        the United States. Born in Ohio, the family moved to Hickory, NC when he was 5 years old.
+        Hickory is where he met my mother, <strong>Gloria Jean Kight</strong>, born in San Gabriel,
+        CA. They were highschool sweethearts, and they married in 1971.
+      </p>
+      <p>
+        They had three children: me (1978), Sara (1981), and Rebekah (1984). My dad was a talented
+        carpenter, working on remodels and renovations for the majority of his adulthood. He built
+        the house our family lived in from the time Rebekah was a newborn until the mid 2000s.
+      </p>
+    </div>
+    <img class="crest surface-card" src="/assets/images/ferber_crest.jpg" alt="Ferber family crest" />
+  </section>
+
+  <section class="container reveal" data-delay="1">
+    <h2 class="section-title">Family Archive</h2>
+    <div class="grid">
+      <article class="surface-card card">
+        <h3>History</h3>
+        <p>Origins, surname history, and the family crest, including the original PDF reference.</p>
+        <a class="pill" href="/history/">Open history</a>
+      </article>
+      <article class="surface-card card">
+        <h3>Photos</h3>
+        <p>A gallery of Ferber family photos from throughout the years with full-size lightbox viewing.</p>
+        <a class="pill" href="/photos/">Browse photos</a>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-16) 0 var(--space-12);
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+  }
+
+  .lede {
+    max-width: 58ch;
+  }
+
+  .crest {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .card {
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-4);
+    min-height: 15rem;
+  }
+
+  .pill {
+    width: fit-content;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    padding: 0.34rem 0.66rem;
+    background: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+    margin-top: auto;
+  }
+
+  .pill:hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+
+  @media (max-width: 900px) {
+    .hero,
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

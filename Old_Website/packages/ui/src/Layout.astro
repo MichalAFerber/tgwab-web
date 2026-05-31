@@ -7,32 +7,58 @@ import Nav from "./Nav.astro";
 import Footer from "./Footer.astro";
 
 interface Props {
+  site?: "ferber" | "tgwab" | "dev" | "kj4dia";
   title: string;
   description?: string;
   ogImage?: string;
-  productName?: string;
+  canonical?: string;
   showNav?: boolean;
 }
 
 const {
+  site = "tgwab",
   title,
   description,
   ogImage,
-  productName,
+  canonical,
   showNav = true,
 } = Astro.props;
+
+const themeClass =
+  site === "ferber"
+    ? "theme-ferber"
+    : site === "tgwab"
+      ? "theme-tgwab"
+      : site === "dev"
+        ? "theme-dev"
+        : "theme-kj4dia";
+
+const siteName =
+  site === "ferber"
+    ? "MichalFerber.com"
+    : site === "tgwab"
+      ? "TechGuyWithABeard.com"
+      : site === "dev"
+        ? "MichalFerber.dev"
+        : "KJ4dia.me";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Head title={title} description={description} ogImage={ogImage} />
+    <Head
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      canonical={canonical}
+      siteName={siteName}
+    />
   </head>
-  <body>
-    {showNav && <Nav currentPath={Astro.url.pathname} />}
+  <body class={themeClass}>
+    {showNav && <Nav site={site} currentPath={Astro.url.pathname} />}
     <main>
       <slot />
     </main>
-    <Footer productName={productName} />
+    <Footer site={site} />
   </body>
 </html>
