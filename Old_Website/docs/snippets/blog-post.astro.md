@@ -1,0 +1,54 @@
+# `sites/hub/src/pages/blog/[...slug].astro`
+
+```astro
+---
+import Layout from "@tgwab/ui/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <article class="container prose">
+    <header>
+      <time datetime={post.data.pubDate.toISOString()}>
+        {post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+      </time>
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+    </header>
+    <Content />
+  </article>
+</Layout>
+
+<style>
+  article header {
+    padding: var(--space-12) 0 var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+  article header time {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  article header h1 {
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  article header .lede {
+    font-size: var(--text-xl);
+    color: var(--color-muted);
+    margin: 0;
+  }
+</style>
+```

@@ -1,0 +1,64 @@
+# `packages/design-tokens/tokens.css`
+
+```css
+:root {
+  /* Brand */
+  --tgwab-red: #c5282f;
+  --tgwab-red-dark: #9e1f25;
+  --tgwab-gray: #4a4a4a;
+  --tgwab-gray-light: #8a8a8a;
+
+  /* Surfaces */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-muted: #6a6a6a;
+  --color-border: #e5e5e5;
+
+  /* Type */
+  --font-display: "Trajan Pro", "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Scale */
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Misc */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --max-width: 72ch;
+  --max-width-wide: 1200px;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f0f0f;
+    --color-surface: #1a1a1a;
+    --color-ink: #f0f0f0;
+    --color-muted: #a0a0a0;
+    --color-border: #2a2a2a;
+  }
+}
+```
