@@ -3,25 +3,24 @@ import Layout from "@tgwab/ui/Layout.astro";
 
 const extensionCards = [
   {
-    name: "MyKK.us",
+    name: "MyKK",
     description: "Your Browser's Start Page, Reimagined - MyKK is a beautiful, customizable browser start page that lives in a single HTML file. Download it, open it, make it yours. No install, no config, no Docker.",
-    status: "Live",
+    status: "v1.0.3 Live",
     external: "https://mykk.us",
     github: "https://github.com/MichalAFerber/mykk.us",
     chrome: "https://chrome.google.com/webstore/detail/ipeboldhljgjleidbklaanchekkdnjlo?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
-    wizardSeries: false,
   },
   {
-    name: "ResizeWizard.app",
+    name: "ResizeWizard",
     description: "Resize Browser Windows Instantly - The fastest way to resize your browser window. Perfect for developers, designers, and anyone testing responsive layouts.",
-    status: "Active",
+    status: "v1.0.1 Live",
     external: "https://resizewizard.app",
     github: "https://github.com/MichalAFerber/resizewizard-website",
     chrome: "https://chrome.google.com/webstore/detail/hjaaejifggdkmnpciiibiholphdehomj?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
     wizardSeries: true,
   },
   {
-    name: "CopyWizard.us",
+    name: "CopyWizard",
     description: "Roadmap is being mapped out and planning started.",
     status: "In Development",
     external: "https://copywizard.us",
@@ -30,7 +29,7 @@ const extensionCards = [
     wizardSeries: true,
   },
   {
-    name: "CaptureWizard.app",
+    name: "CaptureWizard",
     description: "Roadmap is being mapped out and planning started.",
     status: "In Development",
     external: "https://capturewizard.app",
@@ -44,24 +43,28 @@ const productCards = [
   {
     name: "GSA Manager",
     description: "GSA Manager is a cloud-based SaaS application hosted on the Microsoft Azure platform. Actively developed since 2007 and still trusted by its very first customer, it brings together point of sale, inventory, CRM, task management, and payment processing into one streamlined solution.",
+    status: "Active",
     external: "https://gsamanager.org",
     github: "https://github.com/MichalAFerber/gsamanager.org",
   },
   {
     name: "ModMan",
     description: "Mod Manager for Farming Simulator 2019. FS19 game XML file and mod manager. Easy to use, simple interface, and only one file.",
+    status: "Retired",
     external: "#",
     github: "https://github.com/MichalAFerber/ModMan",
   },
   {
     name: "VCV",
     description: "",
+    status: "Retired",
     external: "#",
     github: "https://github.com/MichalAFerber/vcv",
   },
   {
     name: "SilentApp",
     description: "",
+    status: "Retired",
     external: "#",
     github: "https://github.com/MichalAFerber/silentapp",
   },
@@ -69,20 +72,23 @@ const productCards = [
 
 const scriptCards = [
   {
-    name: "welcome-message",
+    name: "Welcome-Message",
     description: "Beautiful terminal welcome message with fastfetch, weather, system metrics & multi-language support. Configurable, cached, supports 5+ distros. Bash & ZSH compatible.",
+    status: "Active",
     external: "#",
     github: "https://github.com/MichalAFerber/welcome-message",
   },
   {
     name: "IMDbMovieFileFixer",
     description: "Auto-rename movies, fix grammar, check IMDb, handle duplicates. Your collection, perfected.",
+    status: "Active",
     external: "#",
     github: "https://github.com/MichalAFerber/IMDbMovieFileFixer",
   },
   {
     name: "email-to-discord_cf-worker",
     description: "",
+    status: "Active",
     external: "#",
     github: "https://github.com/MichalAFerber/email-to-discord_cf-worker",
   },
@@ -91,20 +97,23 @@ const scriptCards = [
 const websiteCards = [
   {
     name: "IPCow",
-    description: "Placeholder description for IPCow.",
+    description: "What is my IP? Free IP tools. Get your current public IP address",
+    status: "Live",
     external: "https://ipcow.com",
     github: "https://github.com/MichalAFerber/ipcow",
   },
   {
     name: "TextWizard.us",
-    description: "Placeholder description for TextWizard.us.",
+    description: "Fast text utilities for formatting, cleanup, and quick content transformations in your browser.",
+    status: "v1.0.0 Live",
     external: "https://textwizard.us",
     github: "https://github.com/MichalAFerber/textwizard",
     wizardSeries: true,
   },
   {
     name: "UploadWizard.app",
-    description: "Placeholder description for UploadWizard.app.",
+    description: "Simple, direct file uploads with a clean workflow for sharing content quickly.",
+    status: "v1.0.3 Live",
     external: "https://uploadwizard.app",
     github: "https://github.com/MichalAFerber/uploadwizard",
     wizardSeries: true,
@@ -205,7 +214,10 @@ const hasLink = (url) => Boolean(url && url !== "#");
     <div class="grid compact">
       {websiteCards.map((card) => (
         <article class="surface-card card compact-card">
-          <h3>{card.name}</h3>
+          <div class="card-head">
+            <h3>{card.name}</h3>
+            {card.status && <span class="status">{card.status}</span>}
+          </div>
           <p class="card-description">{card.description}</p>
           <div class="card-footer">
             <div class="links">
