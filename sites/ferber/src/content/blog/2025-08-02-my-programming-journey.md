@@ -15,7 +15,7 @@ BASIC (Beginner’s All-purpose Symbolic Instruction Code) was my first step int
 
 I still remember sitting in front of a glowing VGA monitor, typing something like this:
 
-```basic
+```plaintext
 10 PRINT "HELLO WORLD"
 20 GOTO 10
 ```

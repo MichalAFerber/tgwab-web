@@ -482,7 +482,7 @@ crontab -e
 
 **Cron schedule quick reference:**
 
-```tree
+```plaintext
 * * * * *
 │ │ │ │ │
 │ │ │ │ └─── Day of week (0-7, 0 and 7 = Sunday)
