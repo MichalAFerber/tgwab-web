@@ -9,5 +9,8 @@ dist
 # Starter archive, not tracked
 TGWAB-Project-Starter.zip
 
+# Internal planning/strategy docs — keep local, out of the public repo
+docs/
+
 # Claude Code local settings
 .claude/settings.local.json
