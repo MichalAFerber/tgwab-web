@@ -387,13 +387,13 @@ crontab -e
 
 Add this line to run it every Sunday at 2 AM:
 
-```cron
+```plaintext
 0 2 * * 0 ~/update-docker-compose.sh >> ~/docker-updates-cron.log 2>&1
 ```
 
 Or run it every night at 3 AM:
 
-```cron
+```plaintext
 0 3 * * * ~/update-docker-compose.sh >> ~/docker-updates-cron.log 2>&1
 ```
 

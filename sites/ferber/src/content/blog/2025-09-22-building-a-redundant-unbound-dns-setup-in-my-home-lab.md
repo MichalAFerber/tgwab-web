@@ -60,7 +60,7 @@ sudo curl -fsSL -o /var/lib/unbound/root.hints https://www.internic.net/domain/n
 
 Then I dropped in a minimal config (`/etc/unbound/unbound.conf.d/lan53.conf`) to listen on the LAN IP and enforce basic hardening:
 
-```conf
+```plaintext
 server:
     # Network configuration
     interface: 192.168.50.2  # Change to .3 on pi4server02
@@ -107,7 +107,7 @@ server:
 
 To keep short names working, I built out a static zone file in `/etc/unbound/unbound.conf.d/local-zone-mykk-foo.conf`:
 
-```conf
+```plaintext
 server:
     local-zone: "mykk.foo." static
 
@@ -533,7 +533,7 @@ The configuration includes several security best practices:
 
 **Additional Hardening I Considered:**
 
-```conf
+```plaintext
 # Rate limiting (uncomment if needed)
 # ratelimit: 1000  # queries per second
 # ip-ratelimit: 10  # per IP address
@@ -561,7 +561,7 @@ For my home lab, the baseline hardening is sufficient. For internet-facing DNS, 
 
 I packaged everything into a GitHub-ready repo layout:
 
-```tree
+```plaintext
 unbound-homelab/
 ├── scripts/
 │   ├── update_dns.sh
