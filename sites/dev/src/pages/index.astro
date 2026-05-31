@@ -176,7 +176,10 @@ const hasLink = (url) => Boolean(url && url !== "#");
     <div class="grid">
       {productCards.map((card) => (
         <article class="surface-card card">
-          <h3>{card.name}</h3>
+          <div class="card-head">
+            <h3>{card.name}</h3>
+            {card.status && <span class="status">{card.status}</span>}
+          </div>
           <p class="card-description">{card.description}</p>
           <div class="card-footer">
             <div class="links">
@@ -196,7 +199,10 @@ const hasLink = (url) => Boolean(url && url !== "#");
     <div class="grid compact">
       {scriptCards.map((card) => (
         <article class="surface-card card compact-card">
-          <h3>{card.name}</h3>
+          <div class="card-head">
+            <h3>{card.name}</h3>
+            {card.status && <span class="status">{card.status}</span>}
+          </div>
           <p class="card-description">{card.description}</p>
           <div class="card-footer">
             <div class="links">
