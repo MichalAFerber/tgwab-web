@@ -157,7 +157,6 @@ docker restart nginx-proxy-manager-app-1
 
 ### Docker Network: Ensure Targets Resolve by Name
 
-{% raw %}
 
 ```bash
 # Who is on npm-network?
@@ -167,7 +166,6 @@ docker network inspect npm-network --format '{{range .Containers}}{{.Name}}{{"\n
 docker network connect npm-network audiobookshelf
 ```
 
-{% endraw %}
 
 > In NPM "Forward Hostname / IP", prefer the **container name** (on `npm-network`) over a raw IP.
 
