@@ -9,12 +9,17 @@ The hub (`techguywithabeard.com`) plus per-product sites, all sharing a common d
 Every property uses the same tokens, nav, and footer so the whole portfolio feels like one brand
 even though each product ships on its own domain.
 
-**Canonical properties:**
-- `techguywithabeard.com` — hub: landing, blog, product portfolio
-- `michalferber.dev` — wiki (outside this repo, keep on Jekyll)
+**Canonical properties — one `sites/<name>` package each:**
+- `techguywithabeard.com` — hub: landing, blog, product portfolio (`sites/hub`)
+- `michalferber.me` — personal blog / identity site (`sites/ferber`)
+- `michalferber.dev` — developer portfolio: extensions + products (`sites/dev`)
+- `ferber.me` — Ferber family history / archive (`sites/ferberme`)
+- `kj4dia.me` — ham radio bio (`sites/kj4dia`)
 - Product domains — each keeps its own domain, links back to hub
 
-**Everything else is a 301 redirect.** See `@docs/domain-map.md`.
+`tgwab.us` is a short-URL alias on the hub's Cloudflare Pages project (testing scaffold at
+`sites/tgwab`, not deployed separately). **Everything else is a 301 redirect.**
+See `domain-map.md` in the Obsidian Intranet (`Websites/_tgwab-web/`).
 
 ## Stack
 
@@ -29,17 +34,20 @@ even though each product ships on its own domain.
 ```
 tgwab-web/
 ├── CLAUDE.md                   # you're here
-├── docs/                       # reference docs, load on demand
-│   ├── scope.md                # full architecture + decisions
-│   ├── phase-1-plan.md         # build tasks with [ ] checkboxes
-│   └── domain-map.md           # canonical vs redirect domains
 ├── packages/
 │   ├── design-tokens/          # CSS variables, base styles, fonts
 │   └── ui/                     # shared Astro components (Layout, Nav, Footer, Head)
 └── sites/
-    ├── hub/                    # techguywithabeard.com
-    └── [product]/              # one directory per product site
+    ├── hub/                    # techguywithabeard.com — hub
+    ├── ferber/                 # michalferber.me — personal blog
+    ├── dev/                    # michalferber.dev — developer portfolio
+    ├── ferberme/               # ferber.me — Ferber family history
+    ├── kj4dia/                 # kj4dia.me — ham radio bio
+    └── tgwab/                  # tgwab.us alias scaffold (testing)
 ```
+
+Reference/architecture docs (scope, domain map, phase plans) live in the Obsidian Intranet
+at `Websites/_tgwab-web/`, kept out of the public repo.
 
 ## Conventions
 
@@ -81,10 +89,10 @@ pnpm build
 
 ## What to work on
 
-Active build plan with task checkboxes: `@docs/phase-1-plan.md`
-
-When starting a new session, read that file to see what's done and what's next.
-Check off tasks as you complete them.
+The initial build shipped — Phase 1 (hub) and Phase 2 (blog migration) are done, and the
+wiki experiment (Phase 3) was removed. Architecture and phase plans live in the Obsidian
+Intranet at `Websites/_tgwab-web/`; consult them for design decisions, not as an active
+task list.
 
 ## Hard rules
 
@@ -93,6 +101,5 @@ Check off tasks as you complete them.
 - Don't pull in Google Fonts, Google Analytics, or any Google-hosted assets.
   Self-host or use privacy-respecting alternatives (Bunny Fonts, Plausible, Cloudflare Web Analytics).
 - Don't commit `.env` files. If env vars are needed, document them in `.env.example`.
-- Don't touch `michalferber.dev` — it's a separate Jekyll repo.
 - Before adding a dependency, ask: does this belong in a shared package or a single site?
   Shared code goes in `packages/`, site-specific in `sites/<site>/`.
