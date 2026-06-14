@@ -17,8 +17,9 @@ even though each ships on its own domain.
 - `kj4dia.me` — ham radio bio (`sites/kj4dia`)
 
 `tgwab.us` is an alias domain on the same Cloudflare Pages project as `techguywithabeard.com`.
-**Everything else is a 301 redirect.** See `domain-map.md` in the Obsidian Intranet
-(`Websites/_tgwab-web/`).
+**Every other domain either 301-redirects or serves a canonical-mirror** — e.g.
+`michalferber.com/.net/.org/.us` serve the blog and canonical to `michalferber.me`. See
+`domain-map.md` in the Obsidian Intranet (`Websites/_tgwab-web/`).
 
 ## Stack
 
