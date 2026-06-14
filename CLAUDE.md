@@ -5,21 +5,20 @@ Owner: Michal Ferber. Solo dev. 30+ years IT background — skip beginner explan
 
 ## What this repo is
 
-The hub (`techguywithabeard.com`) plus per-product sites, all sharing a common design system.
+Five standalone Astro sites, one per domain, all sharing a common design system.
 Every property uses the same tokens, nav, and footer so the whole portfolio feels like one brand
-even though each product ships on its own domain.
+even though each ships on its own domain.
 
-**Canonical properties — one `sites/<name>` package each:**
-- `techguywithabeard.com` — hub: landing, blog, product portfolio (`sites/hub`)
-- `michalferber.me` — personal blog / identity site (`sites/ferber`)
-- `michalferber.dev` — developer portfolio: extensions + products (`sites/dev`)
+**Canonical properties — one `sites/<name>` package per domain:**
+- `techguywithabeard.com` — professional services (`sites/tgwab`)
+- `michalferber.me` — blog (`sites/ferber`)
+- `michalferber.dev` — products, experiments, and tools (`sites/dev`)
 - `ferber.me` — Ferber family history / archive (`sites/ferberme`)
 - `kj4dia.me` — ham radio bio (`sites/kj4dia`)
-- Product domains — each keeps its own domain, links back to hub
 
-`tgwab.us` is a short-URL alias on the hub's Cloudflare Pages project (testing scaffold at
-`sites/tgwab`, not deployed separately). **Everything else is a 301 redirect.**
-See `domain-map.md` in the Obsidian Intranet (`Websites/_tgwab-web/`).
+`tgwab.us` is an alias domain on the same Cloudflare Pages project as `techguywithabeard.com`.
+**Everything else is a 301 redirect.** See `domain-map.md` in the Obsidian Intranet
+(`Websites/_tgwab-web/`).
 
 ## Stack
 
@@ -38,12 +37,11 @@ tgwab-web/
 │   ├── design-tokens/          # CSS variables, base styles, fonts
 │   └── ui/                     # shared Astro components (Layout, Nav, Footer, Head)
 └── sites/
-    ├── hub/                    # techguywithabeard.com — hub
-    ├── ferber/                 # michalferber.me — personal blog
-    ├── dev/                    # michalferber.dev — developer portfolio
+    ├── tgwab/                  # techguywithabeard.com — professional services
+    ├── ferber/                 # michalferber.me — blog
+    ├── dev/                    # michalferber.dev — products & tools
     ├── ferberme/               # ferber.me — Ferber family history
-    ├── kj4dia/                 # kj4dia.me — ham radio bio
-    └── tgwab/                  # tgwab.us alias scaffold (testing)
+    └── kj4dia/                 # kj4dia.me — ham radio bio
 ```
 
 Reference/architecture docs (scope, domain map, phase plans) live in the Obsidian Intranet
@@ -58,9 +56,9 @@ at `Websites/_tgwab-web/`, kept out of the public repo.
   `@tgwab/ui/<Component>.astro`. Site-specific components live in `sites/<site>/src/components/`.
 - **Layout prop contract:** `<Layout>` accepts `title`, `description`, `ogImage`, `productName`.
   Product sites pass `productName` so the footer shows the "A TGWAB product" badge.
-- **Content:** Blog posts + product data use Astro Content Collections.
-  Schemas in `sites/hub/src/content/config.ts`. Never bypass the schema.
-- **Links between properties:** Use absolute URLs (`https://techguywithabeard.com/products/`)
+- **Content:** Blog posts use Astro Content Collections; each site's schema lives in its own
+  `src/content/config.ts` (e.g. `sites/ferber/src/content/config.ts`). Never bypass the schema.
+- **Links between properties:** Use absolute URLs (`https://michalferber.dev/`)
   since each site is deployed standalone. Don't assume same-origin routing.
 - **Dates in front matter:** ISO 8601 (`2026-04-21`), no time component unless needed.
 
@@ -76,12 +74,12 @@ are the point. Technical claims should be specific enough to defend.
 # Install everything (run from repo root)
 pnpm install
 
-# Dev server for hub
-pnpm dev:hub
+# Dev server for one site (also: dev:ferber, dev:dev, dev:kj4dia, dev:ferberme)
+pnpm dev:tgwab
 # → http://localhost:4321
 
-# Build hub for production
-pnpm build:hub
+# Build one site for production (also: build:ferber, build:dev, build:kj4dia, build:ferberme)
+pnpm build:tgwab
 
 # Build every site
 pnpm build
@@ -89,10 +87,9 @@ pnpm build
 
 ## What to work on
 
-The initial build shipped — Phase 1 (hub) and Phase 2 (blog migration) are done, and the
-wiki experiment (Phase 3) was removed. Architecture and phase plans live in the Obsidian
-Intranet at `Websites/_tgwab-web/`; consult them for design decisions, not as an active
-task list.
+The initial build and blog migration shipped, and the wiki experiment was removed.
+Architecture and phase plans live in the Obsidian Intranet at `Websites/_tgwab-web/`;
+consult them for design decisions, not as an active task list.
 
 ## Hard rules
 
