@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techguywithabeard.com/sitemap-index.xml

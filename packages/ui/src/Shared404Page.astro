@@ -1,0 +1,32 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+}
+
+const { site } = Astro.props;
+
+const homeBySite = {
+  ferber: "the blog",
+  tgwab: "the homepage",
+  dev: "the products",
+  kj4dia: "the homepage",
+  ferberme: "the family home",
+};
+---
+
+<Layout site={site} title="404 — Page not found" description="This page can't be found." noindex>
+  <section class="container reveal page-404">
+    <p class="eyebrow">404</p>
+    <h1>This page can't be found.</h1>
+    <p class="lede">A broken link, a typo, or a page that has since moved.</p>
+    <p><a href="/">&larr; Back to {homeBySite[site]}</a></p>
+  </section>
+</Layout>
+
+<style>
+  .page-404 {
+    padding: var(--space-16) 0;
+  }
+</style>

@@ -1,0 +1,10 @@
+# michalferber.me — 301 redirects for stale URLs (Cloudflare Pages format).
+#
+# Republish date-variants recovered from the Jekyll migration: these posts were
+# re-dated, so the original dated URL 404s and must point at the live post.
+# Remaining 404s (old Jekyll tag/category/pagination URLs) get appended from the
+# GSC "Not found (404)" export — they can't be derived from the repo.
+/2020-01-01-sip-ssca-certification/ /2020-01-02-sip-ssca-certification/ 301
+/2024-07-22-hello-world/ /2024-07-23-hello-world/ 301
+/2025-07-30-install-and-use-net-tools-ubuntu/ /2025-07-31-install-and-use-net-tools-ubuntu/ 301
+/2025-08-11-visionpay_ai_powered_payments/ /2025-08-12-visionpay_ai_powered_payments/ 301

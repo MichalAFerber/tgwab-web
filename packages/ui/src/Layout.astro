@@ -13,6 +13,7 @@ interface Props {
   ogImage?: string;
   canonical?: string;
   showNav?: boolean;
+  noindex?: boolean;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   ogImage,
   canonical,
   showNav = true,
+  noindex = false,
 } = Astro.props;
 
 const themeClass =
@@ -56,6 +58,7 @@ const siteName =
       ogImage={ogImage}
       canonical={canonical}
       siteName={siteName}
+      noindex={noindex}
     />
   </head>
   <body class={themeClass}>
