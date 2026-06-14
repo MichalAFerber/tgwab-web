@@ -58,8 +58,7 @@ const searchEntries = [
     <p id="search-empty" class="empty" hidden>No matches found. Try a different keyword.</p>
   </section>
 
-  <script is:inline>
-    const entries = JSON.parse({JSON.stringify(JSON.stringify(searchEntries))});
+  <script define:vars={{ entries: searchEntries }}>
     const input = document.getElementById("site-search-input");
     const results = document.getElementById("search-results");
     const empty = document.getElementById("search-empty");
