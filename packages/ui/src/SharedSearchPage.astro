@@ -23,92 +23,114 @@ const titleBySite = {
   ferberme: "Search | Ferber.me",
 };
 
-const searchEntries = [
-  { title: "Blog Home", site: "michalferber.me", url: "https://michalferber.me/", keywords: "blog posts tags writing" },
-  { title: "Blog Tags", site: "michalferber.me", url: "https://michalferber.me/tags/", keywords: "tags topics cloud" },
-  { title: "Docker Compose Update Automation", site: "michalferber.me", url: "https://michalferber.me/2026-03-27-docker-compose-update-automation/", keywords: "docker compose automation homelab" },
-  { title: "Pi-hole Setup Guide", site: "michalferber.me", url: "https://michalferber.me/2026-03-25-pihole-setup-guide/", keywords: "pihole dns homelab" },
-  { title: "Michal's Podman Cheat Sheet", site: "michalferber.me", url: "https://michalferber.me/2026-01-12-michals-podman-cheat-sheet/", keywords: "podman containers cheat sheet" },
-  { title: "Services Home", site: "techguywithabeard.com", url: "https://techguywithabeard.com/", keywords: "services dns migration website" },
-  { title: "Products Home", site: "michalferber.dev", url: "https://michalferber.dev/", keywords: "products scripts tools extensions" },
-  { title: "Amateur Radio Home", site: "kj4dia.me", url: "https://kj4dia.me/", keywords: "amateur radio emergency communications" },
-  { title: "Family Home", site: "ferber.me", url: "https://ferber.me/", keywords: "family history archive" },
-  { title: "Family About", site: "ferber.me", url: "https://ferber.me/about/", keywords: "about ferber family" },
-  { title: "Family History", site: "ferber.me", url: "https://ferber.me/history/", keywords: "history crest coats of arms" },
-  { title: "Family Photos", site: "ferber.me", url: "https://ferber.me/photos/", keywords: "photos gallery" },
-];
+// The page loads its own /pagefind/ index relatively, then merges the other four
+// domains so one query spans all five sites. Their /pagefind/* is served with CORS
+// (see each site's public/_headers); baseUrl makes cross-domain result URLs
+// absolute to the right domain.
+const mergeTargets = Object.entries(domainBySite)
+  .filter(([key]) => key !== site)
+  .map(([, url]) => ({ bundlePath: `${url}/pagefind/`, baseUrl: url }));
 ---
 
 <Layout
   site={site}
   title={titleBySite[site]}
-  description="Search across all five Michal Ferber websites."
+  description="Full-text search across all five Michal Ferber websites."
   canonical={`${domainBySite[site]}/search/`}
   noindex
 >
   <section class="container page reveal">
     <p class="eyebrow">SEARCH</p>
     <h1>Search Across All Five Sites</h1>
-    <p class="lede">Type a keyword to filter pages from michalferber.me, techguywithabeard.com, michalferber.dev, kj4dia.me, and ferber.me.</p>
+    <p class="lede">Full-text search across michalferber.me, techguywithabeard.com, michalferber.dev, kj4dia.me, and ferber.me.</p>
 
     <label class="search-label" for="site-search-input">Query</label>
-    <input id="site-search-input" class="search-input" type="search" placeholder="Try: dns, podman, family, scripts" autocomplete="off" />
+    <input id="site-search-input" class="search-input" type="search" placeholder="Try: dns, podman, ham radio, family" autocomplete="off" />
 
+    <p id="search-status" class="status" hidden></p>
     <ul id="search-results" class="results" aria-live="polite"></ul>
-    <p id="search-empty" class="empty" hidden>No matches found. Try a different keyword.</p>
   </section>
 
-  <script define:vars={{ entries: searchEntries }}>
+  <script define:vars={{ mergeTargets }}>
     const input = document.getElementById("site-search-input");
     const results = document.getElementById("search-results");
-    const empty = document.getElementById("search-empty");
+    const status = document.getElementById("search-status");
 
-    const render = (query) => {
-      if (!results || !empty) return;
+    const setStatus = (msg) => {
+      status.textContent = msg || "";
+      status.hidden = !msg;
+    };
 
-      const q = query.trim().toLowerCase();
-      const filtered = entries.filter((entry) => {
-        const haystack = `${entry.title} ${entry.site} ${entry.keywords}`.toLowerCase();
-        return q.length === 0 || haystack.includes(q);
-      });
+    let pagefindPromise;
+    const getPagefind = () => {
+      if (!pagefindPromise) {
+        pagefindPromise = (async () => {
+          const pf = await import("/pagefind/pagefind.js");
+          for (const target of mergeTargets) {
+            try {
+              await pf.mergeIndex(target.bundlePath, { baseUrl: target.baseUrl });
+            } catch (err) {
+              // A sibling site's index may be temporarily unavailable; keep the rest.
+            }
+          }
+          return pf;
+        })();
+      }
+      return pagefindPromise;
+    };
 
+    const render = (items) => {
       results.innerHTML = "";
-
-      filtered.forEach((entry) => {
+      for (const data of items) {
         const li = document.createElement("li");
         li.className = "result-card surface-card";
 
-        const header = document.createElement("div");
-        header.className = "result-header";
-
-        const title = document.createElement("a");
-        title.href = entry.url;
-        title.textContent = entry.title;
-        title.className = "result-link";
-
-        const site = document.createElement("span");
-        site.textContent = entry.site;
-        site.className = "site-pill";
+        const link = document.createElement("a");
+        link.href = data.url;
+        link.className = "result-link";
+        link.textContent = (data.meta && data.meta.title) || data.url;
 
         const url = document.createElement("p");
-        url.textContent = entry.url;
         url.className = "result-url";
+        url.textContent = data.url;
 
-        header.appendChild(title);
-        header.appendChild(site);
-        li.appendChild(header);
-        li.appendChild(url);
+        const excerpt = document.createElement("p");
+        excerpt.className = "result-excerpt";
+        excerpt.innerHTML = data.excerpt || "";
+
+        li.append(link, url, excerpt);
         results.appendChild(li);
-      });
-
-      empty.hidden = filtered.length !== 0;
+      }
     };
 
-    render("");
-    input?.addEventListener("input", (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLInputElement)) return;
-      render(target.value);
+    let token = 0;
+    const run = async (query) => {
+      const q = query.trim();
+      const mine = ++token;
+      if (q.length < 2) {
+        render([]);
+        setStatus("");
+        return;
+      }
+      setStatus("Searching…");
+      try {
+        const pf = await getPagefind();
+        const search = await pf.search(q);
+        if (mine !== token) return;
+        const items = await Promise.all(search.results.slice(0, 25).map((r) => r.data()));
+        if (mine !== token) return;
+        render(items);
+        setStatus(items.length ? "" : "No matches found. Try a different keyword.");
+      } catch (err) {
+        setStatus("Search is unavailable right now.");
+      }
+    };
+
+    let timer;
+    input.addEventListener("input", (event) => {
+      clearTimeout(timer);
+      const value = event.target.value;
+      timer = setTimeout(() => run(value), 200);
     });
   </script>
 </Layout>
@@ -146,6 +168,10 @@ const searchEntries = [
     padding: 0.75rem 0.85rem;
   }
 
+  .status {
+    color: var(--ink-faint);
+  }
+
   .results {
     list-style: none;
     margin: 0;
@@ -154,47 +180,38 @@ const searchEntries = [
     gap: var(--space-4);
   }
 
-  .result-card {
+  /* Result cards are created at runtime, so style them globally (scoped under .page). */
+  .page :global(.result-card) {
     padding: var(--space-5);
     display: grid;
     gap: var(--space-2);
   }
 
-  .result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-3);
-    flex-wrap: wrap;
-  }
-
-  .result-link {
+  .page :global(.result-link) {
     color: var(--ink);
     text-decoration: none;
     font-weight: 700;
   }
 
-  .result-link:hover {
+  .page :global(.result-link:hover) {
     color: var(--accent);
   }
 
-  .site-pill {
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-pill);
-    padding: 0.24rem 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .result-url {
+  .page :global(.result-url) {
     color: var(--ink-faint);
     font-size: var(--step--1);
     overflow-wrap: anywhere;
   }
 
-  .empty {
-    color: var(--ink-faint);
+  .page :global(.result-excerpt) {
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+  }
+
+  .page :global(.result-excerpt mark) {
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0 0.15em;
   }
 </style>

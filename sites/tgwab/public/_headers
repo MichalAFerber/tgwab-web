@@ -1,0 +1,3 @@
+# Allow the other network sites to fetch this site's Pagefind index (multisite search).
+/pagefind/*
+  Access-Control-Allow-Origin: *
