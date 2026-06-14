@@ -63,7 +63,7 @@ const siteName =
   </head>
   <body class={themeClass}>
     {showNav && <Nav site={site} currentPath={Astro.url.pathname} />}
-    <main>
+    <main data-pagefind-body={noindex ? undefined : true}>
       <slot />
     </main>
     <Footer site={site} />
