@@ -5,6 +5,7 @@ interface Props {
   ogImage?: string;
   canonical?: string;
   siteName?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   ogImage,
   canonical,
   siteName = "Michal Ferber",
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = canonical || Astro.url.href;
@@ -23,6 +25,7 @@ const canonicalURL = canonical || Astro.url.href;
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, follow" />}
 
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

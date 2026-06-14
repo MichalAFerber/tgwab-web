@@ -13,7 +13,8 @@
     "./SharedContactPage.astro": "./src/SharedContactPage.astro",
     "./SharedPrivacyPolicyPage.astro": "./src/SharedPrivacyPolicyPage.astro",
     "./SharedTermsOfUsePage.astro": "./src/SharedTermsOfUsePage.astro",
-    "./SharedSearchPage.astro": "./src/SharedSearchPage.astro"
+    "./SharedSearchPage.astro": "./src/SharedSearchPage.astro",
+    "./Shared404Page.astro": "./src/Shared404Page.astro"
   },
   "dependencies": {
     "@tgwab/design-tokens": "workspace:*"

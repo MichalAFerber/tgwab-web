@@ -15,9 +15,13 @@ const { Content } = await post.render();
 
 const slugifyTag = (tag: string) =>
   tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// Blog posts are canonical on michalferber.me; the hub defers to it to avoid
+// cross-domain duplicate content. The .me URL keeps the date prefix the hub slug drops.
+const canonicalUrl = `https://michalferber.me/${post.data.pubDate.toISOString().slice(0, 10)}-${post.slug}/`;
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout title={post.data.title} description={post.data.description} canonical={canonicalUrl}>
   <article class="container" data-pagefind-body>
     <header>
       <time datetime={post.data.pubDate.toISOString()}>
