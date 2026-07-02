@@ -98,6 +98,16 @@ const productCards = [
   },
 ];
 
+const macAppCards = [
+  {
+    name: "Tomatick",
+    description: "macOS menu-bar timer, stopwatch, alarm & pomodoro with timestamped history. Built with rumps + PyObjC.",
+    status: "Live",
+    external: "https://tomatick.us",
+    github: "https://github.com/MichalAFerber/tomatick",
+  },
+];
+
 const scriptCards = [
   {
     name: "Welcome-Message",
@@ -155,15 +165,29 @@ const scriptCards = [
     external: "https://michalaferber.github.io/scripts/",
     github: "https://github.com/MichalAFerber/scripts",
   },
+  {
+    name: "Markdown Web Viewer",
+    description: "Fast, mobile-first, single-file Markdown viewer. Drag & drop any text file to render it — no build, no uploads.",
+    status: "Live",
+    external: "https://markdown-viewer.us",
+    github: "https://github.com/MichalAFerber/markdown-web-viewer",
+  },
+  {
+    name: "Default Web Pages",
+    description: "Recreation archive of web-server default pages — Microsoft IIS (1995–2022) and the major Linux servers (nginx, Apache, Caddy).",
+    status: "Reference",
+    external: "https://michalaferber.github.io/default-web-pages/",
+    github: "https://github.com/MichalAFerber/default-web-pages",
+  },
 ];
 
 const websiteCards = [
   {
     name: "IPCow",
-    description: "What is my IP? Free IP tools. Get your current public IP address",
+    description: "What is my IP? Privacy-first IP, DNS & email diagnostics and free network tools.",
     status: "Live",
     external: "https://ipcow.com",
-    github: "https://github.com/MichalAFerber/ipcow",
+    github: "https://github.com/MichalAFerber/ipcow.com-tools",
   },
   {
     name: "TextWizard.us",
@@ -180,13 +204,6 @@ const websiteCards = [
     external: "https://uploadwizard.app",
     github: "https://github.com/MichalAFerber/uploadwizard",
     wizardSeries: true,
-  },
-  {
-    name: "ReadThrough-Advisor",
-    description: "KDP (Kindle Direct Publishing) page-reads analytics / advisor tool. Live demo preserved.",
-    status: "Retired",
-    external: "https://kdp.thompsonblack.us/",
-    github: "https://github.com/MichalAFerber/ReadThrough-Advisor",
   },
 ];
 
@@ -263,6 +280,35 @@ const hasLink = (url) => Boolean(url && url !== "#");
                   Visit
                 </a>
               ) : null}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container reveal" data-delay="3">
+    <h2 class="section-title">macOS Apps</h2>
+    <div class="grid">
+      {macAppCards.map((card) => (
+        <article class="surface-card card">
+          <div class="card-head">
+            <h3>{card.name}</h3>
+            {card.status && <span class="status">{card.status}</span>}
+          </div>
+          <p class="card-description">{card.description}</p>
+          <div class="card-footer">
+            <div class="links">
+              <a href={card.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub for ${card.name}`}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/></svg>
+                GitHub
+              </a>
+              {hasLink(card.external) && (
+                <a href={card.external} target="_blank" rel="noopener noreferrer" aria-label={`External site for ${card.name}`}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3z"/><path d="M19 19H5V5h6V3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-6h-2v6z"/></svg>
+                  Visit
+                </a>
+              )}
             </div>
           </div>
         </article>
