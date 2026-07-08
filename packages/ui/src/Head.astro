@@ -18,6 +18,12 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || Astro.url.href;
+
+// Plausible (self-hosted, privacy-respecting — no Google Analytics, per CLAUDE.md).
+// data-domain comes from each site's astro.config `site`, so the five domains report
+// separately. Alias/mirror hosts (tgwab.us, michalferber.com/.net/.org/.us) serve the
+// same build and therefore report under their canonical domain.
+const plausibleDomain = Astro.site?.hostname;
 ---
 
 <meta charset="UTF-8" />
@@ -37,6 +43,15 @@ const canonicalURL = canonical || Astro.url.href;
 <meta name="twitter:creator" content="@techguywithabeard" />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+{plausibleDomain && (
+  <script
+    is:inline
+    defer
+    data-domain={plausibleDomain}
+    src="https://plausible.thompsonblack.us/js/script.js"
+  ></script>
+)}
 
 <script is:inline type="text/javascript">
   (function (C, A, L) {
