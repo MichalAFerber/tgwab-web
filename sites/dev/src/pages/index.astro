@@ -3,9 +3,27 @@ import Layout from "@tgwab/ui/Layout.astro";
 
 const extensionCards = [
   {
+    name: "CaptureWizard",
+    description: "Roadmap is being mapped out and planning started.",
+    status: "In Development",
+    external: "https://capturewizard.app",
+    github: "https://github.com/MichalAFerber/capturewizard",
+    chrome: "#",
+    series: "Wizard",
+  },
+  {
+    name: "CopyWizard",
+    description: "Roadmap is being mapped out and planning started.",
+    status: "In Development",
+    external: "https://copywizard.us",
+    github: "https://github.com/MichalAFerber/copywizard",
+    chrome: "#",
+    series: "Wizard",
+  },
+  {
     name: "MyKK",
     description: "Your Browser's Start Page, Reimagined - MyKK is a beautiful, customizable browser start page that lives in a single HTML file. Download it, open it, make it yours. No install, no config, no Docker.",
-    status: "v1.0.3 Live",
+    status: "v1.0.4 Live",
     external: "https://mykk.us",
     github: "https://github.com/MichalAFerber/mykk.us",
     chrome: "https://chrome.google.com/webstore/detail/ipeboldhljgjleidbklaanchekkdnjlo?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
@@ -17,111 +35,162 @@ const extensionCards = [
     external: "https://resizewizard.app",
     github: "https://github.com/MichalAFerber/resizewizard-website",
     chrome: "https://chrome.google.com/webstore/detail/hjaaejifggdkmnpciiibiholphdehomj?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
-    wizardSeries: true,
-  },
-  {
-    name: "CopyWizard",
-    description: "Roadmap is being mapped out and planning started.",
-    status: "In Development",
-    external: "https://copywizard.us",
-    github: "https://github.com/MichalAFerber/copywizard",
-    chrome: "#",
-    wizardSeries: true,
-  },
-  {
-    name: "CaptureWizard",
-    description: "Roadmap is being mapped out and planning started.",
-    status: "In Development",
-    external: "https://capturewizard.app",
-    github: "https://github.com/MichalAFerber/capturewizard",
-    chrome: "#",
-    wizardSeries: true,
+    series: "Wizard",
   },
 ];
 
-const productCards = [
+const websiteCards = [
   {
-    name: "GSA Manager",
-    description: "GSA Manager is a cloud-based SaaS application hosted on the Microsoft Azure platform. Actively developed since 2007 and still trusted by its very first customer, it brings together point of sale, inventory, CRM, task management, and payment processing into one streamlined solution.",
-    status: "Active",
-    external: "https://gsamanager.org",
-    github: "https://github.com/MichalAFerber/gsamanager.org",
-  },
-  {
-    name: "ModMan",
-    description: "Mod Manager for Farming Simulator 2019. FS19 game XML file and mod manager. Easy to use, simple interface, and only one file. User guide preserved.",
-    status: "Retired",
-    external: "https://michalaferber.github.io/ModMan/",
-    github: "https://github.com/MichalAFerber/ModMan",
-  },
-  {
-    name: "VCV",
-    description: "Video Camera Viewer — multi-camera grid viewer for IP cameras. .NET Windows Forms app with Azure SQL backend for camera list persistence.",
-    status: "Retired",
-    external: "#",
-    github: "https://github.com/MichalAFerber/vcv",
-  },
-  {
-    name: "SilentApp",
-    description: "Silent login-time utility that cleaned up unwanted desktop icons re-pushed by group policy. Background-only, no visible UI.",
-    status: "Retired",
-    external: "#",
-    github: "https://github.com/MichalAFerber/silentapp",
-  },
-  {
-    name: "TelecomManager",
-    description: "Telecom work-order tracking app for a former employer (2007-2018). .NET Windows Forms + SQL Server + Crystal Reports. 22+ version snapshots preserved in the archive.",
-    status: "Retired",
-    external: "#",
-    github: "https://github.com/MichalAFerber/telecom-manager",
-  },
-  {
-    name: "BCMSImport",
-    description: "Imported BCMS (Brilliance Call Management System) call-center reports into a SQL Server database for downstream reporting. .NET Windows Forms, early 2010s.",
-    status: "Retired",
-    external: "#",
-    github: "https://github.com/MichalAFerber/BCMSImport",
-  },
-  {
-    name: "Braintree Prototype",
-    description: "Small .NET prototype exploring Braintree (PayPal-owned) payment processing for a desktop app. Sandbox-only feasibility study from 2021.",
-    status: "Retired",
-    external: "#",
-    github: "https://github.com/MichalAFerber/braintree-by-paypal",
-  },
-  {
-    name: "SwitchboardMaintenance",
-    description: "Switchboard / PBX maintenance utility used by a former employer's telephony team. Binary-only — the original .NET source was lost; the .exe is preserved as a historical artifact.",
-    status: "Retired",
-    external: "#",
-    github: "https://github.com/MichalAFerber/switchboard-maintenance",
-  },
-];
-
-const macAppCards = [
-  {
-    name: "Tomatick",
-    description: "macOS menu-bar timer, stopwatch, alarm & pomodoro with timestamped history. Built with rumps + PyObjC.",
+    name: "Cert Viewer",
+    description: "Decode X.509 certificates and CSRs in the browser — subject, SAN, validity, and key usage details.",
     status: "Live",
-    external: "https://tomatick.us",
-    github: "https://github.com/MichalAFerber/tomatick",
+    external: "https://cert-viewer.us",
+    github: "https://github.com/MichalAFerber/cert-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "Cheatsheets",
+    description: "Clean, printable developer cheatsheets — Shell & CLI, editors, DevOps, languages, and macOS. 19 sheets with PDF downloads, privacy-first with no trackers.",
+    status: "Live",
+    external: "https://michalaferber.github.io/cheatsheets/",
+    github: "https://github.com/MichalAFerber/cheatsheets",
+  },
+  {
+    name: "Data Viewer",
+    description: "Explore JSON, YAML, CSV, TSV, and XML as collapsible trees or tables.",
+    status: "Live",
+    external: "https://data-viewer.us",
+    github: "https://github.com/MichalAFerber/data-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "DOCX Viewer",
+    description: "View Word documents with formatting, tables, and images preserved.",
+    status: "Live",
+    external: "https://docx-viewer.us",
+    github: "https://github.com/MichalAFerber/docx-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "EML Viewer",
+    description: "Read email files with headers, body, attachments, and SPF/DKIM/DMARC authentication checks.",
+    status: "Live",
+    external: "https://eml-viewer.us",
+    github: "https://github.com/MichalAFerber/eml-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "EPUB Viewer",
+    description: "Render EPUB books with chapter navigation and table of contents.",
+    status: "Live",
+    external: "https://epub-viewer.us",
+    github: "https://github.com/MichalAFerber/epub-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "File Viewer",
+    description: "Hub for the File Viewer series — single-file, offline-capable browser viewers that process files locally. No uploads, no accounts, MIT licensed.",
+    status: "Live",
+    external: "https://file-viewer.us",
+    github: "https://github.com/MichalAFerber/file-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "HTML Viewer",
+    description: "Render HTML in a sandboxed frame, or view CSS/SCSS/JS/TS source with syntax highlighting.",
+    status: "Live",
+    external: "https://html-viewer.us",
+    github: "https://github.com/MichalAFerber/html-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "Image Viewer",
+    description: "View PNG, JPEG, WebP, SVG, TIFF, TGA, QOI, PCX, PPM, farbfeld, and DDS images.",
+    status: "Live",
+    external: "https://image-viewer.us",
+    github: "https://github.com/MichalAFerber/image-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "IPCow",
+    description: "What is my IP? Privacy-first IP, DNS & email diagnostics and free network tools.",
+    status: "Live",
+    external: "https://ipcow.com",
+    github: "https://github.com/MichalAFerber/ipcow.com-tools",
+  },
+  {
+    name: "Log Viewer",
+    description: "Read log and text files with search, level filtering, and virtual scrolling.",
+    status: "Live",
+    external: "https://log-viewer.us",
+    github: "https://github.com/MichalAFerber/log-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "Markdown Viewer",
+    description: "Fast, mobile-first, single-file Markdown viewer. Drag & drop any text file to render it — no build, no uploads.",
+    status: "Live",
+    external: "https://markdown-viewer.us",
+    github: "https://github.com/MichalAFerber/markdown-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "PDF Viewer",
+    description: "Read PDFs in the browser, powered by pdf.js.",
+    status: "Live",
+    external: "https://pdf-viewer.us",
+    github: "https://github.com/MichalAFerber/pdf-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "PPTX Viewer",
+    description: "View PowerPoint presentations slide by slide — text, layout, and images.",
+    status: "Live",
+    external: "https://pptx-viewer.us",
+    github: "https://github.com/MichalAFerber/pptx-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "PUB Viewer",
+    description: "Read Microsoft Publisher files with metadata and text extraction.",
+    status: "Live",
+    external: "https://pub-viewer.us",
+    github: "https://github.com/MichalAFerber/pub-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "Sheets Viewer",
+    description: "Open spreadsheets (.xlsx, .xls, .ods) as tables with sheet tabs.",
+    status: "Live",
+    external: "https://sheets-viewer.us",
+    github: "https://github.com/MichalAFerber/sheets-web-viewer",
+    series: "File Viewer",
+  },
+  {
+    name: "TextWizard.us",
+    description: "Fast text utilities for formatting, cleanup, and quick content transformations in your browser.",
+    status: "v1.0.0 Live",
+    external: "https://textwizard.us",
+    github: "https://github.com/MichalAFerber/textwizard",
+    series: "Wizard",
+  },
+  {
+    name: "UploadWizard.app",
+    description: "Simple, direct file uploads with a clean workflow for sharing content quickly.",
+    status: "v1.0.3 Live",
+    external: "https://uploadwizard.app",
+    github: "https://github.com/MichalAFerber/uploadwizard",
+    series: "Wizard",
   },
 ];
 
 const scriptCards = [
   {
-    name: "Welcome-Message",
-    description: "Beautiful terminal welcome message with fastfetch, weather, system metrics & multi-language support. Configurable, cached, supports 5+ distros. Bash & ZSH compatible.",
-    status: "Live",
-    external: "https://michalaferber.github.io/welcome-message/",
-    github: "https://github.com/MichalAFerber/welcome-message",
-  },
-  {
-    name: "IMDbMovieFileFixer",
-    description: "Auto-rename movies, fix grammar, check IMDb, handle duplicates. Your collection, perfected.",
-    status: "Active",
-    external: "https://github.com/MichalAFerber/IMDbMovieFileFixer/releases",
-    github: "https://github.com/MichalAFerber/IMDbMovieFileFixer",
+    name: "Default Web Pages",
+    description: "Recreation archive of web-server default pages — Microsoft IIS (1995–2022) and the major Linux servers (nginx, Apache, Caddy).",
+    status: "Reference",
+    external: "https://michalaferber.github.io/default-web-pages/",
+    github: "https://github.com/MichalAFerber/default-web-pages",
   },
   {
     name: "email-to-discord_cf-worker",
@@ -129,20 +198,6 @@ const scriptCards = [
     status: "Live",
     external: "https://michalaferber.github.io/email-to-discord_cf-worker/",
     github: "https://github.com/MichalAFerber/email-to-discord_cf-worker",
-  },
-  {
-    name: "unbound-homelab",
-    description: "Production-ready redundant Unbound DNS infrastructure for home labs. Pi-based primary/secondary resolvers with DNSSEC, automated config sync, health monitoring, and TSV-based host management.",
-    status: "Live",
-    external: "https://michalaferber.github.io/unbound-homelab/",
-    github: "https://github.com/MichalAFerber/unbound-homelab",
-  },
-  {
-    name: "pi-hole",
-    description: "Personal Pi-hole customizations and curated blocklists for ad-free, ad-block-aware home DNS filtering.",
-    status: "Active",
-    external: "#",
-    github: "https://github.com/MichalAFerber/pi-hole",
   },
   {
     name: "Frequency Tone Generator",
@@ -159,6 +214,27 @@ const scriptCards = [
     github: "https://github.com/MichalAFerber/github-tree-browser",
   },
   {
+    name: "IMDbMovieFileFixer",
+    description: "Auto-rename movies, fix grammar, check IMDb, handle duplicates. Your collection, perfected.",
+    status: "Active",
+    external: "https://github.com/MichalAFerber/IMDbMovieFileFixer/releases",
+    github: "https://github.com/MichalAFerber/IMDbMovieFileFixer",
+  },
+  {
+    name: "Modding-in-FS25",
+    description: "Michal's InGame Mods for Farming Simulator 25 — a single-file Lua script mod that removes speed caps, maxes trailer capacity, and equalizes tractor power, with transparent logging.",
+    status: "Live",
+    external: "https://michalaferber.github.io/Modding-in-FS25/",
+    github: "https://github.com/MichalAFerber/Modding-in-FS25",
+  },
+  {
+    name: "pi-hole",
+    description: "Personal Pi-hole customizations and curated blocklists for ad-free, ad-block-aware home DNS filtering.",
+    status: "Active",
+    external: "#",
+    github: "https://github.com/MichalAFerber/pi-hole",
+  },
+  {
     name: "Scripts Collection",
     description: "A curated collection of homelab, backup, sync, media, and system automation scripts — Bash, Python, PowerShell, organized by topic. Every file-modifying script supports --dry-run.",
     status: "Live",
@@ -166,46 +242,95 @@ const scriptCards = [
     github: "https://github.com/MichalAFerber/scripts",
   },
   {
-    name: "Markdown Web Viewer",
-    description: "Fast, mobile-first, single-file Markdown viewer. Drag & drop any text file to render it — no build, no uploads.",
+    name: "unbound-homelab",
+    description: "Production-ready redundant Unbound DNS infrastructure for home labs. Pi-based primary/secondary resolvers with DNSSEC, automated config sync, health monitoring, and TSV-based host management.",
     status: "Live",
-    external: "https://markdown-viewer.us",
-    github: "https://github.com/MichalAFerber/markdown-web-viewer",
+    external: "https://michalaferber.github.io/unbound-homelab/",
+    github: "https://github.com/MichalAFerber/unbound-homelab",
   },
   {
-    name: "Default Web Pages",
-    description: "Recreation archive of web-server default pages — Microsoft IIS (1995–2022) and the major Linux servers (nginx, Apache, Caddy).",
-    status: "Reference",
-    external: "https://michalaferber.github.io/default-web-pages/",
-    github: "https://github.com/MichalAFerber/default-web-pages",
+    name: "Welcome-Message",
+    description: "Beautiful terminal welcome message with fastfetch, weather, system metrics & multi-language support. Configurable, cached, supports 5+ distros. Bash & ZSH compatible.",
+    status: "Live",
+    external: "https://michalaferber.github.io/welcome-message/",
+    github: "https://github.com/MichalAFerber/welcome-message",
   },
 ];
 
-const websiteCards = [
+const macAppCards = [
   {
-    name: "IPCow",
-    description: "What is my IP? Privacy-first IP, DNS & email diagnostics and free network tools.",
+    name: "Tomatick",
+    description: "macOS menu-bar timer, stopwatch, alarm & pomodoro with timestamped history. Built with rumps + PyObjC.",
     status: "Live",
-    external: "https://ipcow.com",
-    github: "https://github.com/MichalAFerber/ipcow.com-tools",
-  },
-  {
-    name: "TextWizard.us",
-    description: "Fast text utilities for formatting, cleanup, and quick content transformations in your browser.",
-    status: "v1.0.0 Live",
-    external: "https://textwizard.us",
-    github: "https://github.com/MichalAFerber/textwizard",
-    wizardSeries: true,
-  },
-  {
-    name: "UploadWizard.app",
-    description: "Simple, direct file uploads with a clean workflow for sharing content quickly.",
-    status: "v1.0.3 Live",
-    external: "https://uploadwizard.app",
-    github: "https://github.com/MichalAFerber/uploadwizard",
-    wizardSeries: true,
+    external: "https://tomatick.us",
+    github: "https://github.com/MichalAFerber/tomatick",
   },
 ];
+
+const productCards = [
+  {
+    name: "BCMSImport",
+    description: "Imported BCMS (Brilliance Call Management System) call-center reports into a SQL Server database for downstream reporting. .NET Windows Forms, early 2010s.",
+    status: "Retired",
+    external: "#",
+    github: "https://github.com/MichalAFerber/BCMSImport",
+  },
+  {
+    name: "Braintree Prototype",
+    description: "Small .NET prototype exploring Braintree (PayPal-owned) payment processing for a desktop app. Sandbox-only feasibility study from 2021.",
+    status: "Retired",
+    external: "#",
+    github: "https://github.com/MichalAFerber/braintree-by-paypal",
+  },
+  {
+    name: "GSA Manager",
+    description: "GSA Manager is a cloud-based SaaS application hosted on the Microsoft Azure platform. Actively developed since 2007 and still trusted by its very first customer, it brings together point of sale, inventory, CRM, task management, and payment processing into one streamlined solution.",
+    status: "Active",
+    external: "https://gsamanager.org",
+    github: "https://github.com/MichalAFerber/gsamanager.org",
+  },
+  {
+    name: "ModMan",
+    description: "Mod Manager for Farming Simulator 2019. FS19 game XML file and mod manager. Easy to use, simple interface, and only one file. User guide preserved.",
+    status: "Retired",
+    external: "https://michalaferber.github.io/ModMan/",
+    github: "https://github.com/MichalAFerber/ModMan",
+  },
+  {
+    name: "SilentApp",
+    description: "Silent login-time utility that cleaned up unwanted desktop icons re-pushed by group policy. Background-only, no visible UI.",
+    status: "Retired",
+    external: "#",
+    github: "https://github.com/MichalAFerber/silentapp",
+  },
+  {
+    name: "SwitchboardMaintenance",
+    description: "Switchboard / PBX maintenance utility used by a former employer's telephony team. Binary-only — the original .NET source was lost; the .exe is preserved as a historical artifact.",
+    status: "Retired",
+    external: "#",
+    github: "https://github.com/MichalAFerber/switchboard-maintenance",
+  },
+  {
+    name: "TelecomManager",
+    description: "Telecom work-order tracking app for a former employer (2007-2018). .NET Windows Forms + SQL Server + Crystal Reports. 22+ version snapshots preserved in the archive.",
+    status: "Retired",
+    external: "#",
+    github: "https://github.com/MichalAFerber/telecom-manager",
+  },
+  {
+    name: "VCV",
+    description: "Video Camera Viewer — multi-camera grid viewer for IP cameras. .NET Windows Forms app with Azure SQL backend for camera list persistence.",
+    status: "Retired",
+    external: "#",
+    github: "https://github.com/MichalAFerber/vcv",
+  },
+];
+
+// Keep every section alphabetized, including future additions.
+const byName = (a, b) => a.name.localeCompare(b.name);
+[extensionCards, websiteCards, scriptCards, macAppCards, productCards].forEach((cards) =>
+  cards.sort(byName),
+);
 
 const hasLink = (url) => Boolean(url && url !== "#");
 ---
@@ -251,7 +376,7 @@ const hasLink = (url) => Boolean(url && url !== "#");
                 Chrome
               </a>
             </div>
-            {card.wizardSeries && <p class="wizard-tag">Part of Wizard Series</p>}
+            {card.series && <p class="series-tag">Part of {card.series} Series</p>}
           </div>
         </article>
       ))}
@@ -259,10 +384,10 @@ const hasLink = (url) => Boolean(url && url !== "#");
   </section>
 
   <section class="container reveal" data-delay="2">
-    <h2 class="section-title">Windows Apps</h2>
-    <div class="grid">
-      {productCards.map((card) => (
-        <article class="surface-card card">
+    <h2 class="section-title">Websites</h2>
+    <div class="grid compact">
+      {websiteCards.map((card) => (
+        <article class="surface-card card compact-card">
           <div class="card-head">
             <h3>{card.name}</h3>
             {card.status && <span class="status">{card.status}</span>}
@@ -274,12 +399,42 @@ const hasLink = (url) => Boolean(url && url !== "#");
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/></svg>
                 GitHub
               </a>
-              {hasLink(card.external) ? (
+              {hasLink(card.external) && (
                 <a href={card.external} target="_blank" rel="noopener noreferrer" aria-label={`External site for ${card.name}`}>
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3z"/><path d="M19 19H5V5h6V3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-6h-2v6z"/></svg>
                   Visit
                 </a>
-              ) : null}
+              )}
+            </div>
+            {card.series && <p class="series-tag">Part of {card.series} Series</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container reveal" data-delay="3">
+    <h2 class="section-title">Scripts</h2>
+    <div class="grid compact">
+      {scriptCards.map((card) => (
+        <article class="surface-card card compact-card">
+          <div class="card-head">
+            <h3>{card.name}</h3>
+            {card.status && <span class="status">{card.status}</span>}
+          </div>
+          <p class="card-description">{card.description}</p>
+          <div class="card-footer">
+            <div class="links">
+              <a href={card.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub for ${card.name}`}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/></svg>
+                GitHub
+              </a>
+              {hasLink(card.external) && (
+                <a href={card.external} target="_blank" rel="noopener noreferrer" aria-label={`External site for ${card.name}`}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3z"/><path d="M19 19H5V5h6V3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-6h-2v6z"/></svg>
+                  Open
+                </a>
+              )}
             </div>
           </div>
         </article>
@@ -317,39 +472,10 @@ const hasLink = (url) => Boolean(url && url !== "#");
   </section>
 
   <section class="container reveal" data-delay="3">
-    <h2 class="section-title">Scripts</h2>
-    <div class="grid compact">
-      {scriptCards.map((card) => (
-        <article class="surface-card card compact-card">
-          <div class="card-head">
-            <h3>{card.name}</h3>
-            {card.status && <span class="status">{card.status}</span>}
-          </div>
-          <p class="card-description">{card.description}</p>
-          <div class="card-footer">
-            <div class="links">
-              <a href={card.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub for ${card.name}`}>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/></svg>
-                GitHub
-              </a>
-              {hasLink(card.external) && (
-                <a href={card.external} target="_blank" rel="noopener noreferrer" aria-label={`External site for ${card.name}`}>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3z"/><path d="M19 19H5V5h6V3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-6h-2v6z"/></svg>
-                  Open
-                </a>
-              )}
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="container reveal" data-delay="3">
-    <h2 class="section-title">Websites</h2>
-    <div class="grid compact">
-      {websiteCards.map((card) => (
-        <article class="surface-card card compact-card">
+    <h2 class="section-title">Windows Apps</h2>
+    <div class="grid">
+      {productCards.map((card) => (
+        <article class="surface-card card">
           <div class="card-head">
             <h3>{card.name}</h3>
             {card.status && <span class="status">{card.status}</span>}
@@ -368,7 +494,6 @@ const hasLink = (url) => Boolean(url && url !== "#");
                 </a>
               )}
             </div>
-            {card.wizardSeries && <p class="wizard-tag">Part of Wizard Series</p>}
           </div>
         </article>
       ))}
@@ -438,7 +563,7 @@ const hasLink = (url) => Boolean(url && url !== "#");
     color: var(--accent-2);
   }
 
-  .wizard-tag {
+  .series-tag {
     font-size: 0.68rem;
     color: color-mix(in srgb, var(--wizard) 80%, white);
     border: 1px solid color-mix(in srgb, var(--wizard) 55%, var(--line));
