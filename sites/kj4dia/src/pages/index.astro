@@ -189,10 +189,11 @@ const links = {
 </Layout>
 
 <style>
+  /* Mobile-first (DEV-STANDARDS §3): 1 col base; hero splits on desktop. */
   .hero {
     padding: var(--space-16) 0 var(--space-12);
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    grid-template-columns: 1fr;
     gap: var(--space-8);
     align-items: start;
   }
@@ -225,7 +226,7 @@ const links = {
 
   .board {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-8);
   }
 
@@ -271,15 +272,15 @@ const links = {
     color: var(--accent);
   }
 
-  @media (max-width: 900px) {
-    .hero {
-      grid-template-columns: 1fr;
+  @media (min-width: 680px) {
+    .board {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  @media (max-width: 700px) {
-    .board {
-      grid-template-columns: 1fr;
+  @media (min-width: 980px) {
+    .hero {
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
     }
   }
 </style>
