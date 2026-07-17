@@ -1,0 +1,14 @@
+{
+  "name": "Michal Ferber Blog",
+  "short_name": "MF Blog",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0d1118",
+  "background_color": "#0d1118",
+  "display": "browser"
+}

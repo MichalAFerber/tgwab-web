@@ -1,0 +1,4 @@
+# techguywithabeard.com does not sell programmatic advertising inventory.
+# There are no authorized sellers of this site's inventory; any listing
+# claiming otherwise is spoofed. This file exists to make that machine-readable.
+contact=mailto:michal@techguywithabeard.com

@@ -1,0 +1,21 @@
+# Michal Ferber Dev
+
+> Michal Ferber's product portfolio: Chrome extensions, websites, scripts, and apps. Static Astro site, part of a five-site network.
+
+## Pages
+
+- [About](https://michalferber.dev/about/)
+- [Contact](https://michalferber.dev/contact/)
+- [Privacy Policy](https://michalferber.dev/privacy-policy/)
+- [Terms of Use](https://michalferber.dev/terms-of-use/)
+
+## Source
+
+- [GitHub repository](https://github.com/MichalAFerber/tgwab-web)
+
+## Network
+
+- [Services — techguywithabeard.com](https://techguywithabeard.com/)
+- [Blog — michalferber.me](https://michalferber.me/)
+- [Amateur radio — kj4dia.me](https://kj4dia.me/)
+- [Family archive — ferber.me](https://ferber.me/)

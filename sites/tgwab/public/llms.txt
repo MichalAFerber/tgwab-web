@@ -1,0 +1,21 @@
+# TechGuyWithABeard
+
+> Professional IT services by Michal Ferber (TechGuyWithABeard): migrations, DNS repair, and client website work. Static Astro site, part of a five-site network.
+
+## Pages
+
+- [About](https://techguywithabeard.com/about/)
+- [Contact](https://techguywithabeard.com/contact/)
+- [Privacy Policy](https://techguywithabeard.com/privacy-policy/)
+- [Terms of Use](https://techguywithabeard.com/terms-of-use/)
+
+## Source
+
+- [GitHub repository](https://github.com/MichalAFerber/tgwab-web)
+
+## Network
+
+- [Blog — michalferber.me](https://michalferber.me/)
+- [Products — michalferber.dev](https://michalferber.dev/)
+- [Amateur radio — kj4dia.me](https://kj4dia.me/)
+- [Family archive — ferber.me](https://ferber.me/)

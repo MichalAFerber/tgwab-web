@@ -1,0 +1,14 @@
+{
+  "name": "Michal Ferber Dev",
+  "short_name": "MF Dev",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0b1017",
+  "background_color": "#0b1017",
+  "display": "browser"
+}

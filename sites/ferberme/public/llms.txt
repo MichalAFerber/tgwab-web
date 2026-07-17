@@ -1,0 +1,21 @@
+# Ferber Family
+
+> Ferber family history, photos, and documents. Static Astro site, part of a five-site network.
+
+## Pages
+
+- [About](https://ferber.me/about/)
+- [Contact](https://ferber.me/contact/)
+- [Privacy Policy](https://ferber.me/privacy-policy/)
+- [Terms of Use](https://ferber.me/terms-of-use/)
+
+## Source
+
+- [GitHub repository](https://github.com/MichalAFerber/tgwab-web)
+
+## Network
+
+- [Services — techguywithabeard.com](https://techguywithabeard.com/)
+- [Blog — michalferber.me](https://michalferber.me/)
+- [Products — michalferber.dev](https://michalferber.dev/)
+- [Amateur radio — kj4dia.me](https://kj4dia.me/)

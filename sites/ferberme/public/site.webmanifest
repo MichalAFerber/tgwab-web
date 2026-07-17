@@ -1,0 +1,14 @@
+{
+  "name": "Ferber Family",
+  "short_name": "Ferber.me",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#101510",
+  "background_color": "#101510",
+  "display": "browser"
+}
