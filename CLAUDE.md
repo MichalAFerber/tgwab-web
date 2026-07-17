@@ -48,6 +48,13 @@ tgwab-web/
 Reference/architecture docs (scope, domain map, phase plans) live in the Obsidian Intranet
 at `Websites/_tgwab-web/`, kept out of the public repo.
 
+## Standards
+
+New work follows the **TGWAB Dev Standards** doc (Obsidian: `DEV-STANDARDS.md`). This repo
+predates it and grandfathers three items: vanilla CSS (no Tailwind), Fraunces as the display
+face, and dark-only themes — full list with justifications in README.md ("Standards &
+deviations"). Don't "fix" grandfathered items; do follow the standard for anything new.
+
 ## Conventions
 
 - **Package names:** `@tgwab/<name>`. Workspace deps use `"workspace:*"`.

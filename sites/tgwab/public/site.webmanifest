@@ -1,0 +1,14 @@
+{
+  "name": "TechGuyWithABeard",
+  "short_name": "TGWAB",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0d0e12",
+  "background_color": "#0d0e12",
+  "display": "browser"
+}

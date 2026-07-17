@@ -77,6 +77,38 @@ pnpm migrate        # run blog migration script
 
 See [`CLAUDE.md`](CLAUDE.md) for the full set of project rules.
 
+## Standards & deviations
+
+New work follows the house **TGWAB Dev Standards** (kept in the Obsidian Intranet,
+`DEV-STANDARDS.md`). This monorepo predates the standard and grandfathers the following,
+per its one-line-justification rule:
+
+- **Vanilla CSS instead of Tailwind** — the five sites share a token-based design system
+  (`@tgwab/design-tokens`); migrating shipped sites buys nothing.
+- **Fraunces as the display face instead of JetBrains Mono** — the serif display is the
+  network's established brand identity (JetBrains Mono is used for code and accents).
+- **Dark-only themes** — no light palettes exist; `<meta name="color-scheme" content="dark">`
+  is declared so UA chrome renders correctly.
+- **Runtime third-party scripts** — Plausible (standing exception, self-hosted instance) and
+  the Cal.com embed (booking genuinely requires the vendor script).
+
+Everything else tracks the standard: self-hosted woff2 fonts, full SEO/OG kit with per-site
+`og.png`, plumbing files (`robots.txt`, `sitemap-index.xml`, `ads.txt`, `llms.txt`,
+`.well-known/security.txt`, `site.webmanifest`, `404`), and CI.
+
+## Credits
+
+| Component | Version | License |
+|---|---|---|
+| [Astro](https://astro.build) | 5.x | MIT |
+| [Pagefind](https://pagefind.app) | 1.x | MIT |
+| [Fraunces](https://github.com/undercasetype/Fraunces) — vendored woff2 | latest Bunny build | SIL OFL 1.1 |
+| [Manrope](https://github.com/sharanda/manrope) — vendored woff2 | latest Bunny build | SIL OFL 1.1 |
+| [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) — vendored woff2 | latest Bunny build | SIL OFL 1.1 |
+| Buy Me a Coffee button — self-hosted image | v2 | BMC brand asset |
+| [Plausible](https://plausible.io) — script from self-hosted instance | — | AGPL-3.0 |
+| [Cal.com](https://cal.com) embed — runtime, `app.cal.com` | — | AGPL-3.0 |
+
 ## Docs
 
 Architecture, domain map, content workflow, and phase plans live in the Obsidian Intranet at

@@ -47,6 +47,18 @@ const siteName =
         : site === "kj4dia"
           ? "KJ4dia.me"
           : "Ferber.me";
+
+// Mirrors each theme's --bg in @tgwab/design-tokens/tokens.css (for <meta name="theme-color">).
+const themeColor =
+  site === "ferber"
+    ? "#0d1118"
+    : site === "tgwab"
+      ? "#0d0e12"
+      : site === "dev"
+        ? "#0b1017"
+        : site === "kj4dia"
+          ? "#130d1e"
+          : "#101510";
 ---
 
 <!doctype html>
@@ -58,6 +70,7 @@ const siteName =
       ogImage={ogImage}
       canonical={canonical}
       siteName={siteName}
+      themeColor={themeColor}
       noindex={noindex}
     />
   </head>

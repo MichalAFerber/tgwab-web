@@ -1,0 +1,21 @@
+# Michal Ferber Blog
+
+> Michal Ferber's blog: notes on building, operating, and shipping projects. Static Astro site, part of a five-site network.
+
+## Pages
+
+- [About](https://michalferber.me/about/)
+- [Contact](https://michalferber.me/contact/)
+- [Privacy Policy](https://michalferber.me/privacy-policy/)
+- [Terms of Use](https://michalferber.me/terms-of-use/)
+
+## Source
+
+- [GitHub repository](https://github.com/MichalAFerber/tgwab-web)
+
+## Network
+
+- [Services — techguywithabeard.com](https://techguywithabeard.com/)
+- [Products — michalferber.dev](https://michalferber.dev/)
+- [Amateur radio — kj4dia.me](https://kj4dia.me/)
+- [Family archive — ferber.me](https://ferber.me/)

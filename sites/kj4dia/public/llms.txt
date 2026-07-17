@@ -1,0 +1,21 @@
+# KJ4DIA
+
+> KJ4DIA amateur radio page: projects, operating notes, and station updates by Michal Ferber. Static Astro site, part of a five-site network.
+
+## Pages
+
+- [About](https://kj4dia.me/about/)
+- [Contact](https://kj4dia.me/contact/)
+- [Privacy Policy](https://kj4dia.me/privacy-policy/)
+- [Terms of Use](https://kj4dia.me/terms-of-use/)
+
+## Source
+
+- [GitHub repository](https://github.com/MichalAFerber/tgwab-web)
+
+## Network
+
+- [Services — techguywithabeard.com](https://techguywithabeard.com/)
+- [Blog — michalferber.me](https://michalferber.me/)
+- [Products — michalferber.dev](https://michalferber.dev/)
+- [Family archive — ferber.me](https://ferber.me/)
