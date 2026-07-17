@@ -81,10 +81,11 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
     max-width: 62ch;
   }
 
+  /* Mobile-first (DEV-STANDARDS §3): 1 col base, 2 cols from the tablet tier. */
   .grid {
     display: grid;
     gap: var(--space-8);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .card {
@@ -151,9 +152,9 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
     border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
   }
 
-  @media (max-width: 700px) {
+  @media (min-width: 680px) {
     .grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>

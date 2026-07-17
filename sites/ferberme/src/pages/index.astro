@@ -50,10 +50,11 @@ import Layout from "@tgwab/ui/Layout.astro";
 </Layout>
 
 <style>
+  /* Mobile-first (DEV-STANDARDS §3): 1 col base; hero splits on desktop. */
   .hero {
     padding: var(--space-16) 0 var(--space-12);
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    grid-template-columns: 1fr;
     gap: var(--space-8);
     align-items: start;
   }
@@ -82,7 +83,7 @@ import Layout from "@tgwab/ui/Layout.astro";
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-8);
   }
 
@@ -109,10 +110,15 @@ import Layout from "@tgwab/ui/Layout.astro";
     border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
   }
 
-  @media (max-width: 900px) {
-    .hero,
+  @media (min-width: 680px) {
     .grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 980px) {
+    .hero {
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
     }
   }
 </style>
