@@ -528,14 +528,12 @@ const hasLink = (url) => Boolean(url && url !== "#");
     margin-bottom: var(--space-8);
   }
 
-  .grid {
+  /* Mobile-first (DEV-STANDARDS §3): 1 col base, 2 cols from the tablet tier. */
+  .grid,
+  .grid.compact {
     display: grid;
     gap: var(--space-8);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .grid.compact {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .card {
@@ -618,10 +616,10 @@ const hasLink = (url) => Boolean(url && url !== "#");
     fill: currentColor;
   }
 
-  @media (max-width: 700px) {
+  @media (min-width: 680px) {
     .grid,
     .grid.compact {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>

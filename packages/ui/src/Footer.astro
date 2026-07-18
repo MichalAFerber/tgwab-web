@@ -183,40 +183,60 @@ const socialLinks = [
     gap: var(--space-3);
   }
 
+  /* Mobile-first (DEV-STANDARDS §3): base = stacked rows, left-aligned;
+     ≥980px = right-hand columns; ≥1400px = roomier column gap. */
   .tgwab-footer__right {
-    margin-left: auto;
+    width: 100%;
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
-    gap: calc(var(--space-12) + var(--space-2));
+    grid-auto-flow: row;
+    gap: var(--space-8);
     align-items: flex-start;
-  }
-
-  @media (max-width: 1200px) {
-    .tgwab-footer__right {
-      gap: var(--space-8);
-    }
   }
 
   .tgwab-footer__local-links {
     display: grid;
     gap: var(--space-2);
-    align-items: flex-end;
-    justify-items: end;
+    align-items: flex-start;
+    justify-items: start;
   }
 
   .tgwab-footer__social {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   .tgwab-footer__domains {
     display: grid;
     gap: var(--space-2);
-    align-items: flex-end;
-    justify-items: end;
+    align-items: flex-start;
+    justify-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .tgwab-footer__right {
+      width: auto;
+      margin-left: auto;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+    }
+
+    .tgwab-footer__local-links,
+    .tgwab-footer__domains {
+      align-items: flex-end;
+      justify-items: end;
+    }
+
+    .tgwab-footer__social {
+      align-items: flex-end;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .tgwab-footer__right {
+      gap: calc(var(--space-12) + var(--space-2));
+    }
   }
 
   .domain-pill {
@@ -288,19 +308,10 @@ const socialLinks = [
     display: block;
   }
 
-  @media (max-width: 900px) {
-    .tgwab-footer__right {
-      width: 100%;
-      grid-auto-flow: row;
-      grid-auto-columns: unset;
-      margin-left: 0;
-    }
-
-    .tgwab-footer__local-links,
-    .tgwab-footer__domains,
-    .tgwab-footer__social {
-      align-items: flex-start;
-      justify-items: start;
+  /* Touch targets ≥40px (DEV-STANDARDS §3/§14). */
+  @media (pointer: coarse) {
+    .domain-pill {
+      min-height: 40px;
     }
   }
 </style>

@@ -108,10 +108,23 @@ const photos = [
     max-width: 56ch;
   }
 
+  /* Mobile-first (DEV-STANDARDS §3): 1 col base, 2 cols tablet, 4 cols desktop. */
   .gallery {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-4);
+  }
+
+  @media (min-width: 680px) {
+    .gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 980px) {
+    .gallery {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 
   .gallery-item {
@@ -155,20 +168,31 @@ const photos = [
     background: rgb(0 0 0 / 0.8);
   }
 
+  /* Mobile-first: single-column lightbox base; side arrows return ≥680px. */
   .lightbox-panel {
     position: relative;
     width: min(1100px, calc(100vw - 2rem));
     margin: 1rem auto;
-    min-height: calc(100vh - 2rem);
+    min-height: calc(100dvh - 2rem);
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding-top: 3rem;
     align-items: center;
     gap: var(--space-4);
   }
 
+  @media (min-width: 680px) {
+    .lightbox-panel {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      justify-items: stretch;
+      padding-top: 0;
+    }
+  }
+
   .lightbox-image {
     width: 100%;
-    max-height: calc(100vh - 6rem);
+    max-height: calc(100dvh - 6rem);
     object-fit: contain;
     border-radius: var(--radius);
   }
@@ -203,21 +227,4 @@ const photos = [
     border: 1px solid var(--line);
   }
 
-  @media (max-width: 900px) {
-    .gallery {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 640px) {
-    .gallery {
-      grid-template-columns: 1fr;
-    }
-
-    .lightbox-panel {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      padding-top: 3rem;
-    }
-  }
 </style>
