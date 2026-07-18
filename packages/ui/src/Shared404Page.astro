@@ -16,7 +16,19 @@ const homeBySite = {
 };
 ---
 
-<Layout site={site} title="404 — Page not found" description="This page can't be found." noindex>
+{/*
+  noCanonical: this page is served under *every* unknown URL, so a canonical
+  (which would always point at /404/) makes Google file those URLs as "Alternate
+  page with proper canonical tag" instead of "Not found (404)". A 404 response
+  must carry no canonical — the status is the signal.
+*/}
+<Layout
+  site={site}
+  title="404 — Page not found"
+  description="This page can't be found."
+  noindex
+  noCanonical
+>
   <section class="container reveal page-404">
     <p class="eyebrow">404</p>
     <h1>This page can't be found.</h1>
