@@ -34,23 +34,76 @@ const titleBySite = {
     <h1>Contact</h1>
     <p>Share what you need, your timeline, and what a successful outcome looks like.</p>
 
-    <form class="surface-card form" method="post" name="project-intake">
+    <form class="surface-card form" method="post" name="project-intake" data-contact-form>
       <label>
         Name
-        <input name="name" type="text" required />
+        <input name="name" type="text" required maxlength="100" />
       </label>
       <label>
         Email
-        <input name="email" type="email" required />
+        <input name="email" type="email" required maxlength="254" />
       </label>
       <label>
         How can I help?
-        <textarea name="details" rows="6" required></textarea>
+        <textarea name="details" rows="6" required maxlength="5000"></textarea>
       </label>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAD3bPmOVGyxEoZLn"></div>
       <button type="submit">Send inquiry</button>
+      <p class="form-status" data-status role="status" aria-live="polite"></p>
     </form>
   </section>
 </Layout>
+
+<script
+  is:inline
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer></script>
+
+<script>
+  // Submits to the shared mailer worker (herald platform). Server side does the
+  // real gates — Turnstile siteverify, Origin allowlist, validation — this is
+  // just transport + feedback.
+  const form = document.querySelector("[data-contact-form]") as HTMLFormElement;
+  const status = document.querySelector("[data-status]") as HTMLElement;
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const button = form.querySelector("button") as HTMLButtonElement;
+    const data = new FormData(form);
+    const turnstileToken = data.get("cf-turnstile-response");
+    if (!turnstileToken) {
+      status.textContent = "Please complete the verification and try again.";
+      return;
+    }
+    button.disabled = true;
+    status.textContent = "Sending…";
+    try {
+      const res = await fetch("https://mailer.thompsonblack.us/contact/tgwab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("details"),
+          turnstileToken,
+        }),
+      });
+      if (res.ok) {
+        form.reset();
+        // @ts-expect-error Turnstile global is injected by its script tag.
+        window.turnstile?.reset();
+        status.textContent = "Sent — I read every message and reply by email.";
+      } else {
+        const body = await res.json().catch(() => ({ error: "request failed" }));
+        status.textContent = `Could not send (${body.error ?? res.status}). Email michal@techguywithabeard.com instead.`;
+        button.disabled = false;
+      }
+    } catch {
+      status.textContent = "Network error — email michal@techguywithabeard.com instead.";
+      button.disabled = false;
+    }
+  });
+</script>
 
 <style>
   .contact {
@@ -93,5 +146,17 @@ const titleBySite = {
     font-weight: 700;
     padding: 0.66rem 1.1rem;
     cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .form-status {
+    margin: 0;
+    min-height: 1.4em;
+    color: var(--ink-soft);
+    font-size: var(--step--1);
   }
 </style>
