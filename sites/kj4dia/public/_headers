@@ -9,7 +9,7 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline' https://plausible.thompsonblack.us https://app.cal.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://app.cal.com; font-src 'self' data:; connect-src 'self' https://plausible.thompsonblack.us https://mailer.thompsonblack.us https://app.cal.com; frame-src https://app.cal.com; media-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://plausible.thompsonblack.us https://app.cal.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://app.cal.com; font-src 'self' data:; connect-src 'self' https://plausible.thompsonblack.us https://mailer.thompsonblack.us https://app.cal.com; frame-src https://challenges.cloudflare.com https://app.cal.com; media-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
   ! Access-Control-Allow-Origin
 
 # Multisite search: the sister sites fetch this site's Pagefind index —

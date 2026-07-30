@@ -8,8 +8,8 @@ const { site } = Astro.props;
 const localLinks = [
   { href: "/about/", label: "About", kind: "about" },
   { href: "/contact/", label: "Contact", kind: "contact" },
-  { href: "/privacy-policy/", label: "Privacy Policy", kind: "privacy" },
-  { href: "/terms-of-use/", label: "Terms of Use", kind: "terms" },
+  { href: "/privacy-policy/", label: "Privacy", kind: "privacy" },
+  { href: "/terms-of-use/", label: "Terms", kind: "terms" },
 ];
 
 const domainLinks = [
@@ -80,7 +80,8 @@ const socialLinks = [
           </svg>
         </a>
       </nav>
-      <span>© {new Date().getFullYear()} Michal Ferber</span>
+      <span>© {new Date().getFullYear()} Michal Ferber
+      <p class="tgwab-footer__email">michal@techguywithabeard.com</p></span>
     </div>
     <div class="tgwab-footer__right">
       <nav class="tgwab-footer__social" aria-label="Social links">
@@ -313,5 +314,10 @@ const socialLinks = [
     .domain-pill {
       min-height: 40px;
     }
+  }
+  .tgwab-footer__email {
+    margin: var(--space-1) 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-faint);
   }
 </style>

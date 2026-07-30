@@ -12,7 +12,7 @@
   --warning: #d8aa4f;
   --wizard: #7c5cbf;
 
-  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-display: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
   --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
@@ -103,4 +103,153 @@
   --line: #364536;
   --accent: #c9a14a;
   --accent-2: #7cc08a;
+}
+
+/* ------------------------------------------------------------------ */
+/* Light mode (DEV-STANDARDS §1): system preference by default, the    */
+/* header toggle stamps data-theme on <html> and must win both ways.   */
+/* Palettes are per-site relatives of the dark sets above.             */
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface-raised: #f1efe8;
+    --ink: #23252d;
+    --ink-soft: #565d70;
+    --ink-faint: #82879a;
+    --line: #e2dfd6;
+    --accent: #c24d15;
+    --accent-2: #2563c4;
+    --success: #237a58;
+    --warning: #96701b;
+    --wizard: #6647a8;
+    --shadow-soft: 0 8px 30px rgb(28 30 52 / 0.10);
+    --shadow-glow: 0 0 0 1px rgb(20 22 40 / 0.06), 0 18px 40px rgb(28 30 52 / 0.12);
+  }
+  html:not([data-theme="dark"]) body.theme-ferber {
+    --bg: #f6fafd;
+    --surface: #ffffff;
+    --surface-raised: #e9f1f8;
+    --ink: #17222f;
+    --ink-soft: #4a5c74;
+    --ink-faint: #78889e;
+    --line: #dbe4ee;
+    --accent: #1667b8;
+    --accent-2: #a36112;
+  }
+  html:not([data-theme="dark"]) body.theme-tgwab {
+    --bg: #faf7f1;
+    --surface: #ffffff;
+    --surface-raised: #f2ebe0;
+    --ink: #2a241d;
+    --ink-soft: #655c4f;
+    --ink-faint: #948b7f;
+    --line: #e6ddd0;
+    --accent: #bc4f14;
+    --accent-2: #1a63b8;
+  }
+  html:not([data-theme="dark"]) body.theme-dev {
+    --bg: #f3faf7;
+    --surface: #ffffff;
+    --surface-raised: #e6f1ec;
+    --ink: #122520;
+    --ink-soft: #43605a;
+    --ink-faint: #748c86;
+    --line: #d6e4df;
+    --accent: #0c7d5c;
+    --accent-2: #1a63bd;
+  }
+  html:not([data-theme="dark"]) body.theme-kj4dia {
+    --bg: #f9f7fd;
+    --surface: #ffffff;
+    --surface-raised: #efe9f8;
+    --ink: #241b36;
+    --ink-soft: #584d75;
+    --ink-faint: #8a81a4;
+    --line: #e2dbee;
+    --accent: #6240bd;
+    --accent-2: #1a63bd;
+  }
+  html:not([data-theme="dark"]) body.theme-ferberme {
+    --bg: #f8faf4;
+    --surface: #ffffff;
+    --surface-raised: #edf2e6;
+    --ink: #232a20;
+    --ink-soft: #576450;
+    --ink-faint: #87917b;
+    --line: #dfe6d5;
+    --accent: #8c6a1c;
+    --accent-2: #33794a;
+  }
+}
+html[data-theme="light"] {
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --surface-raised: #f1efe8;
+  --ink: #23252d;
+  --ink-soft: #565d70;
+  --ink-faint: #82879a;
+  --line: #e2dfd6;
+  --accent: #c24d15;
+  --accent-2: #2563c4;
+  --success: #237a58;
+  --warning: #96701b;
+  --wizard: #6647a8;
+  --shadow-soft: 0 8px 30px rgb(28 30 52 / 0.10);
+  --shadow-glow: 0 0 0 1px rgb(20 22 40 / 0.06), 0 18px 40px rgb(28 30 52 / 0.12);
+}
+html[data-theme="light"] body.theme-ferber {
+  --bg: #f6fafd;
+  --surface: #ffffff;
+  --surface-raised: #e9f1f8;
+  --ink: #17222f;
+  --ink-soft: #4a5c74;
+  --ink-faint: #78889e;
+  --line: #dbe4ee;
+  --accent: #1667b8;
+  --accent-2: #a36112;
+}
+html[data-theme="light"] body.theme-tgwab {
+  --bg: #faf7f1;
+  --surface: #ffffff;
+  --surface-raised: #f2ebe0;
+  --ink: #2a241d;
+  --ink-soft: #655c4f;
+  --ink-faint: #948b7f;
+  --line: #e6ddd0;
+  --accent: #bc4f14;
+  --accent-2: #1a63b8;
+}
+html[data-theme="light"] body.theme-dev {
+  --bg: #f3faf7;
+  --surface: #ffffff;
+  --surface-raised: #e6f1ec;
+  --ink: #122520;
+  --ink-soft: #43605a;
+  --ink-faint: #748c86;
+  --line: #d6e4df;
+  --accent: #0c7d5c;
+  --accent-2: #1a63bd;
+}
+html[data-theme="light"] body.theme-kj4dia {
+  --bg: #f9f7fd;
+  --surface: #ffffff;
+  --surface-raised: #efe9f8;
+  --ink: #241b36;
+  --ink-soft: #584d75;
+  --ink-faint: #8a81a4;
+  --line: #e2dbee;
+  --accent: #6240bd;
+  --accent-2: #1a63bd;
+}
+html[data-theme="light"] body.theme-ferberme {
+  --bg: #f8faf4;
+  --surface: #ffffff;
+  --surface-raised: #edf2e6;
+  --ink: #232a20;
+  --ink-soft: #576450;
+  --ink-faint: #87917b;
+  --line: #dfe6d5;
+  --accent: #8c6a1c;
+  --accent-2: #33794a;
 }

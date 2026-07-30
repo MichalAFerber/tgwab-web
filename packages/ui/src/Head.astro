@@ -30,8 +30,8 @@ const ogImageURL = new URL(ogImage || "/og.png", Astro.site ?? Astro.url).href;
 
 // Plausible (self-hosted, privacy-respecting — no Google Analytics, per CLAUDE.md).
 // data-domain comes from each site's astro.config `site`, so the five domains report
-// separately. Alias/mirror hosts (tgwab.us, michalferber.com/.net/.org/.us) serve the
-// same build and therefore report under their canonical domain.
+// separately. tgwab.us (the one remaining alias host) reports under its canonical
+// domain; the retired michalferber.com/.net/.org/.us mirrors 301 at the edge (§11).
 const plausibleDomain = Astro.site?.hostname;
 ---
 
@@ -41,7 +41,17 @@ const plausibleDomain = Astro.site?.hostname;
 <meta name="description" content={description} />
 {!noCanonical && <link rel="canonical" href={canonicalURL} />}
 {noindex && <meta name="robots" content="noindex, follow" />}
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="light dark" />
+<script is:inline>
+  // Pre-paint theme restore: the header toggle persists an explicit choice;
+  // without one, prefers-color-scheme rules in tokens.css decide (§1).
+  (() => {
+    try {
+      const t = localStorage.getItem("tgwab-theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch {}
+  })();
+</script>
 {themeColor && <meta name="theme-color" content={themeColor} />}
 
 <meta property="og:type" content="website" />
