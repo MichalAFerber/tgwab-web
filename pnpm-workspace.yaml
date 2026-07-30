@@ -1,3 +1,24 @@
 packages:
   - "packages/*"
   - "sites/*"
+
+# §15: pin vulnerable transitives to their patched floors. js-yaml is pinned
+# BELOW its patch: 4.3 breaks Astro 5's ESM default import (advisory ignored
+# below, resolved by the Astro 6 migration).
+overrides:
+  sharp: ">=0.35.0"
+  postcss: ">=8.5.18"
+  devalue: ">=5.8.1"
+  vite: ">=6.4.3"
+  svgo: ">=4.0.2"
+  js-yaml: "<4.3.0"
+# §15 deviation (see README): resolvable only by the Astro 6 migration.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-8hv8-536x-4wqp # astro reflected XSS — patched only in Astro 6
+    - GHSA-2pvr-wf23-7pc7 # astro SSRF — patched only in Astro 6
+    - GHSA-52cp-r559-cp3m # js-yaml — its patch breaks Astro 5's ESM import
+# pnpm 11 blocks postinstall scripts by default; these two are required builders.
+allowBuilds:
+  esbuild: true
+  sharp: true

@@ -4,7 +4,7 @@ Multi-site [Astro 5](https://astro.build) monorepo for the **TechGuyWithABeard**
 Five standalone per-domain sites share one design system — common tokens, nav, and footer — so the
 whole portfolio reads as a single brand even though each property ships on its own domain.
 
-> Solo project by [Michal Ferber](https://techguywithabeard.com).
+> Solo project by [Michal Ferber](https://techguywithabeard.com). **Class A — open source, MIT** (§10).
 ## Stack
 
 - **[Astro 5](https://astro.build)** (static output) with Content Collections for typed blog + product data
@@ -77,24 +77,22 @@ pnpm migrate        # run blog migration script
 
 See [`CLAUDE.md`](CLAUDE.md) for the full set of project rules.
 
-## Standards & deviations
+## Standards
 
-New work follows the house **TGWAB Dev Standards** (kept in the Obsidian Intranet,
-`DEV-STANDARDS.md`). This monorepo predates the standard and grandfathers the following,
-per its one-line-justification rule:
+Built to the TGWAB Dev Standards **v2.10.1** (internal).
 
-- **Vanilla CSS instead of Tailwind** — the five sites share a token-based design system
-  (`@tgwab/design-tokens`); migrating shipped sites buys nothing.
-- **Fraunces as the display face instead of JetBrains Mono** — the serif display is the
-  network's established brand identity (JetBrains Mono is used for code and accents).
-- **Dark-only themes** — no light palettes exist; `<meta name="color-scheme" content="dark">`
-  is declared so UA chrome renders correctly.
-- **Runtime third-party scripts** — Plausible (standing exception, self-hosted instance) and
-  the Cal.com embed (booking genuinely requires the vendor script).
+## Deviations
+
+- §2 — Tailwind stack default — the five shipped sites share a token-based vanilla-CSS design system (`@tgwab/design-tokens`); migrating buys nothing — 2026-07-30 — permanent
+- §1 — JetBrains Mono display headings — Fraunces serif is the network's established brand identity; JetBrains Mono is used for code and accents — 2026-07-30 — permanent
+- §1/§14 — dual themes with toggle — dark-only palettes; `color-scheme: dark` declared so UA chrome renders correctly — 2026-07-30 — review 2026-12-01
+- §2 — no runtime CDNs — the Cal.com booking embed genuinely requires the vendor script; scoped in CSP to `app.cal.com` — 2026-07-30 — permanent
+- §15 — audit gate at `--audit-level=high` — two `astro` advisories (GHSA-8hv8-536x-4wqp, GHSA-2pvr-wf23-7pc7) and `js-yaml` GHSA-52cp-r559-cp3m (its patched 4.3 breaks Astro 5's ESM default import, so it is pinned <4.3) are resolvable only by the Astro 6 migration; ignored via `pnpm.auditConfig` — 2026-07-30 — review 2026-09-01
+- §12 — no wildcard `Access-Control-Allow-Origin` — `/pagefind/*` deliberately re-adds it so the sister sites' multisite search can fetch each index; scoped to that path only — 2026-07-30 — permanent
 
 Everything else tracks the standard: self-hosted woff2 fonts, full SEO/OG kit with per-site
 `og.png`, plumbing files (`robots.txt`, `sitemap-index.xml`, `ads.txt`, `llms.txt`,
-`.well-known/security.txt`, `site.webmanifest`, `404`), and CI.
+`.well-known/security.txt`, `site.webmanifest`, `404`), §12 headers, and gated CI.
 
 ## Credits
 

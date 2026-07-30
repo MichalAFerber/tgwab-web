@@ -27,7 +27,7 @@ even though each ships on its own domain.
 - **pnpm workspaces** — packages share via `workspace:*`
 - **Vanilla CSS** with custom properties. No Tailwind, no CSS-in-JS.
 - **Cloudflare Pages** for deploy. Cloudflare DNS/Registrar already handles all domains.
-- **Node 20** (see `.nvmrc`)
+- **Node 22** (active LTS — see `.nvmrc`; 20 went EOL 2026-04)
 
 ## Structure
 

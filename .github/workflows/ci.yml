@@ -1,25 +1,61 @@
-name: CI
+# §15: gates + build on every PR. Production deploy on merge is Cloudflare
+# Pages' git integration — the single §4 deploy path; this job gates the merge.
+#
+# The job is named `ci` because ruleset-main.json requires the status-check
+# context "ci" (§4). Rename one and you MUST rename both, or merges block.
+# Known gap, tracked: no Playwright harness yet (§15) — the CSP was verified
+# against a local headless run before landing; a committed harness is follow-up.
+
+name: ci
 
 on:
   pull_request:
   push:
     branches: [main]
 
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  build:
+  ci:                                   # job name == the required status-check context
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       # pnpm version comes from "packageManager" in package.json
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 20
+          node-version-file: .nvmrc     # never a hardcoded node-version: (§15)
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
 
       # Builds all five sites (each site's build also generates its Pagefind index).
       - run: pnpm build
+
+      # §2 gate: built output must be free of runtime code generation.
+      - name: No eval in built output
+        run: |
+          set -euo pipefail
+          for d in sites/*/dist; do ./scripts/no-eval.sh "$d"; done
+
+      # §1 gate: no mailto: in built output except security.txt.
+      - name: No mailto in built output
+        run: |
+          set -euo pipefail
+          hits="$(grep -rn 'mailto:' sites/*/dist | grep -v '/\.well-known/security\.txt:' || true)"
+          if [ -n "$hits" ]; then echo "::error::mailto: link in built output (§1)"; echo "$hits"; exit 1; fi
+
+      # Production tree only — a dev-tree advisory never reaches a user (§15).
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level=high

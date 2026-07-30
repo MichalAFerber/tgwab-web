@@ -18,5 +18,5 @@
     "migrate:blog": "node scripts/migrate-blog.mjs",
     "migrate": "pnpm migrate:blog"
   },
-  "packageManager": "pnpm@9.0.0"
+  "packageManager": "pnpm@11.14.0"
 }
