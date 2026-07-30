@@ -54,6 +54,9 @@ const titleBySite = {
       <div class="cf-turnstile" data-sitekey="0x4AAAAAAD5MeaGLtwlOoiYM"></div>
       <button type="submit">Send inquiry</button>
       <p class="form-status" data-status role="status" aria-live="polite"></p>
+      <p class="form-status form-status--fallback" data-status-fallback hidden>
+        Or email michal@techguywithabeard.com and I'll reply from there.
+      </p>
     </form>
   </section>
 </Layout>
@@ -100,11 +103,13 @@ const titleBySite = {
         status.textContent = "Sent — I read every message and reply by email.";
       } else {
         const body = await res.json().catch(() => ({ error: "request failed" }));
-        status.textContent = `Could not send (${body.error ?? res.status}). Email michal@techguywithabeard.com instead.`;
+        status.textContent = `Could not send (${body.error ?? res.status}).`;
+        document.querySelector("[data-status-fallback]")?.removeAttribute("hidden");
         button.disabled = false;
       }
     } catch {
-      status.textContent = "Network error — email michal@techguywithabeard.com instead.";
+      status.textContent = "Network error.";
+      document.querySelector("[data-status-fallback]")?.removeAttribute("hidden");
       button.disabled = false;
     }
   });

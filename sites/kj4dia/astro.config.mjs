@@ -4,5 +4,6 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://kj4dia.me",
   build: { format: "directory" },
+  trailingSlash: "always",
   integrations: [sitemap({ filter: (page) => !page.endsWith("/search/") })],
 });

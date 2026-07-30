@@ -77,6 +77,16 @@ const siteLabel =
         </a>
       </li>
     </ul>
+    <button
+      type="button"
+      class="tgwab-theme-toggle"
+      data-theme-toggle
+      aria-label="Toggle dark or light theme"
+      title="Toggle theme"
+    >
+      <svg class="tgwab-theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/></g></svg>
+      <svg class="tgwab-theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.2A8.5 8.5 0 0 1 9.8 3.6a8.5 8.5 0 1 0 10.6 10.6Z" fill="currentColor"/></svg>
+    </button>
   </div>
   <div class="container tgwab-nav__domains" aria-label="Domain switcher">
     {globalLinks.map((link) => (
@@ -237,4 +247,47 @@ const siteLabel =
       min-height: 40px;
     }
   }
+</style>
+
+<script is:inline>
+  (() => {
+    const btn = document.querySelector("[data-theme-toggle]");
+    if (!btn) return;
+    const root = document.documentElement;
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const current = () => root.dataset.theme || (systemDark.matches ? "dark" : "light");
+    btn.addEventListener("click", () => {
+      const next = current() === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try { localStorage.setItem("tgwab-theme", next); } catch {}
+    });
+  })();
+</script>
+
+<style>
+  .tgwab-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-inline-start: var(--space-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .tgwab-theme-toggle:hover { color: var(--accent); }
+  .tgwab-theme-toggle svg { width: 1.1rem; height: 1.1rem; }
+  .tgwab-theme-toggle__sun { display: none; }
+  .tgwab-theme-toggle__moon { display: block; }
+  @media (prefers-color-scheme: light) {
+    html:not([data-theme="dark"]) .tgwab-theme-toggle__sun { display: block; }
+    html:not([data-theme="dark"]) .tgwab-theme-toggle__moon { display: none; }
+  }
+  html[data-theme="light"] .tgwab-theme-toggle__sun { display: block; }
+  html[data-theme="light"] .tgwab-theme-toggle__moon { display: none; }
+  html[data-theme="dark"] .tgwab-theme-toggle__sun { display: none !important; }
+  html[data-theme="dark"] .tgwab-theme-toggle__moon { display: block !important; }
 </style>
