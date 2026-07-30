@@ -14,3 +14,7 @@ docs/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# secrets (§10/§16)
+.dev.vars*
+.env*

@@ -1,3 +1,33 @@
-# Allow the other network sites to fetch this site's Pagefind index (multisite search).
+# Cloudflare Pages Headers — TGWAB DS §12.
+# Strict CSP: Plausible (self-hosted), the house mailer (contact form fetch), and
+# Cal.com (booking embed — recorded §2 deviation) are the only external origins.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline' https://plausible.thompsonblack.us https://app.cal.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://app.cal.com; font-src 'self' data:; connect-src 'self' https://plausible.thompsonblack.us https://mailer.thompsonblack.us https://app.cal.com; frame-src https://app.cal.com; media-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
+  ! Access-Control-Allow-Origin
+
+# Multisite search: the sister sites fetch this site's Pagefind index —
+# a deliberate, recorded §12 deviation scoped to this path only.
 /pagefind/*
   Access-Control-Allow-Origin: *
+
+# Astro content-hashes everything under /_astro — safe to pin forever (§12).
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# pages.dev is never a canonical host (§11).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# RFC 9116 §2.3 (§11).
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8

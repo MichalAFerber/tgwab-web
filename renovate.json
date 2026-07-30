@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "TGWAB dependency updates for pnpm repos — DEV-STANDARDS §15. Place at renovate.json.",
+    "Renovate rather than Dependabot because Dependabot supports pnpm v7-v10 only and opens zero PRs on a pnpm 11 lockfile.",
+    "constraints.pnpm MUST equal the root package.json packageManager pin — without it Renovate's lockfile step can fall back to whatever pnpm@latest resolves to.",
+    "config:best-practices supplies helpers:pinGitHubActionDigests, which is what makes the §15 pin-actions-to-SHA rule sustainable."
+  ],
+  "extends": ["config:best-practices", ":semanticCommits", "schedule:weekly"],
+  "timezone": "America/New_York",
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies"],
+  "constraints": { "pnpm": "11.14.0" },
+  "packageRules": [
+    { "matchManagers": ["github-actions"], "groupName": "github-actions" },
+    { "matchManagers": ["nvm"], "groupName": "toolchain" },
+    { "matchPackageNames": ["node", "pnpm", "npm"], "groupName": "toolchain" },
+    {
+      "matchPackageNames": ["astro", "@astrojs/**", "tailwindcss", "@tailwindcss/**"],
+      "groupName": "astro + tailwind"
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "npm non-major"
+    }
+  ]
+}
