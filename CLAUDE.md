@@ -16,10 +16,11 @@ even though each ships on its own domain.
 - `ferber.me` — Ferber family history / archive (`sites/ferberme`)
 - `kj4dia.me` — ham radio bio (`sites/kj4dia`)
 
-`tgwab.us` is an alias domain on the same Cloudflare Pages project as `techguywithabeard.com`.
-Every other domain 301-redirects at the edge via the account Bulk Redirects list — including michalferber.com/.net/.org/.us → michalferber.me (the old canonical-mirror pattern is retired per DEV-STANDARDS §11).
-`michalferber.com/.net/.org/.us` serve the blog and canonical to `michalferber.me`. See
-`domain-map.md` in the Obsidian Intranet (`Websites/_tgwab-web/`).
+Each canonical domain is its own Cloudflare Pages project, built from `main`. Every other domain
+301-redirects at the edge via the account Bulk Redirects list — `tgwab.us` and `tgwab.dev` to
+`techguywithabeard.com`, `michalferber.com/.net/.org/.us` to `michalferber.me` (the old
+canonical-mirror pattern is retired per DEV-STANDARDS §11). See `docs/domain-map.md` for the
+project-to-domain mapping, per-project build config, and the full redirect table.
 
 ## Stack
 
@@ -45,8 +46,8 @@ tgwab-web/
     └── kj4dia/                 # kj4dia.me — ham radio bio
 ```
 
-Reference/architecture docs (scope, domain map, phase plans) live in the Obsidian Intranet
-at `Websites/_tgwab-web/`, kept out of the public repo.
+The domain map lives in `docs/domain-map.md`. The remaining reference/architecture docs (scope,
+phase plans) live in the Obsidian Intranet at `Websites/_tgwab-web/`, kept out of the public repo.
 
 ## Standards
 
@@ -96,8 +97,9 @@ pnpm build
 ## What to work on
 
 The initial build and blog migration shipped, and the wiki experiment was removed.
-Architecture and phase plans live in the Obsidian Intranet at `Websites/_tgwab-web/`;
-consult them for design decisions, not as an active task list.
+Architecture and phase plans live in the Obsidian Intranet at `Websites/_tgwab-web/`
+(domain routing is in `docs/domain-map.md`); consult them for design decisions, not as an
+active task list.
 
 ## Hard rules
 

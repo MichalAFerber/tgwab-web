@@ -9,8 +9,11 @@ dist
 # Starter archive, not tracked
 TGWAB-Project-Starter.zip
 
-# Internal planning/strategy docs — keep local, out of the public repo
-docs/
+# Internal planning/strategy docs — keep local, out of the public repo.
+# domain-map.md is the exception: every fact in it is observable from the
+# public internet, and README/CLAUDE point at it, so it ships with the repo.
+docs/*
+!docs/domain-map.md
 
 # Claude Code local settings
 .claude/settings.local.json
