@@ -18,3 +18,5 @@ docs/
 # secrets (§10/§16)
 .dev.vars*
 .env*
+test-results/
+playwright-report/
