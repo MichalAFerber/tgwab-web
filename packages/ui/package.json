@@ -20,6 +20,6 @@
     "@tgwab/design-tokens": "workspace:*"
   },
   "peerDependencies": {
-    "astro": "^5.0.0"
+    "astro": "^7.0.0"
   }
 }

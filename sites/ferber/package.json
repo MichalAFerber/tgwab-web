@@ -12,7 +12,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "@tgwab/design-tokens": "workspace:*",
     "@tgwab/ui": "workspace:*",
-    "astro": "^5.0.0"
+    "astro": "^7.1.6"
   },
   "devDependencies": {
     "pagefind": "^1.5.2"
