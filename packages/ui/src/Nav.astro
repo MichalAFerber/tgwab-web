@@ -133,8 +133,10 @@ const siteLabel =
       align-items: center;
     }
     /* Pills + theme toggle sit as one right-aligned group; the brand keeps
-       the left edge (owner call 2026-07-30). */
-    .tgwab-nav__links--local {
+       the left edge (owner call 2026-07-30). Two classes: the base
+       .tgwab-nav__links rule sets margin: 0 later in the file and ties on
+       specificity, so a single class here silently loses the cascade. */
+    .tgwab-nav__inner .tgwab-nav__links--local {
       margin-inline-start: auto;
     }
   }
