@@ -43,7 +43,7 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-
           <ul>
             {posts.map((post) => (
               <li>
-                <a href={`/${post.slug}/`}>{post.data.title}</a>
+                <a href={`/${post.id}/`}>{post.data.title}</a>
               </li>
             ))}
           </ul>

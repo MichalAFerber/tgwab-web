@@ -9,11 +9,11 @@ const parseDateFromSlug = (slug: string) => {
 };
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
-  .sort((left, right) => parseDateFromSlug(right.slug) - parseDateFromSlug(left.slug))
+  .sort((left, right) => parseDateFromSlug(right.id) - parseDateFromSlug(left.id))
   .map((post) => ({
     title: post.data.title,
-    href: `/${post.slug}/`,
-    dateValue: parseDateFromSlug(post.slug),
+    href: `/${post.id}/`,
+    dateValue: parseDateFromSlug(post.id),
     heroImage: post.data.heroImage || post.data["thumbnail-img"] || "/img/post-build.svg",
     excerpt: post.data.description,
     tags: post.data.tags,

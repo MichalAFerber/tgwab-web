@@ -5,7 +5,7 @@ import { getCollection, render } from "astro:content";
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -22,14 +22,14 @@ const parseDateFromSlug = (slug) => {
   return new Date(`${match[1]}-${match[2]}-${match[3]}T00:00:00Z`);
 };
 
-const postDate = parseDateFromSlug(post.slug);
+const postDate = parseDateFromSlug(post.id);
 ---
 
 <Layout
   site="ferber"
   title={`${post.data.title} | Michal Ferber`}
   description={post.data.description}
-  canonical={`https://michalferber.me/${post.slug}/`}
+  canonical={`https://michalferber.me/${post.id}/`}
 >
   <article class="container post reveal">
     {postDate && (
