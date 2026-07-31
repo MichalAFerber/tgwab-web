@@ -26,11 +26,7 @@ const bmcLink = {
   external: true,
 };
 
-const socialLinks = [
-  { href: "/contact/", label: "EMAIL", kind: "email" },
-  { href: "https://github.com/MichalAFerber/tgwab-web", label: "GitHub", external: true, kind: "github" },
-  { href: "https://x.com/MichalAFerber", label: "X", external: true, kind: "x" },
-];
+const year = new Date().getFullYear(); // rendered at build time per dev-standards §1
 ---
 
 <footer class="tgwab-footer">
@@ -80,37 +76,8 @@ const socialLinks = [
           </svg>
         </a>
       </nav>
-      <span>© {new Date().getFullYear()} Michal Ferber
-      <p class="tgwab-footer__email">michal@techguywithabeard.com</p></span>
     </div>
     <div class="tgwab-footer__right">
-      <nav class="tgwab-footer__social" aria-label="Social links">
-        {socialLinks.map((link) => (
-          <a
-            href={link.href}
-            class="domain-pill social-pill"
-            target={link.external ? "_blank" : undefined}
-            rel={link.external ? "noopener noreferrer" : undefined}
-          >
-            {link.kind === "email" && (
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-.4 2L12 11.4 4.4 6h15.2zM4 18V8.2l7.42 5.26a1 1 0 0 0 1.16 0L20 8.2V18H4z" />
-              </svg>
-            )}
-            {link.kind === "github" && (
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.66-.22.66-.48v-1.87c-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.51-1.11-1.51-.9-.63.07-.62.07-.62 1 .08 1.52 1.05 1.52 1.05.88 1.57 2.31 1.12 2.87.86.09-.66.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 7.25c.85 0 1.7.12 2.5.36 1.91-1.32 2.74-1.04 2.74-1.04.56 1.42.21 2.46.11 2.72.64.71 1.03 1.62 1.03 2.74 0 3.95-2.33 4.82-4.56 5.08.36.32.68.94.68 1.9v2.81c0 .27.17.59.67.48A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2z" />
-              </svg>
-            )}
-            {link.kind === "x" && (
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.24 2H21l-6.02 6.9L22 22h-5.48l-4.3-6.59L6.48 22H3.7l6.44-7.36L2 2h5.62l3.89 5.95L18.24 2zm-.97 18h1.52L6.8 3.9H5.18L17.27 20z" />
-              </svg>
-            )}
-            {link.label}
-          </a>
-        ))}
-      </nav>
       <nav class="tgwab-footer__local-links" aria-label="Footer links">
         {localLinks.map((link) => (
           <a href={link.href} class="domain-pill">
@@ -153,6 +120,37 @@ const socialLinks = [
         ))}
       </nav>
     </div>
+  </div>
+  <div class="container tgwab-footer__bottom">
+    <nav class="tgwab-footer__icons" aria-label="Social links">
+      <a
+        href="https://github.com/MichalAFerber"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-chip social-chip--github"
+        aria-label="GitHub"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+      </a>
+      <a
+        href="https://x.com/MichalAFerber"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-chip social-chip--x"
+        aria-label="X"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.24 2H21l-6.02 6.9L22 22h-5.48l-4.3-6.59L6.48 22H3.7l6.44-7.36L2 2h5.62l3.89 5.95L18.24 2zm-.97 18h1.52L6.8 3.9H5.18L17.27 20z" />
+        </svg>
+      </a>
+    </nav>
+    <p class="tgwab-footer__copyright">
+      © {year} | Created with ❤️ by{' '}
+      <a href="https://michalferber.dev/" target="_blank" rel="noopener">Michal Ferber</a>, aka{' '}
+      <a href="https://techguywithabeard.com/" target="_blank" rel="noopener">TechGuyWithABeard</a>.
+    </p>
   </div>
 </footer>
 
@@ -201,13 +199,6 @@ const socialLinks = [
     justify-items: start;
   }
 
-  .tgwab-footer__social {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    align-items: flex-start;
-  }
-
   .tgwab-footer__domains {
     display: grid;
     gap: var(--space-2);
@@ -227,10 +218,6 @@ const socialLinks = [
     .tgwab-footer__domains {
       align-items: flex-end;
       justify-items: end;
-    }
-
-    .tgwab-footer__social {
-      align-items: flex-end;
     }
   }
 
@@ -315,9 +302,66 @@ const socialLinks = [
       min-height: 40px;
     }
   }
-  .tgwab-footer__email {
-    margin: var(--space-1) 0 0;
+
+  /* Centered bottom strip: brand icon chips above the standard © line. */
+  .tgwab-footer__bottom {
+    margin-top: var(--space-8);
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-6);
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  .tgwab-footer__icons {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  /* GitHub #181717 and X #000 are the official brand colors; the border keeps
+     the chips legible on the dark themes. Chip size covers §3/§14 touch targets. */
+  .social-chip {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 180ms ease;
+  }
+
+  .social-chip:hover {
+    transform: translateY(-2px);
+  }
+
+  .social-chip--github {
+    background: #181717;
+  }
+
+  .social-chip--x {
+    background: #000000;
+  }
+
+  .social-chip svg {
+    width: 22px;
+    height: 22px;
+    fill: #ffffff;
+  }
+
+  .tgwab-footer__copyright {
+    margin: 0;
     font-size: var(--step--1);
-    color: var(--ink-faint);
+    color: var(--ink-soft);
+  }
+
+  .tgwab-footer__copyright a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .tgwab-footer__copyright a:hover {
+    text-decoration: underline;
   }
 </style>
