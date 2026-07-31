@@ -68,6 +68,14 @@ const mergeTargets = Object.entries(domainBySite)
           const pf = await import("/pagefind/pagefind.js");
           for (const target of mergeTargets) {
             try {
+              // Probe before merging: pagefind keeps a FAILED merge registered
+              // internally, after which every search() rejects — one unreachable
+              // sibling would take the whole search page down. Only reachable
+              // indexes get merged; the catch keeps the rest on any race.
+              const probe = await fetch(`${target.bundlePath}pagefind-entry.json`, {
+                signal: AbortSignal.timeout(4000),
+              });
+              if (!probe.ok) continue;
               await pf.mergeIndex(target.bundlePath, { baseUrl: target.baseUrl });
             } catch (err) {
               // A sibling site's index may be temporarily unavailable; keep the rest.

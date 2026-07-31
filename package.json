@@ -16,7 +16,11 @@
     "build:ferberme": "pnpm --filter @tgwab/ferberme build",
     "build": "pnpm -r build",
     "migrate:blog": "node scripts/migrate-blog.mjs",
-    "migrate": "pnpm migrate:blog"
+    "migrate": "pnpm migrate:blog",
+    "test": "playwright test"
   },
-  "packageManager": "pnpm@11.14.0"
+  "packageManager": "pnpm@11.14.0",
+  "devDependencies": {
+    "@playwright/test": "^1.62.0"
+  }
 }
