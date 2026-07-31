@@ -30,7 +30,7 @@ tgwab-web/
 ```
 
 Every site depends on `@tgwab/design-tokens` and `@tgwab/ui` via `workspace:*`. Domain routing
-(canonical vs. 301 redirects) is documented in the Obsidian Intranet (`Websites/_tgwab-web/domain-map.md`).
+(canonical hosts, Pages projects, 301 redirects) is documented in [`docs/domain-map.md`](docs/domain-map.md).
 
 ## Getting started
 
@@ -109,8 +109,9 @@ Everything else tracks the standard: self-hosted woff2 fonts, full SEO/OG kit wi
 
 ## Docs
 
-Architecture, domain map, content workflow, and phase plans live in the Obsidian Intranet at
-`Websites/_tgwab-web/` (kept out of the public repo).
+The domain map (canonical hosts, Pages projects and their build config, 301 redirects) lives in
+[`docs/domain-map.md`](docs/domain-map.md). Architecture, content workflow, and the phase plans
+live in the Obsidian Intranet at `Websites/_tgwab-web/` (kept out of the public repo).
 
 ## License
 
