@@ -15,8 +15,6 @@
     "build:kj4dia": "pnpm --filter @tgwab/kj4dia build",
     "build:ferberme": "pnpm --filter @tgwab/ferberme build",
     "build": "pnpm -r build",
-    "migrate:blog": "node scripts/migrate-blog.mjs",
-    "migrate": "pnpm migrate:blog",
     "test": "playwright test"
   },
   "packageManager": "pnpm@11.14.0",

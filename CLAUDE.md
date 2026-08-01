@@ -46,8 +46,9 @@ tgwab-web/
     └── kj4dia/                 # kj4dia.me — ham radio bio
 ```
 
-The domain map lives in `docs/domain-map.md`. The remaining reference/architecture docs (scope,
-phase plans) live in the Obsidian Intranet at `Websites/_tgwab-web/`, kept out of the public repo.
+Reference docs all live in `docs/`: `domain-map.md` (canonical hosts, Pages projects, redirects),
+`scope.md` (architecture and the reasoning behind it), `content-workflow.md` (how blog posts get
+here from Obsidian), and `history.md` (decisions that were executed and later reversed).
 
 ## Standards
 
@@ -97,9 +98,9 @@ pnpm build
 ## What to work on
 
 The initial build and blog migration shipped, and the wiki experiment was removed.
-Architecture and phase plans live in the Obsidian Intranet at `Websites/_tgwab-web/`
-(domain routing is in `docs/domain-map.md`); consult them for design decisions, not as an
-active task list.
+`docs/scope.md` and `docs/history.md` carry that context; consult them for design
+decisions, not as an active task list. `docs/history.md` in particular is a record of
+what was reversed — read it before proposing a new content collection.
 
 ## Hard rules
 
