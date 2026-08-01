@@ -3,8 +3,9 @@
 #
 # The job is named `ci` because ruleset-main.json requires the status-check
 # context "ci" (§4). Rename one and you MUST rename both, or merges block.
-# Known gap, tracked: no Playwright harness yet (§15) — the CSP was verified
-# against a local headless run before landing; a committed harness is follow-up.
+# The Playwright harness runs here (§15): each site's built dist is served under
+# its real production _headers CSP and exercised before any merge. Pages deploys
+# from main on merge, so this job is the only gate — keep it that way.
 
 name: ci
 
@@ -42,6 +43,12 @@ jobs:
 
       # Builds all five sites (each site's build also generates its Pagefind index).
       - run: pnpm build
+
+      - name: Install Chromium for the harness
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Playwright harness (all five sites, real production CSP)
+        run: pnpm test
 
       # §2 gate: built output must be free of runtime code generation.
       - name: No eval in built output
