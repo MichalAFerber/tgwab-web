@@ -55,11 +55,15 @@ pnpm dev:tgwab      # one site  ── also: dev:ferber, dev:ferberme, dev:dev, 
 pnpm build          # every site
 pnpm build:tgwab    # one site  ── also: build:ferber, build:ferberme, build:dev, build:kj4dia
 
-# Content migration
-pnpm migrate        # run blog migration script
+# End-to-end tests
+pnpm test           # playwright
 ```
 
 > Each `dev:*` / `build:*` script maps to the matching site package (`@tgwab/<name>`).
+
+Blog content is not generated here. Posts are written in Obsidian and synced in by
+`scripts/publish.sh blog` in `MichalAFerber/intranet.mykk.foo` — see
+[`docs/content-workflow.md`](docs/content-workflow.md).
 
 ## Conventions
 
@@ -109,9 +113,12 @@ Everything else tracks the standard: self-hosted woff2 fonts, full SEO/OG kit wi
 
 ## Docs
 
-The domain map (canonical hosts, Pages projects and their build config, 301 redirects) lives in
-[`docs/domain-map.md`](docs/domain-map.md). Architecture, content workflow, and the phase plans
-live in the Obsidian Intranet at `Websites/_tgwab-web/` (kept out of the public repo).
+| Doc | What it covers |
+| --- | --- |
+| [`docs/domain-map.md`](docs/domain-map.md) | Canonical hosts, Pages projects and their build config, 301 redirects |
+| [`docs/scope.md`](docs/scope.md) | Why the architecture is shaped this way — strategy, the shared packages, deploy model, content model |
+| [`docs/content-workflow.md`](docs/content-workflow.md) | How blog posts get from Obsidian into `sites/ferber` |
+| [`docs/history.md`](docs/history.md) | Executed and reversed decisions, kept because the reversals explain the present shape |
 
 ## License
 

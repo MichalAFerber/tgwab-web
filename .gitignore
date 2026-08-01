@@ -10,10 +10,15 @@ dist
 TGWAB-Project-Starter.zip
 
 # Internal planning/strategy docs — keep local, out of the public repo.
-# domain-map.md is the exception: every fact in it is observable from the
-# public internet, and README/CLAUDE point at it, so it ships with the repo.
+# The files negated below are the exceptions: they document this repo and hold
+# nothing that isn't already observable from the public internet or from the
+# source itself. Every new tracked file under docs/ needs its own negation
+# line here, or git will silently ignore it.
 docs/*
 !docs/domain-map.md
+!docs/scope.md
+!docs/content-workflow.md
+!docs/history.md
 
 # Claude Code local settings
 .claude/settings.local.json
