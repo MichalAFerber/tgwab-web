@@ -36,7 +36,18 @@ const siteLabel =
     <a href="/" class="tgwab-nav__brand">
       {siteLabel}
     </a>
-    <ul class="tgwab-nav__links tgwab-nav__links--local">
+    <button
+      type="button"
+      class="tgwab-nav__burger"
+      data-nav-burger
+      aria-expanded="false"
+      aria-controls="tgwab-nav-links tgwab-nav-domains"
+      aria-label="Open menu"
+    >
+      <svg class="tgwab-nav__burger-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="tgwab-nav__burger-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <ul class="tgwab-nav__links tgwab-nav__links--local" id="tgwab-nav-links">
       {localLinks.map((link) => (
         <li>
           <a
@@ -88,7 +99,7 @@ const siteLabel =
       <svg class="tgwab-theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.2A8.5 8.5 0 0 1 9.8 3.6a8.5 8.5 0 1 0 10.6 10.6Z" fill="currentColor"/></svg>
     </button>
   </div>
-  <div class="container tgwab-nav__domains" aria-label="Domain switcher">
+  <div class="container tgwab-nav__domains" id="tgwab-nav-domains" aria-label="Domain switcher">
     {globalLinks.map((link) => (
       <a
         href={link.href}
@@ -116,21 +127,67 @@ const siteLabel =
     padding-right: env(safe-area-inset-right);
   }
 
-  /* Mobile-first (DEV-STANDARDS §3): base = stacked; ≥980px = one row. */
+  /* Mobile-first (DEV-STANDARDS §3): base = brand + burger on one compact
+     row, everything else collapsed into the menu; ≥980px = the full row. */
   .tgwab-nav__inner {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--space-4);
     padding: var(--space-4) 0;
     min-height: 3.2rem;
+  }
+
+  .tgwab-nav__burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 44px — DEV-STANDARDS §14 touch target. */
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-inline-start: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .tgwab-nav__burger:hover { color: var(--accent); }
+  .tgwab-nav__burger svg { width: 1.25rem; height: 1.25rem; }
+  .tgwab-nav__burger-close { display: none; }
+  .tgwab-nav.is-open .tgwab-nav__burger-close { display: block; }
+  .tgwab-nav.is-open .tgwab-nav__burger-open { display: none; }
+
+  /* The menu owns the pills, theme toggle, and domain chips below 980px.
+     JS-gated (.has-js) so a no-JS visitor keeps the always-visible wrap. */
+  @media (max-width: 979px) {
+    .tgwab-nav.has-js:not(.is-open) .tgwab-nav__links--local,
+    .tgwab-nav.has-js:not(.is-open) .tgwab-theme-toggle,
+    .tgwab-nav.has-js:not(.is-open) .tgwab-nav__domains {
+      display: none;
+    }
+    .tgwab-nav.is-open .tgwab-nav__links--local {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+    .tgwab-nav.is-open .tgwab-nav__links--local a {
+      width: 100%;
+    }
+    .tgwab-nav.is-open .tgwab-nav__domains {
+      border-top: 1px solid var(--line);
+      padding-top: var(--space-3);
+    }
   }
 
   @media (min-width: 980px) {
     .tgwab-nav__inner {
       flex-direction: row;
       align-items: center;
+    }
+    .tgwab-nav__burger {
+      display: none;
     }
     /* Pills + theme toggle sit as one right-aligned group; the brand keeps
        the left edge (owner call 2026-07-30). Two classes: the base
@@ -252,6 +309,30 @@ const siteLabel =
     }
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const nav = document.querySelector(".tgwab-nav");
+    const burger = document.querySelector("[data-nav-burger]");
+    if (!nav || !burger) return;
+    nav.classList.add("has-js");
+    const setOpen = (open) => {
+      nav.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    burger.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+    document.addEventListener("click", (e) => {
+      if (nav.classList.contains("is-open") && !nav.contains(e.target)) setOpen(false);
+    });
+  })();
+</script>
 
 <script is:inline>
   (() => {
