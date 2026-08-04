@@ -139,3 +139,39 @@ test('no horizontal overflow at §3 mobile widths', async ({ page }) => {
     }
   }
 });
+
+test('mobile hamburger collapses the nav chrome; desktop keeps the full row', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const burger = page.locator('[data-nav-burger]');
+  const pills = page.locator('.tgwab-nav__links--local');
+  const domains = page.locator('.tgwab-nav__domains');
+
+  // Collapsed by default: only brand + burger occupy the screen.
+  await expect(burger).toBeVisible();
+  await expect(pills).toBeHidden();
+  await expect(page.locator('[data-theme-toggle]')).toBeHidden();
+  await expect(domains).toBeHidden();
+
+  // Open: pills, theme toggle, and the five domain links appear.
+  await burger.click();
+  await expect(burger).toHaveAttribute('aria-expanded', 'true');
+  await expect(pills).toBeVisible();
+  await expect(domains).toBeVisible();
+  expect(await domains.locator('a').count()).toBe(5);
+
+  // The theme toggle works from inside the menu.
+  await page.locator('[data-theme-toggle]').click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', /dark|light/);
+
+  // Escape closes and collapses everything again.
+  await page.keyboard.press('Escape');
+  await expect(burger).toHaveAttribute('aria-expanded', 'false');
+  await expect(pills).toBeHidden();
+
+  // Desktop: no burger, full row visible as before.
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await expect(burger).toBeHidden();
+  await expect(pills).toBeVisible();
+  await expect(domains).toBeVisible();
+});
