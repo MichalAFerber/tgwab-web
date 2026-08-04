@@ -533,7 +533,9 @@ const hasLink = (url) => Boolean(url && url !== "#");
   .grid.compact {
     display: grid;
     gap: var(--space-8);
-    grid-template-columns: 1fr;
+    /* minmax(0, …) everywhere: a bare 1fr track has an auto minimum, so one
+       unbreakable product name stretches the column past a phone viewport. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .card {
@@ -552,6 +554,11 @@ const hasLink = (url) => Boolean(url && url !== "#");
     justify-content: space-between;
     align-items: baseline;
     gap: var(--space-3);
+  }
+
+  .card-head h3 {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .status {
