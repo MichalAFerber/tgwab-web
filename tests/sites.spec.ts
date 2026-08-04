@@ -42,6 +42,11 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/plausible.thompsonblack.us/**', (route) =>
     route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }),
   );
+  // Cal.com's embed.js is the one other fetched external — stub it too, or
+  // the "offline" promise above only holds on machines with internet.
+  await page.route('**/app.cal.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }),
+  );
   // Sister sites are not running locally; mergeIndex catches per-target
   // failures, so a fast 404 keeps search deterministic without hanging.
   await page.route(SISTER_ORIGINS, (route) => route.fulfill({ status: 404, body: '' }));
@@ -115,4 +120,22 @@ test('security headers are present on the response', async ({ page }) => {
   const h = resp!.headers();
   expect(h['x-frame-options']).toBe('DENY');
   expect(h['x-content-type-options']).toBe('nosniff');
+});
+
+test('no horizontal overflow at §3 mobile widths', async ({ page }) => {
+  // The shared nav's nowrap pill row shipped every site 45px wider than a
+  // phone viewport before anything asserted this; the page pans sideways and
+  // content clips at both edges. Probe the §3 mobile tier and its 679px top.
+  for (const width of [390, 679]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ['/', '/about/', '/contact/', '/search/', '/definitely-missing/']) {
+      await page.goto(route);
+      const m = await page.evaluate(() => ({
+        vw: document.documentElement.clientWidth,
+        sw: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
+      }));
+      expect(m.sw, `${route} at ${width}px: scrollWidth ${m.sw} > viewport ${m.vw}`)
+        .toBeLessThanOrEqual(m.vw);
+    }
+  }
 });
