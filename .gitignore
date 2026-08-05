@@ -9,16 +9,9 @@ dist
 # Starter archive, not tracked
 TGWAB-Project-Starter.zip
 
-# Internal planning/strategy docs — keep local, out of the public repo.
-# The files negated below are the exceptions: they document this repo and hold
-# nothing that isn't already observable from the public internet or from the
-# source itself. Every new tracked file under docs/ needs its own negation
-# line here, or git will silently ignore it.
-docs/*
-!docs/domain-map.md
-!docs/scope.md
-!docs/content-workflow.md
-!docs/history.md
+# docs/ is tracked (DS §10): it holds only what's already observable from the
+# source or the public internet. Internal planning/strategy material MUST NOT
+# be committed here — it lives in the private tgwab-planning repo (tgwab-web/).
 
 # Claude Code local settings
 .claude/settings.local.json
