@@ -86,8 +86,8 @@ const year = new Date().getFullYear(); // rendered at build time per dev-standar
             rel="noopener noreferrer"
             aria-label="GitHub"
           >
-            <img class="social-img social-img--dark" src="/assets/github.svg" alt="" width="32" height="32" loading="lazy" />
-            <img class="social-img social-img--light" src="/assets/github-light.svg" alt="" width="32" height="32" loading="lazy" />
+            <img class="social-img social-img--dark" src="/assets/github.svg" alt="" width="20" height="20" loading="lazy" />
+            <img class="social-img social-img--light" src="/assets/github-light.svg" alt="" width="20" height="20" loading="lazy" />
             <span class="social-label">GitHub</span>
           </a>
         </span>
@@ -322,19 +322,31 @@ const year = new Date().getFullYear(); // rendered at build time per dev-standar
   }
 
   .social-img {
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
     display: block;
   }
 
-  /* Sites are dark by default → show the -light marks; swap for light mode.
-     Mirrors the html[data-theme] / prefers-color-scheme contract in tokens.css. */
+  /* The estate's footer repo button (§1): mark plus lettering, bordered, so it
+     reads as a control rather than a decoration. Same treatment across the
+     estate, each site's own tokens. */
   .tgwab-footer__icons a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.45rem;
+    min-height: 40px;
+    padding: 0.5rem 0.9rem;
     text-decoration: none;
-    color: inherit;
+    color: var(--ink);
+    background: var(--surface-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .tgwab-footer__icons a:hover {
+    transform: translateY(-1px);
   }
 
   .social-label {
@@ -342,6 +354,8 @@ const year = new Date().getFullYear(); // rendered at build time per dev-standar
     font-weight: 600;
   }
 
+  /* Sites are dark by default → show the -light marks; swap for light mode.
+     Mirrors the html[data-theme] / prefers-color-scheme contract in tokens.css. */
   .social-img--dark {
     display: none;
   }
