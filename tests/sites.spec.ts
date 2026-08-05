@@ -109,7 +109,10 @@ test('standard footer: © line present, no duplicate email, icons under actions'
   const footer = page.locator('.tgwab-footer');
   await expect(footer.locator('.tgwab-footer__copyright')).toContainText(/Created with .* by/);
   await expect(footer.locator('.tgwab-footer__icons a[aria-label="GitHub"]')).toHaveCount(1);
-  await expect(footer.locator('.tgwab-footer__icons a[aria-label="X"]')).toHaveCount(1);
+  // The mark carries its lettering, matching tomatick.us.
+  await expect(footer.locator('.tgwab-footer__icons a[aria-label="GitHub"] .social-label')).toHaveText('GitHub');
+  // X was removed estate-wide (owner call 2026-08-05); assert it stays gone.
+  await expect(footer.locator('.tgwab-footer__icons a[aria-label="X"]')).toHaveCount(0);
   // The old social pill column and plain-text email stayed dead.
   await expect(footer.locator('.tgwab-footer__social')).toHaveCount(0);
   await expect(footer.locator('.tgwab-footer__email')).toHaveCount(0);

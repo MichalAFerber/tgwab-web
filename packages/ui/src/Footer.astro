@@ -76,8 +76,9 @@ const year = new Date().getFullYear(); // rendered at build time per dev-standar
           </svg>
         </a>
 
-        <!-- Dashboard Icons marks (vendored: /assets/{github,x}[-light].svg),
-             undecorated; the -light variants show on the dark themes. -->
+        <!-- Dashboard Icons mark (vendored: /assets/github[-light].svg); the
+             -light variant shows on the dark themes. Mark plus lettering, the
+             tomatick.us treatment, so the target reads as a link at a glance. -->
         <span class="tgwab-footer__icons">
           <a
             href="https://github.com/MichalAFerber"
@@ -87,15 +88,7 @@ const year = new Date().getFullYear(); // rendered at build time per dev-standar
           >
             <img class="social-img social-img--dark" src="/assets/github.svg" alt="" width="32" height="32" loading="lazy" />
             <img class="social-img social-img--light" src="/assets/github-light.svg" alt="" width="32" height="32" loading="lazy" />
-          </a>
-          <a
-            href="https://x.com/MichalAFerber"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X"
-          >
-            <img class="social-img social-img--dark" src="/assets/x.svg" alt="" width="32" height="32" loading="lazy" />
-            <img class="social-img social-img--light" src="/assets/x-light.svg" alt="" width="32" height="32" loading="lazy" />
+            <span class="social-label">GitHub</span>
           </a>
         </span>
       </nav>
@@ -336,6 +329,19 @@ const year = new Date().getFullYear(); // rendered at build time per dev-standar
 
   /* Sites are dark by default → show the -light marks; swap for light mode.
      Mirrors the html[data-theme] / prefers-color-scheme contract in tokens.css. */
+  .tgwab-footer__icons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .social-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
   .social-img--dark {
     display: none;
   }
