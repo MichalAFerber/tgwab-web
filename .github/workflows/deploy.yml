@@ -1,0 +1,107 @@
+name: Deploy tgwab sites
+
+# Direct-upload deploy model, matching wizard-web's: this workflow is the single
+# deploy path for all five sites in this monorepo, and each Pages project's Git
+# integration is off (§4 — exactly one deploy path).
+#
+#   push to main   → production deployment
+#   pull_request   → preview deployment (branch alias)
+#
+# One job per site rather than one job building everything: a failure names the
+# site that broke, and a site whose build fails cannot block the other four from
+# shipping.
+#
+# Path filters are deliberately left at the default. sites/ share packages/, so a
+# shared-package change has to rebuild all five — filtering per-site would ship a
+# stale sibling.
+#
+# Without a CLOUDFLARE_API_TOKEN secret the deploy step skips green rather than
+# failing. That is what lets this land before the Git integration is switched off:
+# with no token there is no second path, so the two can never race.
+#
+# Secrets:
+#   CLOUDFLARE_API_TOKEN   Cloudflare Pages:Edit on the TechGuyWithABeard account
+#                          (cloudflare/token/tgwab-web)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: michalferber-dev
+            script: build:dev
+            dist: sites/dev/dist
+          - project: ferber-me
+            script: build:ferberme
+            dist: sites/ferberme/dist
+          - project: techguywithabeard-com
+            script: build:tgwab
+            dist: sites/tgwab/dist
+          - project: michalferber-me
+            script: build:ferber
+            dist: sites/ferber/dist
+          - project: kj4dia-me
+            script: build:kj4dia
+            dist: sites/kj4dia/dist
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Check for the deploy credential
+        id: gate
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "No CLOUDFLARE_API_TOKEN — skipping deploy (see the header)."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+        if: steps.gate.outputs.ok == 'true'
+        with:
+          version: 11.14.0
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        if: steps.gate.outputs.ok == 'true'
+        with:
+          node-version-file: .nvmrc     # never a hardcoded node-version: (DS §15)
+          cache: pnpm
+
+      - name: Install
+        if: steps.gate.outputs.ok == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build ${{ matrix.project }}
+        if: steps.gate.outputs.ok == 'true'
+        run: pnpm ${{ matrix.script }}
+
+      # A runner only ever holds committed content, so --commit-dirty=false is
+      # honest here in a way hand-run `wrangler pages deploy` was not.
+      - name: Deploy ${{ matrix.project }}
+        if: steps.gate.outputs.ok == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || '8a0d49b1f3fdcdadec135562ec8a4fdc' }}
+        run: >
+          npx wrangler@4 pages deploy ${{ matrix.dist }}
+          --project-name ${{ matrix.project }}
+          --branch ${{ github.ref == 'refs/heads/main' && 'main' || github.head_ref }}
+          --commit-dirty=false
