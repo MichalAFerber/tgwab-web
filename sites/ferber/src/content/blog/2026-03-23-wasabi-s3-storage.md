@@ -1,5 +1,5 @@
 ---
-title: "Wasabi: The Unknown S3 Storage Hero at an Incredible Price"
+title: 'Wasabi: The Unknown S3 Storage Hero'
 description: "Why I switched from AWS S3 to Wasabi for homelab backups — with a pricing breakdown, migration guide, and comparison with Backblaze B2."
 tags: [cloud-storage, wasabi, aws, s3, homelab, backups]
 thumbnail-img: /assets/img/wasabi.webp

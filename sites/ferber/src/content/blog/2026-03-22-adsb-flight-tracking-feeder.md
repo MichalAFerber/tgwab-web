@@ -1,6 +1,6 @@
 ---
-title: "Flight Tracking from My Backyard: Running an ADS-B Feeder on a Raspberry Pi"
-description: "How I turned a Raspberry Pi and a cheap SDR dongle into a flight tracking station — feeding three networks, getting free premium subscriptions, and spotting military aircraft near my home."
+title: Running an ADS-B Feeder on a Raspberry Pi
+description: How a Raspberry Pi and a cheap SDR dongle became a flight tracking station, feeding three networks and spotting military aircraft.
 tags: [homelab, raspberry-pi, adsb, aviation, sdr, flight-tracking]
 thumbnail-img: /assets/img/adsbexchange.webp
 ---

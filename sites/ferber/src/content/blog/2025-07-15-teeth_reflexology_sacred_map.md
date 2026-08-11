@@ -1,5 +1,5 @@
 ---
-title: "Teeth Reflexology: The Sacred Map in Your Mouth"
+title: 'Teeth Reflexology: The Map in Your Mouth'
 description: "Exploring the ancient connections between your teeth, organs, emotions, and ancestral memory through the lens of reflexology."
 tags: [teeth-reflexology, holistic-health, chinese-medicine, dental-health, energy-healing]
 thumbnail-img: /assets/img/teeth-reflexology-guide.webp

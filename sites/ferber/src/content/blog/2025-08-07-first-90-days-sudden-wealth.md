@@ -1,5 +1,5 @@
 ---
-title: "The First 90 Days of Sudden Wealth: A Humanitarian’s Guide"
+title: The First 90 Days of Sudden Wealth
 description: "A 90-day framework for navigating sudden wealth with wisdom, privacy, and stewardship."
 tags: [sudden-wealth, wealth-management, humanitarian, trust-planning, financial-stewardship]
 thumbnail-img: /assets/img/sudden-wealth.webp

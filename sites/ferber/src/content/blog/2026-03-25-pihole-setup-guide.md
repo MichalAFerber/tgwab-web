@@ -1,6 +1,6 @@
 ---
-title: "Network-Wide Ad Blocking with Pi-hole: Setup Guide and Why I Choose It Over AdGuard Home"
-description: "A comprehensive guide to setting up Pi-hole for network-wide ad blocking, including installation on Raspberry Pi and Proxmox LXC, plus a comparison with AdGuard Home and why Pi-hole is my preferred choice for homelab environments."
+title: Pi-hole Setup, and Why Not AdGuard Home
+description: Setting up Pi-hole for network-wide ad blocking on Raspberry Pi and Proxmox LXC, plus how it compares with AdGuard Home.
 tags: [homelab, dns, pi-hole, networking, proxmox, raspberry-pi, privacy]
 thumbnail-img: /assets/img/pi-hole.webp
 ---

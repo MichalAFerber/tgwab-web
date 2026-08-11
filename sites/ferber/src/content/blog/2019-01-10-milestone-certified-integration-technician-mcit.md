@@ -1,5 +1,5 @@
 ---
-title: "Milestone Certified Integration Technician (MCIT)"
+title: Milestone Integration Technician (MCIT)
 description: "Milestone Integration Technicians install and configure moderately complex XProtect VMS installations with camera counts of 100-500 cameras."
 tags: [milestone-systems, xprotect, vms, video-management-system, ip-cameras, cctv]
 thumbnail-img: /assets/badges/milestone-certified-integration-technician-mcit.avif

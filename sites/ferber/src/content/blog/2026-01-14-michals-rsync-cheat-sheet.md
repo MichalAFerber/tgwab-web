@@ -1,5 +1,5 @@
 ---
-title: "Michal's rsync Cheat Sheet: Reliable Backups & Sync"
+title: Michal's rsync Cheat Sheet
 description: "My go-to tool for implementing the 3-2-1 backup strategy"
 tags: [rsync, scp, rclone, backup, 3-2-1-backup, sync, linux, macos, automation, cron, google-drive, wasabi, synology, proxmox, time-machine, data-protection, homelab, self-hosted, system-administration, devops, data-sync, cheat-sheet, guide, tutorial, file-transfer, ssh, nas]
 thumbnail-img: /assets/img/rsync.webp

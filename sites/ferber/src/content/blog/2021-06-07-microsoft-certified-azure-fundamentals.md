@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Certified: Azure Fundamentals"
-description: "The Microsoft Azure Fundamentals (AZ-900) certification is designed to provide foundational knowledge about cloud concepts, core Azure services, security, privacy, compliance, and Azure pricing and support."
+description: The AZ-900 certification covers cloud concepts, core Azure services, security, privacy, compliance, and Azure pricing and support.
 tags: [microsoft-certification, azure]
 thumbnail-img: /assets/badges/microsoft-azure-fundamentals.avif
 redirect_from:

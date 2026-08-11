@@ -1,6 +1,6 @@
 ---
-title: "Raspberry Pi for Kids: A Homeschool Curriculum"
-description: "A 30-week zero-to-hero Pi 400 curriculum for an 8-year-old homeschooler. From mouse practice to GPIO to Python — progressing at the speed of the kid, not a classroom."
+title: 'Raspberry Pi for Kids: A Homeschool Plan'
+description: A 30-week zero-to-hero Pi 400 curriculum for an 8-year-old homeschooler, from mouse practice to GPIO to Python.
 tags: [raspberry-pi, homeschool, kids, education, python]
 thumbnail-img: /assets/img/raspberry-pi.webp
 ---
