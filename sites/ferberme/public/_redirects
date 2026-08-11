@@ -1,0 +1,7 @@
+# ferber.me — 301 redirects for stale URLs (Cloudflare Pages format).
+#
+# /documents/ was a meta-refresh stub pointing at /history/. It answered 200,
+# sat in sitemap.xml, and canonicalised to itself, so crawlers were told to
+# index a page whose only content is "Redirecting...". A real 301 says the same
+# thing in the one place a crawler is obliged to honour.
+/documents/ /history/ 301
