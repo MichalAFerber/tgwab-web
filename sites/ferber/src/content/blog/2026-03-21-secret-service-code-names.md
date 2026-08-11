@@ -1,5 +1,5 @@
 ---
-title: The History of Secret Service Code Names
+title: "Mogul, Renegade, and Rawhide: The History of Secret Service Code Names"
 description: "A fun look at the tradition of Secret Service code names — how they started, how they're chosen, and the full list for the current 47th administration."
 tags: [history, fun, politics, trivia]
 thumbnail-img: /assets/img/secret-service.webp

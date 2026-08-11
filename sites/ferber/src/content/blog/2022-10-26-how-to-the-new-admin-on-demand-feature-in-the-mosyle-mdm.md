@@ -1,6 +1,6 @@
 ---
-title: Admin On-Demand in the Mosyle MDM
-description: A how-to guide for enabling and using the Admin On-Demand feature in the Mosyle MDM.
+title: "The new Admin On-Demand feature in the Mosyle MDM"
+description: "A How To Guide."
 tags: [how-to, mdm, mosyle]
 thumbnail-img: /assets/img/mosyle-admin-on-demand.webp
 redirect_from:

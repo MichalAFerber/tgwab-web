@@ -1,5 +1,5 @@
 ---
-title: DIY Raspberry Pi HQ Camera Build
+title: "DIY Raspberry Pi HQ Camera Build with Pi Zero WH"
 description: "Build a portable Raspberry Pi HQ Camera setup with live display, battery power, and customizable software."
 tags: [raspberry-pi, hq-camera, diy, photography, maker, pi-zero]
 thumbnail-img: /assets/img/raspberry-pi-zero-pro-plate-for-hq-camera.webp

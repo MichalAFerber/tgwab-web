@@ -1,5 +1,5 @@
 ---
-title: Enhancing healthcare with notifications
+title: "Enhancing healthcare with use of emergency notifications"
 description: "A case study on McLeod Health emergency notification"
 tags: [emergency-notification, emergency-communications]
 thumbnail-img: /assets/img/mcleod-health-cancer-bldg.webp

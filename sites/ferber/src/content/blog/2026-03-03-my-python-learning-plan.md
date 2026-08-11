@@ -1,6 +1,6 @@
 ---
 title: "My Python Learning Plan"
-description: A 5-week plan to go from reading Python to writing small, useful programs, for someone who already knows other languages.
+description: "A 5-week plan to go from reading Python to writing small, useful programs — structured for someone who already knows other languages and doesn't need hand-holding."
 tags: [python, learning, programming]
 thumbnail-img: /assets/img/visual_studio_code.webp
 ---

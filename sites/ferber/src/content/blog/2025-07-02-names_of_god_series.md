@@ -1,5 +1,5 @@
 ---
-title: 'The Names of God: Jehovah and Yeshua'
+title: "The Names of God: Jehovah, Yeshua, and Their Meaning"
 description: "A study of the names of God in Scripture, their meanings, and how they reveal His character — with a focus on Jehovah and Yeshua."
 tags: [names-of-god, jehovah, yeshua, theology, bible-study, spirituality]
 thumbnail-img: /assets/img/names-of-god.webp

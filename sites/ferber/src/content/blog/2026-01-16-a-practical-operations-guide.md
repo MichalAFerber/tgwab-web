@@ -1,5 +1,5 @@
 ---
-title: Raspberry Pi 4 Home Server Operations
+title: "Managing My Raspberry Pi 4 Home Server: A Practical Operations Guide"
 description: "A comprehensive guide to managing Docker containers, systemd services, and rclone cloud mounts on a Raspberry Pi 4 home server"
 tags: [homelab, raspberry-pi, docker, linux, self-hosting]
 thumbnail-img: /assets/img/raspberry-pi.webp

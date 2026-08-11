@@ -1,5 +1,5 @@
 ---
-title: Static IP on Ubuntu with Netplan
+title: "How to Set a Static IP on Ubuntu (Netplan) with DNS Failover"
 description: "Using the Ubuntu (Netplan) to manage your ip address"
 tags: [raspberry-pi, linux, how-to, ubuntu, networking, netplan, static-ip, dns]
 thumbnail-img: /assets/img/ubuntu-vector.webp

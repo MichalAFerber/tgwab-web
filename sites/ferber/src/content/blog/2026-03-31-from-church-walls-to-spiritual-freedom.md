@@ -1,6 +1,6 @@
 ---
 title: "From Church Walls to Spiritual Freedom"
-description: My journey through decades of organized religion, Baptist, Pentecostal, Assemblies of God, and ultimately finding God outside the institution.
+description: "My journey through decades of organized religion — Baptist, Pentecostal, Assemblies of God — through broken marriages, a mental health crisis, and ultimately finding God outside the institution."
 tags: [personal, faith, spiritual-journey, mental-health, testimony]
 thumbnail-img: /assets/img/church-wall.webp
 ---

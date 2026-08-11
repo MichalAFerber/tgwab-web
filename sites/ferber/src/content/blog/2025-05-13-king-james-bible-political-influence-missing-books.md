@@ -1,5 +1,5 @@
 ---
-title: 'King James Bible: Politics and Missing Books'
+title: "King James Bible: Political Influence and Missing Books"
 description: "How the King James Bible shaped culture, its missing books, and the politics behind its creation"
 tags: [history, bible, king-james, tyndale, english-language, lost-books]
 thumbnail-img: /assets/img/greek_manuscript.webp

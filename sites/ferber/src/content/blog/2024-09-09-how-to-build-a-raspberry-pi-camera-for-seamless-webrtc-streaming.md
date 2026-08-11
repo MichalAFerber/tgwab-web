@@ -1,6 +1,6 @@
 ---
-title: Raspberry Pi WebRTC Camera Build
-description: Building a low-latency WebRTC camera with the Pi Zero 2 W and the Camera Module 3.
+title: "How to Build a Raspberry Pi Camera for Seamless WebRTC Streaming"
+description: "Using the Pi Zero 2 W and the Camera Module 3"
 tags: [raspberry-pi, linux, how-to]
 thumbnail-img: /assets/img/raspberry-pis.webp
 redirect_from:

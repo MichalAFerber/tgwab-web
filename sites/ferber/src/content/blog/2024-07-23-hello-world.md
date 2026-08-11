@@ -1,6 +1,6 @@
 ---
 title: "Hello World!"
-description: Everyone has to have one of these, right? The first post on a rebuilt site.
+description: "Everyone has to have one of these right?"
 tags: [programming, code]
 thumbnail-img: /assets/img/hello-world.webp
 redirect_from:

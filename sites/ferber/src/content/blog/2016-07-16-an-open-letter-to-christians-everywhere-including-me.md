@@ -1,6 +1,6 @@
 ---
-title: An open letter to Christians (including me)
-description: A letter written from the heart to Christians everywhere, myself very much included.
+title: "An open letter to Christians everywhere (including me)"
+description: "From the heart"
 tags: [jesus, god, holy-spirit, christianity]
 thumbnail-img: /assets/img/letter.webp
 redirect_from:

@@ -1,5 +1,5 @@
 ---
-title: 'Donetick: A Self-Hosted Task Manager'
+title: "Donetick: A Lightweight Self-Hosted Task Manager for Your Homelab"
 description: "How I set up Donetick — a self-hosted chore and task manager — on Docker with SQLite, SSE realtime updates, and API automation."
 tags: [homelab, self-hosted, docker, task-management, productivity]
 thumbnail-img: /assets/img/donetick.webp

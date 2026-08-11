@@ -1,6 +1,6 @@
 ---
-title: Effective, Efficient Communication
-description: Why clear communication is the bottom line on every project, and what it costs when it breaks down.
+title: "It’s all about Effective, Efficient Communication"
+description: "That’s Just the Bottom Line"
 tags: [emergency-notification, emergency-communications]
 thumbnail-img: /assets/img/mcleod-health-pavilion-bldg-2.webp
 ---

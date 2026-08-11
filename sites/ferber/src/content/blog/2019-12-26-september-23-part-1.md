@@ -1,6 +1,6 @@
 ---
 title: "September 2 – Part 1"
-description: A personal story, told in two parts. This is the first.
+description: "A personal story"
 tags: [jesus, god, holy-spirit, christianity]
 thumbnail-img: /assets/img/road-path.webp
 redirect_from:

@@ -1,6 +1,6 @@
 ---
-title: Michal's Podman Cheat Sheet
-description: 'Podman commands, Docker alternatives, and container management for a homelab: rootless containers, pods, and Docker Compose compatibility.'
+title: "Michal's Podman Cheat Sheet: A Docker Alternative for My Homelab"
+description: "Complete Podman cheat sheet and tutorial for 2026. Learn Podman commands, Docker alternatives, and container management for homelab and Linux servers. Includes rootless containers, pod management, and Docker Compose compatibility."
 tags: [podman, docker, containers, container-engine, homelab, self-hosted, linux, devops, macos, windows, rootless-containers, oci, kubernetes, pods, virtualization, systemd, guide, tutorial, cheat-sheet, docker-alternative, containerization]
 thumbnail-img: /assets/img/podman.webp
 ---

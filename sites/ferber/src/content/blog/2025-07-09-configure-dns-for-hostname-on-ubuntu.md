@@ -1,5 +1,5 @@
 ---
-title: Configure mDNS for Hostnames on Ubuntu
+title: "Configure mDNS for Hostname Resolution on Ubuntu"
 description: "Configure Ubuntu for mDNS to ping/SSH using hostname.local (e.g., yourservername.local). Install Avahi, set hostname, and enable SSH discovery."
 tags: [linux, how-to, dns]
 thumbnail-img: /assets/img/systemctl_status_avahi-daemon.webp

@@ -1,6 +1,6 @@
 ---
 title: "Stars We Lost in 2019"
-description: A look back at the actors, musicians, and public figures we lost during 2019.
+description: "Year in review"
 tags: [jesus, god, holy-spirit, christianity, hollywood, stars, celebrities, 2019]
 thumbnail-img: /assets/img/year-in-review-2019.webp
 redirect_from:
