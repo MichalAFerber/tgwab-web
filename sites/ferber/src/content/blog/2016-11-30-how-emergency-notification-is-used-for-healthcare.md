@@ -1,5 +1,5 @@
 ---
-title: "How emergency notification is used for healthcare."
+title: Emergency notification in healthcare
 description: "A case study on McLeod Health emergency notification"
 tags: [emergency-notification, emergency-communications]
 thumbnail-img: /assets/img/mcleod-health-parking-deck.webp

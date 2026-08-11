@@ -1,6 +1,6 @@
 ---
-title: "A Pragmatic Guide to Buying Gold, Silver, and Strategic Minerals"
-description: "A practical breakdown of buying precious metals and strategic minerals — from physical bullion to rare earth ETFs — with dealer recommendations, storage tips, and common mistakes to avoid."
+title: Buying Gold, Silver, and Strategic Minerals
+description: A practical breakdown of buying precious metals and strategic minerals, from physical bullion to rare earth ETFs, with storage tips.
 tags: [investing, precious-metals, gold, silver, finance]
 thumbnail-img: /assets/img/gold.webp
 ---

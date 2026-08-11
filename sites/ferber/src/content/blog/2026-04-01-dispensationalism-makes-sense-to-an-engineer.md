@@ -1,6 +1,6 @@
 ---
 title: "Dispensationalism Makes Sense to an Engineer"
-description: "Why a framework-minded IT veteran finds dispensational theology to be the most logical way to read the Bible — and why the early church fathers saw it long before Darby and Scofield."
+description: Why a framework-minded IT veteran finds dispensational theology the most logical way to read the Bible, and why it predates Darby and Scofield.
 tags: [personal, faith, theology, bible, dispensationalism]
 thumbnail-img: /assets/img/dispensationalism.webp
 ---

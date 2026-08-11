@@ -1,5 +1,5 @@
 ---
-title: "Building a Personal Digital Library with Booklore and OPDS"
+title: A Digital Library with Booklore and OPDS
 description: "How I set up a self-hosted ebook server with Booklore, Wasabi storage, and OPDS synchronization across macOS and Android devices"
 tags: [homelab, self-hosted, booklore, opds, ebooks, rclone, wasabi]
 thumbnail-img: /assets/img/booklore-screenshot.webp

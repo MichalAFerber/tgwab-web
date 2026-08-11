@@ -1,6 +1,6 @@
 ---
-title: "Automating Docker Compose Updates: A Simple Shell Script for Homelab Management"
-description: "Managing multiple Docker Compose services can be tedious. Here's how I automated the update process with a single shell script that handles all my containers intelligently."
+title: Automating Docker Compose Updates
+description: Managing multiple Docker Compose services is tedious. Here's the shell script that updates all my containers in one pass.
 tags: [docker, automation, homelab, shell-scripting, devops]
 thumbnail-img: /assets/img/docker-compose.webp
 ---

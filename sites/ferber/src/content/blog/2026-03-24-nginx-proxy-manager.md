@@ -1,5 +1,5 @@
 ---
-title: "Why Nginx Proxy Manager is My Go-To Reverse Proxy Solution"
+title: 'Nginx Proxy Manager: My Go-To Reverse Proxy'
 description: "How Nginx Proxy Manager replaced manual NGINX config management in my homelab — with built-in Let's Encrypt, a clean web UI, and a battle-tested ops guide."
 tags: [homelab, nginx, docker, reverse-proxy, self-hosted, ssl]
 thumbnail-img: /assets/img/nginx-proxy-manager.webp

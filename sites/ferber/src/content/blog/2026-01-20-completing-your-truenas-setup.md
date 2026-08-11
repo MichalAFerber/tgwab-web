@@ -1,5 +1,5 @@
 ---
-title: "Completing Your TrueNAS Setup: Backups, HTTPS, and Hardening"
+title: 'TrueNAS: Backups, HTTPS, and Hardening'
 description: "Complete your TrueNAS setup with automated backups, HTTPS, and security hardening for Windows, macOS, and Linux."
 tags: [truenas, backup, homelab, nas, zfs, https, security]
 thumbnail-img: /assets/img/truenas.avif

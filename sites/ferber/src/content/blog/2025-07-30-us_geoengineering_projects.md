@@ -1,5 +1,5 @@
 ---
-title: "U.S. Geoengineering Projects — What’s Active and What’s Hidden?"
+title: 'U.S. Geoengineering: Active and Hidden'
 description: "A breakdown of known U.S.-based geoengineering projects, including public research, proposed field tests, and the possibility of classified programs."
 tags: [geoengineering, climate, solar-radiation-management, usa, research, climate-change]
 thumbnail-img: /assets/img/us-geoengineering-projects.webp

@@ -1,6 +1,6 @@
 ---
 title: "Difference between religion and spirituality"
-description: "Or at least my take on it."
+description: The difference between religion and spirituality, or at least my take on it.
 tags: [religion, theology, god]
 thumbnail-img: /assets/img/religious-faith.webp
 redirect_from:
