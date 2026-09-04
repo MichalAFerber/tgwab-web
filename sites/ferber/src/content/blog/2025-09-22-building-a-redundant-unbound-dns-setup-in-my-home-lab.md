@@ -19,7 +19,7 @@ I needed:
 
 - **Recursive DNS** that talks directly to the root servers (not forwarding to my ISP).
 - **Redundancy** across two Pi 4 servers.
-- **Authoritative local zone** (`mykk.foo`) so I can use short names for lab devices.
+- **Authoritative local zone** (`example.com`) so I can use short names for lab devices.
 - **Maintainability** — easy updates and quick health checks.
 
 Pi-hole is great for ad-blocking, but I wanted to separate concerns: Unbound handles DNS resolution, and I can plug Pi-hole back in later if needed.
@@ -103,34 +103,34 @@ server:
 
 ---
 
-## 🌐 Local Zone: `mykk.foo`
+## 🌐 Local Zone: `example.com`
 
 To keep short names working, I built out a static zone file in `/etc/unbound/unbound.conf.d/local-zone-mykk-foo.conf`:
 
 ```plaintext
 server:
-    local-zone: "mykk.foo." static
+    local-zone: "example.com." static
 
     # A records for lab hosts
-    local-data: "pi4server.mykk.foo.   IN A 192.168.50.2"
-    local-data: "pi4server02.mykk.foo. IN A 192.168.50.3"
-    local-data: "plex.mykk.foo.        IN A 192.168.50.205"
-    local-data: "truenas.mykk.foo.     IN A 192.168.50.202"
+    local-data: "pi4server.example.com.   IN A 192.168.50.2"
+    local-data: "pi4server02.example.com. IN A 192.168.50.3"
+    local-data: "plex.example.com.        IN A 192.168.50.205"
+    local-data: "truenas.example.com.     IN A 192.168.50.202"
 
     # PTR records (reverse DNS)
-    local-data-ptr: "192.168.50.2 pi4server.mykk.foo."
-    local-data-ptr: "192.168.50.3 pi4server02.mykk.foo."
-    local-data-ptr: "192.168.50.205 plex.mykk.foo."
-    local-data-ptr: "192.168.50.202 truenas.mykk.foo."
+    local-data-ptr: "192.168.50.2 pi4server.example.com."
+    local-data-ptr: "192.168.50.3 pi4server02.example.com."
+    local-data-ptr: "192.168.50.205 plex.example.com."
+    local-data-ptr: "192.168.50.202 truenas.example.com."
     
     # CNAMEs for convenience aliases
-    local-data: "nas.mykk.foo.         IN CNAME truenas.mykk.foo."
-    local-data: "media.mykk.foo.       IN CNAME plex.mykk.foo."
-    local-data: "dns1.mykk.foo.        IN CNAME pi4server.mykk.foo."
-    local-data: "dns2.mykk.foo.        IN CNAME pi4server02.mykk.foo."
+    local-data: "nas.example.com.         IN CNAME truenas.example.com."
+    local-data: "media.example.com.       IN CNAME plex.example.com."
+    local-data: "dns1.example.com.        IN CNAME pi4server.example.com."
+    local-data: "dns2.example.com.        IN CNAME pi4server02.example.com."
     
     # External CNAME (points to public domain)
-    local-data: "www.mykk.foo.         IN CNAME mykk.us."
+    local-data: "www.example.com.         IN CNAME mykk.us."
 ```
 
 This gives me both the canonical names and convenient shortcuts.
@@ -141,14 +141,14 @@ This gives me both the canonical names and convenient shortcuts.
 
 Manually editing zone files is error-prone. So I wrote a TSV-based workflow:
 
-- **`/etc/unbound/hosts.d/mykk.foo.tsv`** → the source of truth
+- **`/etc/unbound/hosts.d/example.com.tsv`** → the source of truth
 - **`/usr/local/sbin/update_dns.sh`** → converts TSV → Unbound config, validates, restarts
 - **Backups** → every run creates timestamped backups
 - **Rollback** → just copy back a `.bak` file and restart
 
 ### The TSV Format
 
-The TSV file (`/etc/unbound/hosts.d/mykk.foo.tsv`) looks like this:
+The TSV file (`/etc/unbound/hosts.d/example.com.tsv`) looks like this:
 
 ```tsv
 # hostname	ip_address	aliases (comma-separated, optional)
@@ -166,10 +166,10 @@ Here's the core of `update_dns.sh`:
 #!/bin/bash
 set -euo pipefail
 
-TSV_FILE="/etc/unbound/hosts.d/mykk.foo.tsv"
+TSV_FILE="/etc/unbound/hosts.d/example.com.tsv"
 CONF_FILE="/etc/unbound/unbound.conf.d/local-zone-mykk-foo.conf"
 BACKUP_DIR="/etc/unbound/backups"
-DOMAIN="mykk.foo"
+DOMAIN="example.com"
 
 # Create backup
 mkdir -p "$BACKUP_DIR"
@@ -235,7 +235,7 @@ echo "DNS configuration updated successfully!"
 This means adding a host is as simple as:
 
 ```bash
-printf "newhost\t192.168.50.123\talias1,alias2\n" | sudo tee -a /etc/unbound/hosts.d/mykk.foo.tsv
+printf "newhost\t192.168.50.123\talias1,alias2\n" | sudo tee -a /etc/unbound/hosts.d/example.com.tsv
 sudo /usr/local/sbin/update_dns.sh
 ```
 
@@ -259,7 +259,7 @@ SECONDARY="192.168.50.3"
 SECONDARY_USER="michal"
 
 # Sync TSV file
-rsync -avz /etc/unbound/hosts.d/mykk.foo.tsv \
+rsync -avz /etc/unbound/hosts.d/example.com.tsv \
     ${SECONDARY_USER}@${SECONDARY}:/etc/unbound/hosts.d/
 
 # SSH to secondary and regenerate config
@@ -376,7 +376,7 @@ Finally, I pointed my **Asus router DHCP** to:
 
 - DNS1: `192.168.50.2`
 - DNS2: `192.168.50.3`
-- Search domain: `mykk.foo`
+- Search domain: `example.com`
 
 Now every device on the LAN resolves short names without extra configuration.
 
@@ -387,11 +387,11 @@ $ nslookup plex
 Server:		192.168.50.2
 Address:	192.168.50.2#53
 
-Name:	plex.mykk.foo
+Name:	plex.example.com
 Address: 192.168.50.205
 
 $ ping nas
-PING truenas.mykk.foo (192.168.50.202): 56 data bytes
+PING truenas.example.com (192.168.50.202): 56 data bytes
 64 bytes from 192.168.50.202: icmp_seq=0 ttl=64 time=2.1 ms
 ```
 
@@ -407,7 +407,7 @@ I wrote a monitoring script to confirm both resolvers are answering consistently
 #!/bin/bash
 
 SERVERS=(192.168.50.2 192.168.50.3)
-HOSTS=("pi4server.mykk.foo" "plex.mykk.foo" "truenas.mykk.foo" "google.com")
+HOSTS=("pi4server.example.com" "plex.example.com" "truenas.example.com" "google.com")
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -470,10 +470,10 @@ fi
 
 **If responses don't match:**
 
-1. Check if configs are in sync: `diff /etc/unbound/hosts.d/mykk.foo.tsv` between servers
+1. Check if configs are in sync: `diff /etc/unbound/hosts.d/example.com.tsv` between servers
 2. Re-run the sync script
 3. Validate configs: `unbound-checkconf` on both servers
-4. Clear cache: `unbound-control flush_zone mykk.foo` (if unbound-control is configured)
+4. Clear cache: `unbound-control flush_zone example.com` (if unbound-control is configured)
 
 **If external queries fail but local ones work:**
 
@@ -576,7 +576,7 @@ unbound-homelab/
 │   │   ├── lan53.conf
 │   │   └── local-zone-mykk-foo.conf.example
 │   └── hosts.d/
-│       └── mykk.foo.tsv.example
+│       └── example.com.tsv.example
 ├── docs/
 │   ├── CHEATSHEET.md
 │   ├── ARCHITECTURE.md
@@ -601,7 +601,7 @@ sudo ./install.sh  # Copies files, sets permissions, enables services
 - **Tie in Pi-hole**: Add ad-blocking with Unbound as upstream resolver
 - **Monitoring/Alerting**: Prometheus exporter or systemd watchdog for proactive alerts
 - **Expand local zones**: Add zones for other VLANs (IoT devices, guest network)
-- **DNSSEC signing**: Sign the `mykk.foo` zone for full chain of trust
+- **DNSSEC signing**: Sign the `example.com` zone for full chain of trust
 - **Conditional forwarding**: Forward specific domains (like `internal.company.com`) to corporate DNS
 
 ---

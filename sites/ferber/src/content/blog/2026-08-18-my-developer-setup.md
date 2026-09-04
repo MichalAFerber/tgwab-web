@@ -29,7 +29,7 @@ Pi is for GPIO, radio, and jobs that should sip power. Proxmox is for everything
 
 ## The edge
 
-Public things live on DigitalOcean droplets plus Cloudflare: tunnels, Access, Pages, Workers. `mykk.us` is the public name-space. `mykk.foo` is the LAN name-space. That split is the setup more than any one box.
+Public things live on DigitalOcean droplets plus Cloudflare: tunnels, Access, Pages, Workers. `mykk.us` is the public name-space. `example.com` is the LAN name-space. That split is the setup more than any one box.
 
 Azure showed up in the original idea because I used it. I moved workloads off it when reserved IPs, bills, or a UDP gotcha (RustDesk) said so. "And Azure" is not a flex I still need.
 

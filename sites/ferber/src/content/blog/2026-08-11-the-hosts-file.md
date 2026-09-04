@@ -22,7 +22,7 @@ The hosts file didn't go away. It became the override. The OS still checks it fi
 Not ad blocking. That's a losing game by hand.
 
 - **`localhost` and IPv6 localhost** — leave them alone.
-- **A temporary override** when I am cutting a name over and DNS hasn't caught up: `192.168.50.12 pve-ubuntu-002.mykk.foo`
+- **A temporary override** when I am cutting a name over and DNS hasn't caught up: `192.168.50.12 pve-ubuntu-002.example.com`
 - **Blocking one toxic name** on a single machine, once, when I am not ready to touch Pi-hole.
 
 Then I take the line *out*. Hosts files that grow into novels are how you get "it works on my laptop."

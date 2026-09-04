@@ -19,9 +19,9 @@ Zero trust at home, for me, is not a vendor logo. It's three rules:
 
 ## WARP instead of Tailscale
 
-WARP on the Mac Mini and MacBook is a Zero Trust enrollment, not a consumer VPN for "privacy." Split tunnels send `192.168.50.0/24` (and the names that live there) through the Cloudflare side, so I can SSH to a Proxmox VM or hit Unbound for `mykk.foo` without opening a port on the Netgate.
+WARP on the Mac Mini and MacBook is a Zero Trust enrollment, not a consumer VPN for "privacy." Split tunnels send `192.168.50.0/24` (and the names that live there) through the Cloudflare side, so I can SSH to a Proxmox VM or hit Unbound for `example.com` without opening a port on the Netgate.
 
-Unbound is set `transparent` on `mykk.foo` so LAN records and public Cloudflare names can coexist; WARP devices use Local Domain Fallback so those queries still land on *my* resolvers. I wrote that up in the [Unbound follow-up](/2026-05-26-unbound-dns-two-years-later/).
+Unbound is set `transparent` on `example.com` so LAN records and public Cloudflare names can coexist; WARP devices use Local Domain Fallback so those queries still land on *my* resolvers. I wrote that up in the [Unbound follow-up](/2026-05-26-unbound-dns-two-years-later/).
 
 Why not Tailscale?
 
