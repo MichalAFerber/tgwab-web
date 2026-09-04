@@ -41,7 +41,7 @@ brew install starship zsh-autosuggestions zsh-syntax-highlighting \
   fzf eza bat ripgrep fd zoxide btop git-delta chezmoi tmux
 ```
 
-That's: a prompt, two zsh plugins, fuzzy find, modern `ls`/`cat`/`grep`/`find`/`cd`/`top`, a pager for git diffs, tmux. I aliased several of those (`ls` → eza, `cat` → bat, `top` → btop) so the old names still work — details in the [aliases post](/2026-09-01-git-aliases-and-shell-functions/).
+That's: a prompt, two zsh plugins, fuzzy find, modern `ls`/`cat`/`grep`/`find`/`cd`/`top`, a pager for git diffs, tmux. I aliased several of those (`ls` → eza, `cat` → bat, `top` → btop) so the old names still work — details in the [aliases post](/2026-04-02-git-aliases-and-shell-functions/).
 
 If the box is Ubuntu, the names change (`batcat`, `fdfind`) and `eza` may need a different source. The *jobs* don't change.
 
