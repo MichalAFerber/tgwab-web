@@ -63,6 +63,9 @@ jobs:
           hits="$(grep -rn 'mailto:' sites/*/dist | grep -v '/\.well-known/security\.txt:' || true)"
           if [ -n "$hits" ]; then echo "::error::mailto: link in built output (§1)"; echo "$hits"; exit 1; fi
 
-      # Production tree only — a dev-tree advisory never reaches a user (§15).
-      - name: Audit production dependencies
-        run: pnpm audit --prod --audit-level=high
+      # Full tree, deliberately not --prod (DS §15): the dev half is the
+      # build toolchain, and what it writes into dist/ is what ships. Excluding it
+      # blinds the gate to the half whose compromise reaches users. Narrowing this
+      # is now a documented `## Deviations` line, not a default.
+      - name: Audit dependencies (full tree)
+        run: pnpm audit --audit-level=high
