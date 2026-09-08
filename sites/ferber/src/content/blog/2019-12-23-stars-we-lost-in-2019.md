@@ -1,6 +1,6 @@
 ---
 title: "Stars We Lost in 2019"
-description: "Year in review"
+description: "A Fox News list of 157 celebrities who died in 2019, and the ten young ones — from Laurel Griggs at 13 to Juice WRLD at 21 — that stayed with me."
 tags: [jesus, god, holy-spirit, christianity, hollywood, stars, celebrities, 2019]
 thumbnail-img: /assets/img/year-in-review-2019.webp
 redirect_from:

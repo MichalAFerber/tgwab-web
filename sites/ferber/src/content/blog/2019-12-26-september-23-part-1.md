@@ -1,6 +1,6 @@
 ---
 title: "September 2 – Part 1"
-description: "A personal story"
+description: "A personal story: counseling, a father who died when I was 21, the fear of disappointing him, and still working out my identity in Christ."
 tags: [jesus, god, holy-spirit, christianity]
 thumbnail-img: /assets/img/road-path.webp
 redirect_from:

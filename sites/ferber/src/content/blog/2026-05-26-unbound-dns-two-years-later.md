@@ -1,6 +1,6 @@
 ---
 title: "Unbound DNS, Two Years Later: From Dual Pis to Proxmox VMs"
-description: "The 2025 dual-Pi Unbound lab moved onto two Proxmox Ubuntu VMs, a GitHub repo, a TSV-driven zone file, and a transparent example.com zone so LAN and Cloudflare names can coexist."
+description: "The 2025 dual-Pi Unbound lab moved to two Proxmox Ubuntu VMs, a GitHub repo, a TSV-driven zone file, and a transparent zone so LAN and Cloudflare names coexist."
 tags: [unbound, dns, homelab, proxmox, linux]
 thumbnail-img: /assets/img/unbound-redundant-dns.webp
 ---

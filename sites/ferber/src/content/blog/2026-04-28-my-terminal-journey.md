@@ -1,6 +1,6 @@
 ---
-title: "My Terminal Journey: From the 1995 DOS Prompt to Ghostty + Starship"
-description: "Three decades at the command line — from the MS-DOS prompt and Windows 95, through PowerShell and Microsoft's Windows Terminal rewrite, a tour of FOSS terminal apps, settling on Termius for the SSH fleet, and finally replacing Terminal.app on macOS with Ghostty and a heavily customized Starship prompt."
+title: "My Terminal Journey: From DOS to Ghostty"
+description: "Three decades at the command line — from MS-DOS and Windows 95, through PowerShell and Windows Terminal, to Termius and Ghostty with Starship on macOS."
 tags: [terminal, ghostty, starship, macos, command-line, memoir]
 thumbnail-img: /assets/img/terminal-journey-dos-to-ghostty.webp
 ---

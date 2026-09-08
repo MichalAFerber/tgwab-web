@@ -1,6 +1,6 @@
 ---
 title: "Vesta Alert Notification System"
-description: "South Carolina ARC GIS conference"
+description: "Presenting on emergency communication, and the role GIS can play in it, at the South Carolina ARC GIS conference."
 tags: [emergency-notification, emergency-communications]
 thumbnail-img: /assets/img/sc-arc-gis.webp
 redirect_from:

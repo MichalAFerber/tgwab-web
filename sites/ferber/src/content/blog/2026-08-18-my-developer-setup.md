@@ -1,6 +1,6 @@
 ---
 title: "My Developer Setup: Mac Mini, a Pair of Pis, and a Homelab"
-description: "The machines I actually work on in 2026 — M4 Mac Mini and MacBook Air, Ghostty and Termius, Proxmox in the rack, DigitalOcean at the edge — and what I stopped using."
+description: "The machines I actually work on in 2026 — M4 Mac Mini and MacBook Air, Ghostty and Termius, Proxmox in the rack, DigitalOcean at the edge — and what I dropped."
 tags: [macos, homelab, workstation, raspberry-pi, devops]
 thumbnail-img: /assets/img/developer-setup.webp
 ---

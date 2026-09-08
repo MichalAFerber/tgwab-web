@@ -1,6 +1,6 @@
 ---
 title: "De-Googling My OnePlus 12"
-description: "The FOSS stack I actually run on a daily-driver Android phone — maps, weather, photos, PIM, keyboard, and the one Google feature that still doesn't have a real replacement."
+description: "The FOSS stack I run on a daily-driver Android phone — maps, weather, photos, PIM, keyboard, and the one Google feature that still has no real replacement."
 tags: [android, privacy, foss, f-droid, homelab]
 thumbnail-img: /assets/img/degoogling-android-phone.webp
 ---

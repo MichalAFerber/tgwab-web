@@ -1,5 +1,5 @@
 ---
-title: "Setting Up Ubuntu Server VMs in Proxmox VE with QEMU Guest Agent"
+title: "Ubuntu VMs in Proxmox VE with QEMU Agent"
 description: "A complete guide to creating Ubuntu Server virtual machines in Proxmox VE with full QEMU Guest Agent integration for seamless management and monitoring."
 tags: [proxmox, ubuntu, virtualization, homelab, linux]
 thumbnail-img: /assets/img/proxmox.webp

@@ -1,6 +1,6 @@
 ---
 title: "Hello World!"
-description: "Everyone has to have one of these right?"
+description: "The first post — written in Standard Notes and published with Listed, after trying Joplin and most of the other note-taking apps."
 tags: [programming, code]
 thumbnail-img: /assets/img/hello-world.webp
 redirect_from:

@@ -1,6 +1,6 @@
 ---
 title: "Adding a Shared Mailbox in Outlook for Android"
-description: "How to attach an Exchange Online shared mailbox to Outlook on Android — the steps, the Full Access permission it actually needs, and what to check when it fails."
+description: "How to attach an Exchange Online shared mailbox to Outlook on Android — the steps, the Full Access permission it needs, and what to check when it fails."
 tags: [outlook, android, microsoft-365, how-to, exchange]
 thumbnail-img: /assets/img/outlook-android-shared-mailbox.webp
 ---

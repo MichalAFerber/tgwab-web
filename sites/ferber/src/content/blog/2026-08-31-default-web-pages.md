@@ -1,6 +1,6 @@
 ---
 title: "Default Web Pages: The Splash You Were Never Meant to Keep"
-description: "A recreation archive of what a fresh install actually serves — IIS 1995 through 2022, nginx, Apache, Caddy, and the framework 404s — byte-exact where the original still exists."
+description: "A recreation archive of what a fresh install actually serves — IIS 1995 through 2022, nginx, Apache, Caddy, and the framework 404s — byte-exact where possible."
 tags: [web, history, archive, nginx, iis, open-source]
 thumbnail-img: /assets/img/default-web-pages.webp
 ---

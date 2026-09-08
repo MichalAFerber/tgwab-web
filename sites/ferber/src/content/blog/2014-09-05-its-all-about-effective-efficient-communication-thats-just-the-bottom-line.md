@@ -1,6 +1,6 @@
 ---
 title: "It’s all about Effective, Efficient Communication"
-description: "That’s Just the Bottom Line"
+description: "An interview on communicating with communication technology solutions, from the September 2014 Cassidian newsletter."
 tags: [emergency-notification, emergency-communications]
 thumbnail-img: /assets/img/mcleod-health-pavilion-bldg-2.webp
 ---

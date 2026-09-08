@@ -1,6 +1,6 @@
 ---
 title: "The new Admin On-Demand feature in the Mosyle MDM"
-description: "A How To Guide."
+description: "How to turn on Admin On-Demand in the Mosyle MDM, so users hold admin rights only when they ask — no static password, no rotation."
 tags: [how-to, mdm, mosyle]
 thumbnail-img: /assets/img/mosyle-admin-on-demand.webp
 redirect_from:

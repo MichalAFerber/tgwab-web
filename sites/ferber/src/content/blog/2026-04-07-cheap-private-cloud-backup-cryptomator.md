@@ -1,6 +1,6 @@
 ---
 title: "Cheap, Private Cloud Backup with WebDAV + Cryptomator"
-description: "A practical guide to building a zero-knowledge cloud backup for just a few dollars a month: pair a cheap WebDAV storage provider with Cryptomator's client-side encryption so your provider never sees your plaintext."
+description: "A zero-knowledge cloud backup for a few dollars a month: pair WebDAV storage with Cryptomator's client-side encryption so the provider never sees plaintext."
 tags: [cryptomator, webdav, backup, encryption, privacy, rclone, homelab]
 thumbnail-img: /assets/img/cryptomator-webdav-backup.webp
 ---

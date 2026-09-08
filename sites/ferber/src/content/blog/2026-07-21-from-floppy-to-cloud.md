@@ -1,5 +1,5 @@
 ---
-title: "From Floppy to Cloud: What 30 Years in IT Taught Me About Trends"
+title: "From Floppy to Cloud: 30 Years of IT Trends"
 description: "Floppy disks, burned CDs, a server under the desk, then someone else's computer — the through-line is not the medium. It's who can take it away from you."
 tags: [memoir, history, cloud, backup, it]
 thumbnail-img: /assets/img/floppy-to-cloud.webp

@@ -1,6 +1,6 @@
 ---
-title: "How to Build a Raspberry Pi Camera for Seamless WebRTC Streaming"
-description: "Using the Pi Zero 2 W and the Camera Module 3"
+title: "Raspberry Pi WebRTC Camera with MediaMTX"
+description: "Streaming a live feed from a Pi Zero 2 W and Camera Module 3 into HTML over WebRTC with MediaMTX — the hardware, the setup, and what worked."
 tags: [raspberry-pi, linux, how-to]
 thumbnail-img: /assets/img/raspberry-pis.webp
 redirect_from:

@@ -1,6 +1,6 @@
 ---
 title: "UploadWizard: Client Files, Your Brand, Your Bucket"
-description: "A white-label intake portal — magic-link sign-in, custom domain, virus scan — where files go to the client's S3, not mine. What shipped, what the dedicated droplet taught me, and why I folded it onto the public web box."
+description: "A white-label intake portal — magic-link sign-in, custom domain, virus scan — where files land in the client's S3, not mine, and what shipping it taught me."
 tags: [products, saas, cloudflare, caddy, storage]
 thumbnail-img: /assets/img/uploadwizard.webp
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Immich: The Google Photos Replacement I Actually Run"
-description: "Immich on a DigitalOcean droplet, machine learning on the same box, originals on Wasabi — how I left Ente, survived a restore, and stopped using Google Photos as a brain."
+description: "Immich on a DigitalOcean droplet, machine learning on the same box, originals on Wasabi — how I left Ente, survived a restore, and left Google Photos."
 tags: [immich, self-hosted, photos, wasabi, docker]
 thumbnail-img: /assets/img/immich-photos.webp
 ---
