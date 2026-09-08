@@ -1,6 +1,6 @@
 ---
 title: "Why I Still Write Bash Scripts in 2026"
-description: "Python and Rust are in the lab. The thing that still updates a dozen Compose stacks, syncs DNS, and runs on every box I own is a bash script with set -euo pipefail."
+description: "Python and Rust are in the lab. The thing that still updates a dozen Compose stacks, syncs DNS, and runs on every box I own is bash with set -euo pipefail."
 tags: [bash, shell, automation, linux, homelab]
 thumbnail-img: /assets/img/bash-scripts.webp
 ---

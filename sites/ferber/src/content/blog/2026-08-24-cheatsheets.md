@@ -1,6 +1,6 @@
 ---
 title: "Cheatsheets I Can Print"
-description: "A privacy-first library of developer cheatsheets — Bash, tmux, Git, Docker, kubectl, SQL — on the web or as PDF, Markdown, and a single HTML file. No cookies, no Google Fonts."
+description: "A privacy-first library of developer cheatsheets — Bash, tmux, Git, Docker, kubectl, SQL — on the web or as PDF, Markdown, and a single HTML file. No cookies."
 tags: [reference, docs, open-source, linux, macos]
 thumbnail-img: /assets/img/cheatsheets.webp
 ---

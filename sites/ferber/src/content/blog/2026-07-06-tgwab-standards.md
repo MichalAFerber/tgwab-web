@@ -1,6 +1,6 @@
 ---
 title: "Standards Across a Hundred Repos"
-description: "A private Class D repo — DEV-STANDARDS.md v2.53, a product registry, templates, and CI that fails a bad citation. Public READMEs do not hyperlink it. Agents get told no with a section number."
+description: "A private Class D repo — DEV-STANDARDS.md v2.53, a product registry, templates, and CI that fails a bad citation. Agents get told no with a section number."
 tags: [devops, github, standards, agents]
 thumbnail-img: /assets/img/tgwab-standards.webp
 ---

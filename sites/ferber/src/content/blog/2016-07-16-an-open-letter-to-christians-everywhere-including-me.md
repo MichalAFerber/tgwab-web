@@ -1,6 +1,6 @@
 ---
 title: "An open letter to Christians everywhere (including me)"
-description: "From the heart"
+description: "An open letter prompted by Nikki Leonti's story on America's Got Talent — on grace, shunning, and the Sunday-morning Christian the world spots a mile away."
 tags: [jesus, god, holy-spirit, christianity]
 thumbnail-img: /assets/img/letter.webp
 redirect_from:

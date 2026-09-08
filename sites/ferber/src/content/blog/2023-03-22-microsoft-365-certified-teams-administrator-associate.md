@@ -1,6 +1,6 @@
 ---
 title: "Microsoft 365 Certified: Teams Administrator Associate"
-description: "MS-700: Managing Microsoft Teams."
+description: "Earning the Microsoft 365 Certified: Teams Administrator Associate credential — MS-700, Managing Microsoft Teams."
 tags: [microsoft-certification, teams]
 thumbnail-img: /assets/badges/microsoft-365-teams-administrator-associate.avif
 redirect_from:

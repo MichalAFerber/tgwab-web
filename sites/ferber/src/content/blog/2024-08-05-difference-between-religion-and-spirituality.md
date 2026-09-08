@@ -1,6 +1,6 @@
 ---
 title: "Difference between religion and spirituality"
-description: "Or at least my take on it."
+description: "A wise man's contrast between religion and spirituality — many against one, those asleep against those awake — and my own take on it."
 tags: [religion, theology, god]
 thumbnail-img: /assets/img/religious-faith.webp
 redirect_from:

@@ -1,6 +1,6 @@
 ---
 title: "One Worker, Many Domains: Inbound Email to Discord"
-description: "Cloudflare Email Routing into a Worker that fans mail out to Discord — a JSON map of domains, HTML-to-Markdown, attachments, and why I stopped polling inboxes for catch-all noise."
+description: "Cloudflare Email Routing into a Worker that fans mail out to Discord — a JSON map of domains, HTML-to-Markdown, attachments, and why I stopped polling inboxes."
 tags: [cloudflare, workers, email, discord, devops]
 thumbnail-img: /assets/img/email-worker-discord.webp
 ---

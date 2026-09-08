@@ -1,6 +1,6 @@
 ---
 title: "The Wizard Suite: Small Tools, One Billing Shape"
-description: "CopyWizard is the idea. ResizeWizard is the one that already ships. Capture, Text, and Upload share the rules — free does the job, Pro is $3/year when there is a Pro, and they do not share a blob of code."
+description: "CopyWizard is the idea. ResizeWizard already ships. Capture, Text, and Upload share the rules — free does the job, Pro is $3/year, and they share no code."
 tags: [products, chrome-extension, javascript, privacy]
 thumbnail-img: /assets/img/wizard-suite.webp
 ---

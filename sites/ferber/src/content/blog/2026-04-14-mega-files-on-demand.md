@@ -1,6 +1,6 @@
 ---
-title: "How to Get Files On-Demand with MEGA (Stream Without Filling Your Disk)"
-description: "MEGAsync has no native Files On-Demand like OneDrive or iCloud. Here's how to stream your MEGA cloud storage as a virtual network drive using Rclone, MEGAcmd's WebDAV server, or a GUI tool like RaiDrive."
+title: "How to Get Files On-Demand with MEGA"
+description: "MEGAsync has no Files On-Demand like OneDrive or iCloud. Here's how to mount MEGA as a virtual network drive with Rclone, MEGAcmd's WebDAV server, or RaiDrive."
 tags: [mega, cloud-storage, rclone, webdav, how-to]
 thumbnail-img: /assets/img/mega-files-on-demand.webp
 ---

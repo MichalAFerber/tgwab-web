@@ -1,6 +1,6 @@
 ---
 title: "RustDesk on DigitalOcean: The Reserved-IP UDP Gotcha"
-description: "Self-hosted RustDesk OSS on a DO droplet — migrated off Azure, then off a second droplet — and why the hostname must point at the direct IP, not the reserved one."
+description: "Self-hosted RustDesk OSS on a DO droplet — migrated off Azure, then off a second droplet — and why the hostname must point at the direct IP, not the reserved."
 tags: [rustdesk, digitalocean, self-hosted, docker, remote-desktop]
 thumbnail-img: /assets/img/rustdesk-digitalocean.webp
 ---

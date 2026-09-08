@@ -1,6 +1,6 @@
 ---
 title: "ResizeWizard: Building and Launching a Chrome Extension"
-description: "A small Chrome extension for anchored window resizing — free forever, Pro at $3/year, licensing on Cloudflare Workers + D1 — and what shipping it actually taught me."
+description: "A small Chrome extension for anchored window resizing — free forever, Pro at $3/year, licensing on Cloudflare Workers + D1 — and what shipping it taught me."
 tags: [chrome-extension, cloudflare, workers, d1, products]
 thumbnail-img: /assets/img/resizewizard.webp
 ---

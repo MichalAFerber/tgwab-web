@@ -1,6 +1,6 @@
 ---
 title: "Where macOS Keeps Its Shell Config Files: A zsh & bash Map"
-description: "A practical map of zsh and bash configuration files on macOS — .zshrc, .zprofile, .bash_profile, .bashrc and their system-wide counterparts in /etc — plus the exact load order for login, interactive, and script shells."
+description: "A map of zsh and bash configuration files on macOS — .zshrc, .zprofile, .bash_profile, .bashrc and their counterparts in /etc — plus the exact load order."
 tags: [macos, zsh, bash, shell, dotfiles, how-to]
 thumbnail-img: /assets/img/macos-shell-config.webp
 ---

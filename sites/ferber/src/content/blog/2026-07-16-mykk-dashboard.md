@@ -1,6 +1,6 @@
 ---
 title: "MyKK: A Start Page in One File, Pro in an Extension"
-description: "start.mykk.us is still a single HTML file. Pro is a Chrome extension that never holds a Google id_token — the Worker does the OAuth, mints a one-time code, and talks over a service binding."
+description: "start.mykk.us is still one HTML file. Pro is a Chrome extension that never holds a Google id_token — the Worker does the OAuth over a service binding."
 tags: [products, chrome-extension, cloudflare, javascript, privacy]
 thumbnail-img: /assets/img/mykk-dashboard.webp
 ---

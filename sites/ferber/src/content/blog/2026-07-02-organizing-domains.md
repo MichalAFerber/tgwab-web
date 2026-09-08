@@ -1,6 +1,6 @@
 ---
 title: "Organizing a Hundred Domains Without Losing the Plot"
-description: "The working number used to be 65. The weekly audit is 101 zones. Tiers, SPF -all, MTA-STS, DNSSEC, and the Cloudflare bulk-rewrite trick that makes the backlog finite."
+description: "The working number was 65. The weekly audit is 101 zones. Tiers, SPF -all, MTA-STS, DNSSEC, and the Cloudflare bulk-rewrite trick that makes the backlog finite."
 tags: [dns, cloudflare, security, domains, email]
 thumbnail-img: /assets/img/organizing-domains.webp
 ---

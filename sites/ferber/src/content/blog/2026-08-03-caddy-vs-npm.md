@@ -1,6 +1,6 @@
 ---
 title: "Caddy vs. Nginx Proxy Manager"
-description: "NPM is still the homelab UI I reach for in Docker. The public products run Caddy — a Caddyfile you can read out loud, on-demand TLS, and the timeouts I learned the hard way."
+description: "NPM is the homelab UI I reach for in Docker. The public products run Caddy — a Caddyfile you can read out loud, on-demand TLS, and hard-won timeouts."
 tags: [homelab, caddy, nginx, reverse-proxy, docker, ssl]
 thumbnail-img: /assets/img/caddy-vs-npm.webp
 ---

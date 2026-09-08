@@ -1,6 +1,6 @@
 ---
 title: "de-google.us: A Map, Not a Manifesto"
-description: "The site I built for leaving Google and Apple as landlords — password manager first, real accounts, passkeys, triage the logins that can hurt you, and do not blow up Gmail on a Saturday."
+description: "The site I built for leaving Google and Apple as landlords — password manager first, real accounts, passkeys, and triaging the logins that can hurt you."
 tags: [privacy, foss, proton, products]
 thumbnail-img: /assets/img/de-google-us.webp
 ---
