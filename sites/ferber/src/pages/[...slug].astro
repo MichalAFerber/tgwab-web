@@ -23,11 +23,21 @@ const parseDateFromSlug = (slug) => {
 };
 
 const postDate = parseDateFromSlug(post.id);
+
+// The brand suffix is appended only when the finished <title> still fits the
+// 60-character SEO budget. Past that, search engines truncate the tail anyway,
+// so an unconditional suffix spends 16 characters to display nothing — and it
+// pushed 52 of this site's posts over the limit.
+const TITLE_SUFFIX = " | Michal Ferber";
+const pageTitle =
+  post.data.title.length + TITLE_SUFFIX.length <= 60
+    ? `${post.data.title}${TITLE_SUFFIX}`
+    : post.data.title;
 ---
 
 <Layout
   site="ferber"
-  title={`${post.data.title} | Michal Ferber`}
+  title={pageTitle}
   description={post.data.description}
   canonical={`https://michalferber.me/${post.id}/`}
 >
