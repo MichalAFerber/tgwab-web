@@ -7,14 +7,19 @@ packages:
 # GHSA waivers this file used to carry. js-yaml stays on the 4.x line (^):
 # v5 drops the default export its consumers import.
 overrides:
-  sharp: ">=0.35.0"
+  # <0.35.4 bundles libheif with GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545,
+  # reported as GHSA-rgj7-g3m4-5g8c. Reached through astro's image pipeline.
+  sharp: ">=0.35.4"
   postcss: ">=8.5.23"
   devalue: ">=5.8.1"
   vite: ">=6.4.3"
-  svgo: ">=4.0.2"
-  # ^4.3.0 still permits 4.3.0 itself, which is the vulnerable version --
-  # GHSA-5p4m-2wfm-xmqj is fixed in 4.3.1. The floor was one patch too low.
-  js-yaml: "^4.3.1"
+  # 4.0.x removeScripts lets executable links through namespace and
+  # control-character bypasses -- GHSA-w27v-7q3p-w38r, GHSA-4vpr-x523-8j87.
+  svgo: ">=4.1.0"
+  # Floor raised twice now: GHSA-5p4m-2wfm-xmqj is fixed in 4.3.1, and
+  # GHSA-2883-xcg3-v3hh (maxTotalMergeKeys does not bound CPU for empty
+  # merge sources) in 4.3.2. Still capped to the 4.x line -- see above.
+  js-yaml: "^4.3.2"
   # nanoid <3.3.17 (GHSA-2v37-7h3g-55p8), reached through astro>vite>postcss.
   # The 3.x line is fixed at 3.3.17; the reported 5.1.6 is the newest fixed
   # release, and nanoid 5 is ESM-only so it would break postcss.
