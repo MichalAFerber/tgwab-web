@@ -4,10 +4,12 @@
     "TGWAB dependency updates for pnpm repos — DEV-STANDARDS §15. Place at renovate.json.",
     "Renovate rather than Dependabot because Dependabot supports pnpm v7-v10 only and opens zero PRs on a pnpm 11 lockfile.",
     "constraints.pnpm MUST equal the root package.json packageManager pin — without it Renovate's lockfile step can fall back to whatever pnpm@latest resolves to.",
-    "config:best-practices supplies helpers:pinGitHubActionDigests, which is what makes the §15 pin-actions-to-SHA rule sustainable."
+    "config:best-practices supplies helpers:pinGitHubActionDigests, which is what makes the §15 pin-actions-to-SHA rule sustainable.",
+    "The Dependency Dashboard is off. It is a status surface, not a task, and Renovate reopens the issue on every run. Queued updates still open PRs on their schedule."
   ],
   "extends": ["config:best-practices", ":semanticCommits", "schedule:weekly"],
   "timezone": "America/New_York",
+  "dependencyDashboard": false,
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
   "labels": ["dependencies"],
