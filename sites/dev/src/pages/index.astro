@@ -3,35 +3,43 @@ import Layout from "@tgwab/ui/Layout.astro";
 
 const extensionCards = [
   {
+    name: "BookmarkWizard",
+    description: "Your bookmarks, without the bar - a minimalist bookmark manager in your toolbar. Free forever; Pro adds saving, renaming, and folders.",
+    status: "v1.2.0 Live",
+    external: "https://bookmarkwizard.app",
+    chrome: "https://chromewebstore.google.com/detail/bookmarkwizard/mngnggjfdecgfcgaaafgplgknjfbjioo?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
+    series: "Wizard",
+  },
+  {
     name: "CaptureWizard",
-    description: "Roadmap is being mapped out and planning started.",
-    status: "In Development",
+    description: "Full-page screenshots wrapped in OS-matched browser chrome. Free forever; Pro adds annotations, exports, and crop presets. Not yet on the Chrome Web Store.",
+    status: "Built - pending Chrome Web Store listing",
     external: "https://capturewizard.app",
     chrome: "#",
     series: "Wizard",
   },
   {
     name: "CopyWizard",
-    description: "Roadmap is being mapped out and planning started.",
-    status: "In Development",
+    description: "Map form fields intelligently. Save profiles, reuse everywhere. Copy once, paste anywhere.",
+    status: "v0.4.0 Live",
     external: "https://copywizard.us",
-    chrome: "#",
+    chrome: "https://chromewebstore.google.com/detail/copywizard-smart-form-map/fnmkcijhaanbillfcifmfppncmdjmcob?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
     series: "Wizard",
   },
   {
     name: "MyKK",
     description: "Your Browser's Start Page, Reimagined - MyKK is a beautiful, customizable browser start page that lives in a single HTML file. Download it, open it, make it yours. No install, no config, no Docker.",
-    status: "v1.0.4 Live",
+    status: "v1.1.1 Live",
     external: "https://mykk.us",
     github: "https://github.com/MichalAFerber/mykk.us",
-    chrome: "https://chrome.google.com/webstore/detail/ipeboldhljgjleidbklaanchekkdnjlo?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
+    chrome: "https://chromewebstore.google.com/detail/mykkus/ipeboldhljgjleidbklaanchekkdnjlo?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
   },
   {
     name: "ResizeWizard",
     description: "Resize Browser Windows Instantly - The fastest way to resize your browser window. Perfect for developers, designers, and anyone testing responsive layouts.",
-    status: "v1.0.1 Live",
+    status: "v1.3.1 Live",
     external: "https://resizewizard.app",
-    chrome: "https://chrome.google.com/webstore/detail/hjaaejifggdkmnpciiibiholphdehomj?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
+    chrome: "https://chromewebstore.google.com/detail/resizewizard/hjaaejifggdkmnpciiibiholphdehomj?utm_source=michalferber-dev&utm_medium=cta&utm_campaign=hero",
     series: "Wizard",
   },
 ];
@@ -42,7 +50,7 @@ const websiteCards = [
     description: "Decode X.509 certificates and CSRs in the browser — subject, SAN, validity, and key usage details.",
     status: "Live",
     external: "https://cert-viewer.us",
-    github: "https://github.com/MichalAFerber/cert-web-viewer",
+    github: "https://github.com/MichalAFerber/cert-viewer.us",
     series: "File Viewer",
   },
   {
@@ -57,7 +65,7 @@ const websiteCards = [
     description: "Explore JSON, YAML, CSV, TSV, and XML as collapsible trees or tables.",
     status: "Live",
     external: "https://data-viewer.us",
-    github: "https://github.com/MichalAFerber/data-web-viewer",
+    github: "https://github.com/MichalAFerber/data-viewer.us",
     series: "File Viewer",
   },
   {
@@ -65,7 +73,7 @@ const websiteCards = [
     description: "View Word documents with formatting, tables, and images preserved.",
     status: "Live",
     external: "https://docx-viewer.us",
-    github: "https://github.com/MichalAFerber/docx-web-viewer",
+    github: "https://github.com/MichalAFerber/docx-viewer.us",
     series: "File Viewer",
   },
   {
@@ -73,7 +81,7 @@ const websiteCards = [
     description: "Read email files with headers, body, attachments, and SPF/DKIM/DMARC authentication checks.",
     status: "Live",
     external: "https://eml-viewer.us",
-    github: "https://github.com/MichalAFerber/eml-web-viewer",
+    github: "https://github.com/MichalAFerber/eml-viewer.us",
     series: "File Viewer",
   },
   {
@@ -81,7 +89,7 @@ const websiteCards = [
     description: "Render EPUB books with chapter navigation and table of contents.",
     status: "Live",
     external: "https://epub-viewer.us",
-    github: "https://github.com/MichalAFerber/epub-web-viewer",
+    github: "https://github.com/MichalAFerber/epub-viewer.us",
     series: "File Viewer",
   },
   {
@@ -89,7 +97,7 @@ const websiteCards = [
     description: "Hub for the File Viewer series — single-file, offline-capable browser viewers that process files locally. No uploads, no accounts, MIT licensed.",
     status: "Live",
     external: "https://file-viewer.us",
-    github: "https://github.com/MichalAFerber/file-web-viewer",
+    github: "https://github.com/MichalAFerber/file-viewer.us",
     series: "File Viewer",
   },
   {
@@ -97,7 +105,7 @@ const websiteCards = [
     description: "Render HTML in a sandboxed frame, or view CSS/SCSS/JS/TS source with syntax highlighting.",
     status: "Live",
     external: "https://html-viewer.us",
-    github: "https://github.com/MichalAFerber/html-web-viewer",
+    github: "https://github.com/MichalAFerber/html-viewer.us",
     series: "File Viewer",
   },
   {
@@ -105,7 +113,7 @@ const websiteCards = [
     description: "View PNG, JPEG, WebP, SVG, TIFF, TGA, QOI, PCX, PPM, farbfeld, and DDS images.",
     status: "Live",
     external: "https://image-viewer.us",
-    github: "https://github.com/MichalAFerber/image-web-viewer",
+    github: "https://github.com/MichalAFerber/image-viewer.us",
     series: "File Viewer",
   },
   {
@@ -120,7 +128,7 @@ const websiteCards = [
     description: "Read log and text files with search, level filtering, and virtual scrolling.",
     status: "Live",
     external: "https://log-viewer.us",
-    github: "https://github.com/MichalAFerber/log-web-viewer",
+    github: "https://github.com/MichalAFerber/log-viewer.us",
     series: "File Viewer",
   },
   {
@@ -128,7 +136,7 @@ const websiteCards = [
     description: "Fast, mobile-first, single-file Markdown viewer. Drag & drop any text file to render it — no build, no uploads.",
     status: "Live",
     external: "https://markdown-viewer.us",
-    github: "https://github.com/MichalAFerber/markdown-web-viewer",
+    github: "https://github.com/MichalAFerber/markdown-viewer.us",
     series: "File Viewer",
   },
   {
@@ -136,7 +144,7 @@ const websiteCards = [
     description: "Read PDFs in the browser, powered by pdf.js.",
     status: "Live",
     external: "https://pdf-viewer.us",
-    github: "https://github.com/MichalAFerber/pdf-web-viewer",
+    github: "https://github.com/MichalAFerber/pdf-viewer.us",
     series: "File Viewer",
   },
   {
@@ -144,7 +152,7 @@ const websiteCards = [
     description: "View PowerPoint presentations slide by slide — text, layout, and images.",
     status: "Live",
     external: "https://pptx-viewer.us",
-    github: "https://github.com/MichalAFerber/pptx-web-viewer",
+    github: "https://github.com/MichalAFerber/pptx-viewer.us",
     series: "File Viewer",
   },
   {
@@ -152,7 +160,7 @@ const websiteCards = [
     description: "Read Microsoft Publisher files with metadata and text extraction.",
     status: "Live",
     external: "https://pub-viewer.us",
-    github: "https://github.com/MichalAFerber/pub-web-viewer",
+    github: "https://github.com/MichalAFerber/pub-viewer.us",
     series: "File Viewer",
   },
   {
@@ -160,7 +168,7 @@ const websiteCards = [
     description: "Open spreadsheets (.xlsx, .xls, .ods) as tables with sheet tabs.",
     status: "Live",
     external: "https://sheets-viewer.us",
-    github: "https://github.com/MichalAFerber/sheets-web-viewer",
+    github: "https://github.com/MichalAFerber/sheets-viewer.us",
     series: "File Viewer",
   },
   {
@@ -176,7 +184,6 @@ const websiteCards = [
     description: "Simple, direct file uploads with a clean workflow for sharing content quickly.",
     status: "Live",
     external: "https://uploadwizard.app",
-    github: "https://github.com/MichalAFerber/uploadwizard",
     series: "Wizard",
   },
 ];
