@@ -178,3 +178,26 @@ test('mobile hamburger collapses the nav chrome; desktop keeps the full row', as
   await expect(pills).toBeVisible();
   await expect(domains).toBeVisible();
 });
+
+// Google's OAuth branding review reads techguywithabeard.com's home page and
+// privacy policy (TGWAB/tgwab-account#134): both must say what TGWAB Account is
+// and what it does with Google data. The shared policy's slot that carries the
+// disclosure must stay empty on the other four sites.
+test('TGWAB Account section and Google sign-in disclosure are on tgwab only', async ({ page }, testInfo) => {
+  const isTgwab = testInfo.project.name === 'tgwab';
+
+  await page.goto('/');
+  const account = page.locator('#tgwab-account');
+  await expect(account).toHaveCount(isTgwab ? 1 : 0);
+  if (isTgwab) {
+    await expect(account.locator('h2')).toHaveText('TGWAB Account');
+    await expect(account.locator('a[href="https://account.tgwab.us/"]')).toHaveCount(1);
+    await expect(account.locator('a[href^="/privacy-policy/"]')).toHaveCount(1);
+  }
+
+  await page.goto('/privacy-policy/');
+  await expect(page.locator('#google-sign-in')).toHaveCount(isTgwab ? 1 : 0);
+  await expect(
+    page.locator('a[href="https://developers.google.com/terms/api-services-user-data-policy"]'),
+  ).toHaveCount(isTgwab ? 1 : 0);
+});

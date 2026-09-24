@@ -73,6 +73,21 @@ const services = [
       ))}
     </div>
   </section>
+
+  <section class="container account reveal" data-delay="2" id="tgwab-account">
+    <h2 class="section-title">TGWAB Account</h2>
+    <article class="surface-card card account-card">
+      <p>
+        TGWAB Account is the one account and licensing portal for TechGuyWithABeard's browser
+        extensions and apps. Sign in with Google, an emailed
+        sign-in link, a password, or a passkey to see and manage your licenses in one place.
+      </p>
+      <p class="links">
+        <a href="https://account.tgwab.us/" target="_blank" rel="noopener noreferrer">account.tgwab.us</a>
+        <a href="/privacy-policy/#google-sign-in">Privacy policy</a>
+      </p>
+    </article>
+  </section>
 </Layout>
 
 <style>
@@ -111,6 +126,15 @@ const services = [
     flex-direction: column;
     gap: var(--space-5);
     min-height: 22rem;
+  }
+
+  .account {
+    margin-top: var(--space-16);
+  }
+
+  .account-card {
+    min-height: 0;
+    gap: var(--space-4);
   }
 
   .row {
