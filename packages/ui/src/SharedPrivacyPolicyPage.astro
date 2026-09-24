@@ -3,9 +3,15 @@ import Layout from "./Layout.astro";
 
 interface Props {
   site: "ferber" | "tgwab" | "dev" | "kj4dia" | "ferberme";
+  /**
+   * Set by a site that adds its own section. The default slot renders between
+   * Data Sharing and Contact (tgwab's Google sign-in disclosure); it sits flush
+   * against the </p> so an empty slot leaves the other sites' HTML unchanged.
+   */
+  lastUpdated?: string;
 }
 
-const { site } = Astro.props;
+const { site, lastUpdated = "May 31, 2026" } = Astro.props;
 
 const domainBySite = {
   ferber: "https://michalferber.me",
@@ -32,7 +38,7 @@ const titleBySite = {
 >
   <article class="container legal reveal">
     <h1>Privacy Policy</h1>
-    <p>Last updated: May 31, 2026</p>
+    <p>Last updated: {lastUpdated}</p>
 
     <h2>Overview</h2>
     <p>
@@ -56,7 +62,7 @@ const titleBySite = {
     <p>
       Personal information is not sold. Limited data may be processed by infrastructure providers
       used to host and secure these sites.
-    </p>
+    </p><slot />
 
     <h2>Contact</h2>
     <p>
