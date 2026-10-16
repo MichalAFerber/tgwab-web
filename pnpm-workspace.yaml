@@ -11,7 +11,9 @@ overrides:
   # reported as GHSA-rgj7-g3m4-5g8c. Reached through astro's image pipeline.
   sharp: ">=0.35.4"
   postcss: ">=8.5.23"
-  devalue: ">=5.8.1"
+  # <5.9.3 carries GHSA-j22f-vq7h-c4qm, GHSA-mcm9-63f2-9j32, GHSA-x5rw-q4pp-hg5g.
+  # Capped to the 5.x line astro declares (^5.8.1): v6 changes uneval replacers.
+  devalue: "^5.9.3"
   vite: ">=6.4.3"
   # 4.0.x removeScripts lets executable links through namespace and
   # control-character bypasses -- GHSA-w27v-7q3p-w38r, GHSA-4vpr-x523-8j87.
