@@ -1,6 +1,6 @@
 ---
-title: "Control D on a Nintendo Switch: Bedtime, Filters, and One Activity Log"
-description: "How I use Control D to shut my daughter's internet off at night, filter what she can reach, and see what her devices ask for, including the Nintendo Switch, which can't run Control D on its own."
+title: "Control D on a Nintendo Switch: Bedtime, Filters, and Logs"
+description: "How I use Control D to turn my daughter's internet off at night, filter what she can reach, and log what her devices ask for, Nintendo Switch included."
 tags: [dns, homelab, privacy, networking, how-to]
 ---
 
