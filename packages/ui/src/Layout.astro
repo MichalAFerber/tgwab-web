@@ -61,6 +61,13 @@ const themeColor =
         : site === "kj4dia"
           ? "#130d1e"
           : "#101510";
+
+// Only the blog has a feed (sites/ferber/src/pages/rss.xml.ts). The title is
+// that feed's channel title.
+const feed =
+  site === "ferber"
+    ? { href: new URL("/rss.xml", Astro.site).href, title: "Blog | Michal Ferber" }
+    : undefined;
 ---
 
 <!doctype html>
@@ -75,6 +82,7 @@ const themeColor =
       themeColor={themeColor}
       noindex={noindex}
       noCanonical={noCanonical}
+      feed={feed}
     />
   </head>
   <body class={themeClass}>

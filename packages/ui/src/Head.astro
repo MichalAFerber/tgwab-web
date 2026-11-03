@@ -8,6 +8,12 @@ interface Props {
   themeColor?: string;
   noindex?: boolean;
   noCanonical?: boolean;
+  /**
+   * RSS autodiscovery: an absolute feed URL and its title. Omit for no feed.
+   * Its expression sits flush against the sitemap link: on its own line, an
+   * empty one leaves a second space in every other site's compressed HTML.
+   */
+  feed?: { href: string; title: string };
 }
 
 const {
@@ -19,6 +25,7 @@ const {
   themeColor,
   noindex = false,
   noCanonical = false,
+  feed,
 } = Astro.props;
 
 // §11: never fall back to the request URL — a preview build would emit
@@ -84,7 +91,9 @@ const plausibleDomain = Astro.site?.hostname;
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="sitemap" href="/sitemap-index.xml" />{feed && (
+  <link rel="alternate" type="application/rss+xml" title={feed.title} href={feed.href} />
+)}
 
 {plausibleDomain && (
   <script
