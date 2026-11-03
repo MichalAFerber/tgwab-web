@@ -96,7 +96,8 @@ Built to the TGWAB Dev Standards **v2.10.1** (internal).
 
 Everything else tracks the standard: self-hosted woff2 fonts, full SEO/OG kit with per-site
 `og.png`, plumbing files (`robots.txt`, `sitemap-index.xml`, `ads.txt`, `llms.txt`,
-`.well-known/security.txt`, `site.webmanifest`, `404`), §12 headers, and gated CI.
+`.well-known/security.txt`, `site.webmanifest`, `404`), the blog's RSS feed
+(`michalferber.me/rss.xml`), §12 headers, and gated CI.
 
 ## Credits
 

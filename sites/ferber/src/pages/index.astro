@@ -1,19 +1,16 @@
 ---
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
+import { parseDateFromSlug } from "../lib/post-date";
 
-const parseDateFromSlug = (slug: string) => {
-  const match = slug.match(/^(\d{4})-(\d{2})-(\d{2})-/);
-  if (!match) return 0;
-  return new Date(`${match[1]}-${match[2]}-${match[3]}T00:00:00Z`).valueOf();
-};
+const dateValue = (slug: string) => parseDateFromSlug(slug)?.valueOf() ?? 0;
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
-  .sort((left, right) => parseDateFromSlug(right.id) - parseDateFromSlug(left.id))
+  .sort((left, right) => dateValue(right.id) - dateValue(left.id))
   .map((post) => ({
     title: post.data.title,
     href: `/${post.id}/`,
-    dateValue: parseDateFromSlug(post.id),
+    dateValue: dateValue(post.id),
     heroImage: post.data.heroImage || post.data["thumbnail-img"] || "/img/post-build.svg",
     excerpt: post.data.description,
     tags: post.data.tags,
@@ -36,7 +33,17 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
   </section>
 
   <section class="container reveal" data-delay="1">
-    <h2 class="section-title">Posts</h2>
+    <div class="posts-head">
+      <h2 class="section-title">Posts</h2>
+      <a class="feed-link" href="/rss.xml">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="5.5" cy="18.5" r="2" />
+          <path d="M4 11a9 9 0 0 1 9 9h-2.5A6.5 6.5 0 0 0 4 13.5z" />
+          <path d="M4 4a16 16 0 0 1 16 16h-2.5A13.5 13.5 0 0 0 4 6.5z" />
+        </svg>
+        RSS feed
+      </a>
+    </div>
     <div class="grid">
       {posts.map((post) => (
         <article class="surface-card card">
@@ -79,6 +86,46 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
 
   .lede {
     max-width: 62ch;
+  }
+
+  /* The heading's rule runs out to the feed link instead of the edge. */
+  .posts-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .posts-head .section-title {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .feed-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--step--1);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+  }
+
+  .feed-link:hover {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+
+  .feed-link svg {
+    width: 1.1em;
+    height: 1.1em;
+    fill: currentColor;
   }
 
   /* Mobile-first (DEV-STANDARDS §3): 1 col base, 2 cols from the tablet tier. */

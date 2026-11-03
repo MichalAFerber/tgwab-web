@@ -144,7 +144,7 @@ the current values rather than copying hexes into another document.
 ## Out of scope
 
 - MDX for the blog. Add it when a post genuinely needs embedded components.
-- RSS or JSON feeds.
+- A JSON feed. The blog has RSS only (`/rss.xml`).
 - A products or portfolio content collection. See [`history.md`](history.md) for
   why this was tried twice and removed twice.
 - Author Email Protection / DMARC service line (dropped April 2026).
