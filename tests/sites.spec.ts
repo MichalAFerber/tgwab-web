@@ -201,3 +201,98 @@ test('TGWAB Account section and Google sign-in disclosure are on tgwab only', as
     page.locator('a[href="https://developers.google.com/terms/api-services-user-data-policy"]'),
   ).toHaveCount(isTgwab ? 1 : 0);
 });
+
+// michalferber.me's RSS feed (sites/ferber/src/pages/rss.xml.ts) is built from
+// the blog collection. It must list exactly the posts the index lists, newest
+// first, and every item link must be the absolute, trailing-slash canonical of
+// a post that is really in the build.
+test('blog feed lists every post newest first, with absolute links that resolve', async ({ page, request }, testInfo) => {
+  test.skip(testInfo.project.name !== 'ferber', 'only michalferber.me has a feed');
+
+  const resp = await request.get('/rss.xml');
+  expect(resp.status()).toBe(200);
+  expect(resp.headers()['content-type']).toMatch(/^application\/(rss\+)?xml\b/);
+  const xml = await resp.text();
+
+  await page.goto('/');
+  await expect(page.locator('a.feed-link[href="/rss.xml"]')).toBeVisible();
+  const indexHrefs = await page
+    .locator('.grid article h3 a')
+    .evaluateAll((links) => links.map((a) => a.getAttribute('href') ?? ''));
+  expect(indexHrefs.length).toBeGreaterThan(0);
+
+  // The browser's own XML parser: a malformed feed comes back as <parsererror>.
+  const feed = await page.evaluate((text) => {
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+    const error = doc.getElementsByTagName('parsererror')[0];
+    if (error) return { error: error.textContent ?? 'parsererror' };
+    const channel = doc.querySelector('rss > channel');
+    const self = channel?.getElementsByTagNameNS('http://www.w3.org/2005/Atom', 'link')[0];
+    return {
+      error: null,
+      version: doc.documentElement.getAttribute('version'),
+      title: channel?.querySelector(':scope > title')?.textContent ?? null,
+      self: { href: self?.getAttribute('href'), rel: self?.getAttribute('rel') },
+      fullText: doc.getElementsByTagNameNS('http://purl.org/rss/1.0/modules/content/', 'encoded').length,
+      items: [...(channel?.querySelectorAll(':scope > item') ?? [])].map((item) => ({
+        link: item.querySelector('link')?.textContent ?? '',
+        guid: item.querySelector('guid')?.textContent ?? '',
+        isPermaLink: item.querySelector('guid')?.getAttribute('isPermaLink') ?? null,
+        pubDate: item.querySelector('pubDate')?.textContent ?? null,
+      })),
+    };
+  }, xml);
+
+  expect(feed.error, `rss.xml does not parse:\n${feed.error}`).toBeNull();
+  expect(feed.version).toBe('2.0');
+  expect(feed.title).toBe('Blog | Michal Ferber');
+  expect(feed.self).toEqual({ href: 'https://michalferber.me/rss.xml', rel: 'self' });
+  expect(feed.fullText, 'summaries only: no content:encoded').toBe(0);
+
+  // Same posts, same order as the index.
+  const links = feed.items!.map((item) => item.link);
+  expect(links).toEqual(indexHrefs.map((href) => `https://michalferber.me${href}`));
+
+  // Newest first, by the filename date at midnight UTC; undated posts last.
+  const times = feed.items!.map((item) => (item.pubDate ? Date.parse(item.pubDate) : 0));
+  for (let i = 1; i < times.length; i++) {
+    expect(times[i], `item ${i} (${links[i]}) is newer than item ${i - 1}`).toBeLessThanOrEqual(times[i - 1]);
+  }
+
+  for (const item of feed.items!) {
+    expect(item.link).toMatch(/^https:\/\/michalferber\.me\/[^/?#]+\/$/);
+    expect(item.guid).toBe(item.link);
+    expect(item.isPermaLink).toBe('true');
+    const day = new URL(item.link).pathname.match(/^\/(\d{4}-\d{2}-\d{2})-/)?.[1];
+    if (day) expect(new Date(item.pubDate!).toISOString(), item.link).toBe(`${day}T00:00:00.000Z`);
+
+    const post = await request.get(new URL(item.link).pathname);
+    expect(post.status(), item.link).toBe(200);
+    expect(await post.text(), `${item.link} is not that page's canonical`).toContain(
+      `<link rel="canonical" href="${item.link}">`,
+    );
+  }
+});
+
+// Feed readers find the feed from any blog page; the other four sites have none.
+test('every blog page advertises the RSS feed, and no other site does', async ({ page }, testInfo) => {
+  const isFerber = testInfo.project.name === 'ferber';
+  const routes = ['/', '/about/', '/contact/', '/search/', '/privacy-policy/', '/terms-of-use/', '/definitely-missing/'];
+  if (isFerber) {
+    await page.goto('/');
+    routes.push('/tags/', (await page.locator('.grid article h3 a').first().getAttribute('href'))!);
+  }
+
+  for (const route of routes) {
+    await page.goto(route);
+    const feeds = page.locator(
+      'head link[type="application/rss+xml"], head link[type="application/atom+xml"], head link[type="application/feed+json"]',
+    );
+    await expect(feeds, route).toHaveCount(isFerber ? 1 : 0);
+    if (isFerber) {
+      await expect(feeds, route).toHaveAttribute('rel', 'alternate');
+      await expect(feeds, route).toHaveAttribute('href', 'https://michalferber.me/rss.xml');
+      await expect(feeds, route).toHaveAttribute('title', 'Blog | Michal Ferber');
+    }
+  }
+});
