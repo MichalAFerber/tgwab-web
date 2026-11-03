@@ -1,19 +1,16 @@
 ---
 import Layout from "@tgwab/ui/Layout.astro";
 import { getCollection } from "astro:content";
+import { parseDateFromSlug } from "../lib/post-date";
 
-const parseDateFromSlug = (slug: string) => {
-  const match = slug.match(/^(\d{4})-(\d{2})-(\d{2})-/);
-  if (!match) return 0;
-  return new Date(`${match[1]}-${match[2]}-${match[3]}T00:00:00Z`).valueOf();
-};
+const dateValue = (slug: string) => parseDateFromSlug(slug)?.valueOf() ?? 0;
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
-  .sort((left, right) => parseDateFromSlug(right.id) - parseDateFromSlug(left.id))
+  .sort((left, right) => dateValue(right.id) - dateValue(left.id))
   .map((post) => ({
     title: post.data.title,
     href: `/${post.id}/`,
-    dateValue: parseDateFromSlug(post.id),
+    dateValue: dateValue(post.id),
     heroImage: post.data.heroImage || post.data["thumbnail-img"] || "/img/post-build.svg",
     excerpt: post.data.description,
     tags: post.data.tags,
