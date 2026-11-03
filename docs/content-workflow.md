@@ -66,12 +66,17 @@ Edit the vault.
 
 Create `~/Obsidian/Obsidian-Master/blog/posts/YYYY-MM-DD-slug.md`.
 
-The **date comes from the filename** and nothing else. Both
-`sites/ferber/src/pages/index.astro` and `sites/ferber/src/pages/[...slug].astro`
-parse the leading `YYYY-MM-DD-` off the file's id. There is no `pubDate` in the
+The **date comes from the filename** and nothing else.
+`sites/ferber/src/lib/post-date.ts` parses the leading `YYYY-MM-DD-` off the
+file's id for the index, each post page, and the feed. There is no `pubDate` in the
 schema — adding one to front matter has no effect. The URL is the id too, so
 `2026-04-01-dispensationalism.md` publishes at
 `https://michalferber.me/2026-04-01-dispensationalism/`.
+
+The RSS feed at `https://michalferber.me/rss.xml` is built from the same collection
+on every build (`sites/ferber/src/pages/rss.xml.ts`) and is never committed, so a
+published post is in it with no extra step: its title, its `description`, and the
+filename date, newest first.
 
 Front matter:
 
