@@ -17,6 +17,13 @@
 /pagefind/*
   Access-Control-Allow-Origin: *
 
+# Email signature images load inside mail clients on other origins, which
+# same-origin CORP would block — a deliberate, recorded §12 deviation scoped
+# to this path only.
+/email/*
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
 # Astro content-hashes everything under /_astro — safe to pin forever (§12).
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
