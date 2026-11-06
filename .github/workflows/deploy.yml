@@ -4,8 +4,12 @@ name: Deploy tgwab sites
 # deploy path for all five sites in this monorepo, and each Pages project's Git
 # integration is off (§4 — exactly one deploy path).
 #
-#   push to main   → production deployment
-#   pull_request   → preview deployment (branch alias)
+#   push to main       → production deployment
+#   pull_request       → preview deployment (branch alias)
+#   workflow_dispatch  → production from main, otherwise a preview (branch alias)
+#
+# The branch is always named explicitly. An empty --branch makes wrangler guess
+# from git, and a deploy with no branch at all goes to production.
 #
 # One job per site rather than one job building everything: a failure names the
 # site that broke, and a site whose build fails cannot block the other four from
@@ -100,7 +104,7 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || '8a0d49b1f3fdcdadec135562ec8a4fdc' }}
-          DEPLOY_BRANCH: ${{ github.ref == 'refs/heads/main' && 'main' || github.head_ref }}
+          DEPLOY_BRANCH: ${{ github.head_ref || github.ref_name }}
           COMMIT_HASH: ${{ github.sha }}
         run: >
           npx wrangler@4 pages deploy ${{ matrix.dist }}

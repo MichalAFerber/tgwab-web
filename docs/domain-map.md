@@ -9,9 +9,10 @@ hosts are 301s. Cloudflare handles DNS and the edge for every zone here.
 
 ## Canonical sites
 
-Five domains, five `sites/<name>` packages, five Cloudflare Pages projects. Each
-Pages project builds from this repo's `main` branch through the Pages git
-integration—that is the only production deploy path (§4).
+Five domains, five `sites/<name>` packages, five Cloudflare Pages projects.
+`.github/workflows/deploy.yml` builds each site in GitHub Actions and uploads it
+with `wrangler pages deploy`. The Pages Git integration is off on every project,
+so that workflow is the only deploy path (§4).
 
 | Domain | Site package | Astro `site` | Pages project | Build command | Output |
 | --- | --- | --- | --- | --- | --- |
@@ -28,7 +29,9 @@ Shared across all five projects:
 - **Node version:** from `.nvmrc` (currently 22). No project sets `NODE_VERSION`
   or `PNPM_VERSION` env vars; pnpm comes from `packageManager` in
   `package.json`.
-- **Preview deployments:** enabled for all branches.
+- **Preview deployments:** a pull request gets one under its branch alias, and a
+  manual `workflow_dispatch` from a branch other than `main` gets one under that
+  branch's name. Pushing a branch without a pull request deploys nothing.
 - Each build also generates that site's Pagefind index (`astro build && pagefind
   --site dist`).
 
