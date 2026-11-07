@@ -93,6 +93,7 @@ Built to the TGWAB Dev Standards **v2.10.1** (internal).
 - §2 — no runtime CDNs — the Cal.com booking embed genuinely requires the vendor script; scoped in CSP to `app.cal.com` — 2026-07-30 — permanent
 - §15 — audit gate at `--audit-level=high` — two `astro` advisories (GHSA-8hv8-536x-4wqp, GHSA-2pvr-wf23-7pc7) and `js-yaml` GHSA-52cp-r559-cp3m (its patched 4.3 breaks Astro 5's ESM default import, so it is pinned <4.3) are resolvable only by the Astro 6 migration; ignored via `pnpm.auditConfig` — 2026-07-30 — review 2026-09-01
 - §12 — no wildcard `Access-Control-Allow-Origin` — `/pagefind/*` deliberately re-adds it so the sister sites' multisite search can fetch each index; scoped to that path only — 2026-07-30 — permanent
+- §12 — `Cross-Origin-Resource-Policy: same-origin` — `/email/*` sets `cross-origin` so mail apps on other origins can load the email signature image (`docs/email-signature.md`); scoped to that path only — 2026-11-06 — permanent
 
 Everything else tracks the standard: self-hosted woff2 fonts, full SEO/OG kit with per-site
 `og.png`, plumbing files (`robots.txt`, `sitemap-index.xml`, `ads.txt`, `llms.txt`,
