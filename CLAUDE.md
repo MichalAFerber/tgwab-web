@@ -48,7 +48,8 @@ tgwab-web/
 
 Reference docs all live in `docs/`: `domain-map.md` (canonical hosts, Pages projects, redirects),
 `scope.md` (architecture and the reasoning behind it), `content-workflow.md` (how blog posts get
-here from Obsidian), and `history.md` (decisions that were executed and later reversed).
+here from Obsidian), `email-signature.md` (the hosted signature image and its never-rename rule),
+and `history.md` (decisions that were executed and later reversed).
 
 ## Standards
 
