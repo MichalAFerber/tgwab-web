@@ -13,7 +13,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "@tgwab/design-tokens": "workspace:*",
     "@tgwab/ui": "workspace:*",
-    "astro": "^7.3.3"
+    "astro": "^7.4.7"
   },
   "devDependencies": {
     "pagefind": "^1.5.2"
