@@ -296,3 +296,42 @@ test('every blog page advertises the RSS feed, and no other site does', async ({
     }
   }
 });
+
+// DS §11: the sitemap MUST carry `lastmod`. Every entry in the index, and in each
+// sitemap it names, needs a W3C datetime that parses. An empty sitemap would pass
+// a per-entry check, so each file must list an entry, and a <loc> outside an entry
+// fails the count. A michalferber.me post's lastmod is its filename date at
+// midnight UTC, the date its page and /rss.xml carry; other pages get the build
+// time (packages/ui/src/sitemap.mjs). kj4dia.me is lapsing and keeps its old
+// sitemap.
+test('every sitemap entry carries a valid lastmod (§11)', async ({ request }, testInfo) => {
+  test.skip(testInfo.project.name === 'kj4dia', 'kj4dia.me is lapsing; its sitemap is unchanged');
+
+  const W3C_DATETIME = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2}))?$/;
+  const entries = async (path: string, tag: 'sitemap' | 'url') => {
+    const resp = await request.get(path);
+    expect(resp.status(), path).toBe(200);
+    const xml = await resp.text();
+    const items = [...xml.matchAll(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`, 'g'))].map((m) => m[1]);
+    expect(items.length, `${path} lists no <${tag}>`).toBeGreaterThan(0);
+    expect(xml.match(/<loc>/g)?.length, `${path} has a <loc> outside a <${tag}>`).toBe(items.length);
+    return items.map((item) => {
+      const loc = item.match(/<loc>([^<]*)<\/loc>/)?.[1] ?? '';
+      const lastmod = item.match(/<lastmod>([^<]*)<\/lastmod>/)?.[1] ?? '';
+      const valid = W3C_DATETIME.test(lastmod) && !Number.isNaN(Date.parse(lastmod));
+      expect(valid, `${path}: ${loc} has no valid <lastmod> (got "${lastmod}")`).toBe(true);
+      return { loc, lastmod };
+    });
+  };
+
+  let posts = 0;
+  for (const sitemap of await entries('/sitemap-index.xml', 'sitemap')) {
+    for (const { loc, lastmod } of await entries(new URL(sitemap.loc).pathname, 'url')) {
+      const day = new URL(loc).pathname.match(/^\/(\d{4}-\d{2}-\d{2})-/)?.[1];
+      if (testInfo.project.name !== 'ferber' || !day) continue;
+      posts++;
+      expect(new Date(lastmod).toISOString(), `${loc} is not dated by its filename`).toBe(`${day}T00:00:00.000Z`);
+    }
+  }
+  if (testInfo.project.name === 'ferber') expect(posts, 'no dated post in the sitemap').toBeGreaterThan(0);
+});
