@@ -68,7 +68,8 @@ Create `~/Obsidian/Obsidian-Master/blog/posts/YYYY-MM-DD-slug.md`.
 
 The **date comes from the filename** and nothing else.
 `sites/ferber/src/lib/post-date.ts` parses the leading `YYYY-MM-DD-` off the
-file's id for the index, each post page, and the feed. There is no `pubDate` in the
+file's id for the index, each post page, the feed, and the post's sitemap
+`lastmod`. There is no `pubDate` in the
 schema — adding one to front matter has no effect. The URL is the id too, so
 `2026-04-01-dispensationalism.md` publishes at
 `https://michalferber.me/2026-04-01-dispensationalism/`.

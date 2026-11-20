@@ -14,7 +14,8 @@
     "./SharedPrivacyPolicyPage.astro": "./src/SharedPrivacyPolicyPage.astro",
     "./SharedTermsOfUsePage.astro": "./src/SharedTermsOfUsePage.astro",
     "./SharedSearchPage.astro": "./src/SharedSearchPage.astro",
-    "./Shared404Page.astro": "./src/Shared404Page.astro"
+    "./Shared404Page.astro": "./src/Shared404Page.astro",
+    "./sitemap.mjs": "./src/sitemap.mjs"
   },
   "dependencies": {
     "@tgwab/design-tokens": "workspace:*"
